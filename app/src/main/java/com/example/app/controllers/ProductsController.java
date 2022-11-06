@@ -25,17 +25,12 @@ public class ProductsController {
     }
 
     @PutMapping
-    public ResponseEntity<?> editProduct(@RequestBody EditProductDto productDto) {
+    public ResponseEntity<?> editProduct(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody EditProductDto productDto) {
         return null;
     }
 
     @DeleteMapping
-    public ResponseEntity<?> editProduct(@PathVariable String productId) {
-        return null;
-    }
-
-    @GetMapping("{storeId}")
-    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
+    public ResponseEntity<?> deleteProduct(@PathVariable String productId) {
         return null;
     }
 
