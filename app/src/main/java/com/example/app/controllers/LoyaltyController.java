@@ -23,4 +23,9 @@ public class LoyaltyController {
         return null;
     }
 
+    @GetMapping("{storeId}")
+    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
+        return null;
+    }
+
 }

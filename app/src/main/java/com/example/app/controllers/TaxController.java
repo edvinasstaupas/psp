@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "tax", produces = "application/json")
 public class TaxController {
 
-    @GetMapping("{storeId]")
+    @GetMapping("{storeId}")
     public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
         return null;
     }

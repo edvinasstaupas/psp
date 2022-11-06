@@ -2,10 +2,7 @@ package com.example.app.controllers;
 
 import com.example.app.dto.PersonalInformation;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "clients", produces = "application/json")
@@ -30,5 +27,10 @@ public class ClientsController {
     public ResponseEntity<?> enterCardInfo(String cardInfo) {
         return null;
     }
+
+    @GetMapping("{storeId}")
+    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
+        return null;
+    } 
 
 }

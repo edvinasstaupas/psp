@@ -23,6 +23,11 @@ public class UserController {
         return null;
     }
 
+    @GetMapping("{storeId}")
+    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
+        return null;
+    }
+
     @PostMapping("card-info")
     public ResponseEntity<?> enterCardInfo(String cardInfo) {
         return null;

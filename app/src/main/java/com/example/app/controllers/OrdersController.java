@@ -22,4 +22,9 @@ public class OrdersController {
     public ResponseEntity<?> enterCardInfo(String cardInfo) {
         return null;
     }
+
+    @GetMapping("{storeId}")
+    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
+        return null;
+    }
 }
