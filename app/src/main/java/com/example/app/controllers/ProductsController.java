@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "products", produces = "application/json")
 @ApiResponses({
         @ApiResponse(responseCode = "200"),
-        @ApiResponse(responseCode = "404"),
-        @ApiResponse(responseCode = "401"),
         @ApiResponse(responseCode = "400"),
+        @ApiResponse(responseCode = "404"),
         @ApiResponse(responseCode = "500")
 })
 public class ProductsController {

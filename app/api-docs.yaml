@@ -18,8 +18,32 @@ paths:
               $ref: '#/components/schemas/EditProductDto'
         required: true
       responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          description: Not Found
           content:
             application/json:
               schema:
@@ -35,8 +59,32 @@ paths:
               $ref: '#/components/schemas/CreateProductDto'
         required: true
       responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          description: Not Found
           content:
             application/json:
               schema:
@@ -52,8 +100,32 @@ paths:
         schema:
           type: string
       responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          description: Not Found
           content:
             application/json:
               schema:
@@ -75,6 +147,18 @@ paths:
         schema:
           type: string
       responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
         "200":
           description: OK
           content:
@@ -93,6 +177,24 @@ paths:
               $ref: '#/components/schemas/PersonalInformation'
         required: true
       responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
         "200":
           description: OK
           content:
@@ -116,6 +218,18 @@ paths:
         schema:
           type: string
       responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
         "200":
           description: OK
           content:
@@ -510,6 +624,14 @@ paths:
       - tax-controller
       operationId: getTaxesForStore
       responses:
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
         "200":
           description: OK
           content:
@@ -524,6 +646,12 @@ paths:
       - tax-controller
       operationId: getTaxesTotalForStore
       responses:
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: number
         "200":
           description: OK
           content:
@@ -560,8 +688,32 @@ paths:
         schema:
           type: string
       responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          description: Not Found
           content:
             application/json:
               schema:
@@ -572,8 +724,32 @@ paths:
       - products-controller
       operationId: getAvailableProducts
       responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          description: Not Found
           content:
             application/json:
               schema:
