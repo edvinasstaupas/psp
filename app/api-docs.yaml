@@ -1,0 +1,867 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /products:
+    put:
+      tags:
+      - products-controller
+      operationId: editProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditProductDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      tags:
+      - products-controller
+      operationId: addProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags:
+      - products-controller
+      operationId: deleteProduct
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /users/register:
+    post:
+      tags:
+      - user-controller
+      operationId: register
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /users/personal-information:
+    post:
+      tags:
+      - user-controller
+      operationId: addPersonalInformation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalInformation'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /users/login:
+    post:
+      tags:
+      - user-controller
+      operationId: login
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /system/register:
+    post:
+      tags:
+      - system-controller
+      operationId: register_1
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /system/personal-information:
+    post:
+      tags:
+      - system-controller
+      operationId: addPersonalInformation_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalInformation'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /system/login:
+    post:
+      tags:
+      - system-controller
+      operationId: login_1
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /system/card-info:
+    post:
+      tags:
+      - system-controller
+      operationId: enterCardInfo
+      parameters:
+      - name: cardInfo
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /orders/card-info:
+    post:
+      tags:
+      - orders-controller
+      operationId: enterCardInfo_1
+      parameters:
+      - name: cardInfo
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /loyalty/card-info:
+    post:
+      tags:
+      - loyalty-controller
+      operationId: enterCardInfo_2
+      parameters:
+      - name: cardInfo
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /employees/register:
+    post:
+      tags:
+      - employees-controller
+      operationId: register_2
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /employees/personal-information:
+    post:
+      tags:
+      - employees-controller
+      operationId: addPersonalInformation_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalInformation'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /employees/login:
+    post:
+      tags:
+      - employees-controller
+      operationId: login_2
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /employees/card-info:
+    post:
+      tags:
+      - employees-controller
+      operationId: enterCardInfo_3
+      parameters:
+      - name: cardInfo
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /discounts/register:
+    post:
+      tags:
+      - discounts-controller
+      operationId: register_3
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /discounts/personal-information:
+    post:
+      tags:
+      - discounts-controller
+      operationId: addPersonalInformation_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalInformation'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /discounts/login:
+    post:
+      tags:
+      - discounts-controller
+      operationId: login_3
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /discounts/card-info:
+    post:
+      tags:
+      - discounts-controller
+      operationId: enterCardInfo_4
+      parameters:
+      - name: cardInfo
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /customer-support/card-info:
+    post:
+      tags:
+      - customer-support-controller
+      operationId: enterCardInfo_5
+      parameters:
+      - name: cardInfo
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /clients/register:
+    post:
+      tags:
+      - clients-controller
+      operationId: register_4
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /clients/personal-information:
+    post:
+      tags:
+      - clients-controller
+      operationId: addPersonalInformation_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalInformation'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /clients/login:
+    post:
+      tags:
+      - clients-controller
+      operationId: login_4
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /clients/card-info:
+    post:
+      tags:
+      - clients-controller
+      operationId: enterCardInfo_6
+      parameters:
+      - name: cardInfo
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /tax:
+    get:
+      tags:
+      - tax-controller
+      operationId: getTaxesForStore
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /tax/total:
+    get:
+      tags:
+      - tax-controller
+      operationId: getTaxesTotalForStore
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: number
+  /system/{storeId}:
+    get:
+      tags:
+      - system-controller
+      operationId: getTaxesForStore_1
+      parameters:
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /products/{productId}/tax:
+    get:
+      tags:
+      - products-controller
+      operationId: getProductTaxes
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /products/available-products:
+    get:
+      tags:
+      - products-controller
+      operationId: getAvailableProducts
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /orders/{storeId}:
+    get:
+      tags:
+      - orders-controller
+      operationId: getTaxesForStore_2
+      parameters:
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /orders/register:
+    get:
+      tags:
+      - orders-controller
+      operationId: register_5
+      parameters:
+      - name: personalInformation
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PersonalInformation'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /orders/login:
+    get:
+      tags:
+      - orders-controller
+      operationId: login_5
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /loyalty/{storeId}:
+    get:
+      tags:
+      - loyalty-controller
+      operationId: getTaxesForStore_3
+      parameters:
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /loyalty/register:
+    get:
+      tags:
+      - loyalty-controller
+      operationId: register_6
+      parameters:
+      - name: personalInformation
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PersonalInformation'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /loyalty/login:
+    get:
+      tags:
+      - loyalty-controller
+      operationId: login_6
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /employees/{storeId}:
+    get:
+      tags:
+      - employees-controller
+      operationId: getTaxesForStore_4
+      parameters:
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /discounts/{storeId}:
+    get:
+      tags:
+      - discounts-controller
+      operationId: getTaxesForStore_5
+      parameters:
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /customer-support/{storeId}:
+    get:
+      tags:
+      - customer-support-controller
+      operationId: getTaxesForStore_6
+      parameters:
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /customer-support/register:
+    get:
+      tags:
+      - customer-support-controller
+      operationId: register_7
+      parameters:
+      - name: personalInformation
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PersonalInformation'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /customer-support/login:
+    get:
+      tags:
+      - customer-support-controller
+      operationId: login_7
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /clients/{storeId}:
+    get:
+      tags:
+      - clients-controller
+      operationId: getTaxesForStore_7
+      parameters:
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    EditProductDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        price:
+          type: number
+        store:
+          $ref: '#/components/schemas/Store'
+    Store:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        workHours:
+          type: string
+        address:
+          type: string
+        contactInfo:
+          type: string
+    PersonalInformation:
+      type: object
+      properties:
+        fullName:
+          type: string
+        personalCode:
+          type: string
+        address:
+          type: string
+    CreateProductDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        price:
+          type: number
+        store:
+          $ref: '#/components/schemas/Store'
