@@ -4,10 +4,14 @@ import com.example.app.dto.OrderDto;
 import com.example.app.dto.OrderInformation;
 import com.example.app.dto.PersonalInformation;
 import com.example.app.dto.TipDto;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@ApiResponse(responseCode = "200")
+@ApiResponse(responseCode = "400")
+@ApiResponse(responseCode = "401")
 @RequestMapping(value = "orders", produces = "application/json")
 public class OrdersController {
 
@@ -36,7 +40,7 @@ public class OrdersController {
         return null;
     }
 
-    @DeleteMapping("product/{productId}/{orderId{")
+    @DeleteMapping("product/{productId}/{orderId}")
     public ResponseEntity<?> deleteProductFromOrder(@PathVariable String productId, @PathVariable String orderId) {
         return null;
     }

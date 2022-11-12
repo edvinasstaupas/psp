@@ -3,10 +3,14 @@ package com.example.app.controllers;
 
 import com.example.app.dto.DiscountDto;
 import com.example.app.dto.PersonalInformation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@ApiResponse(responseCode = "200")
+@ApiResponse(responseCode = "400")
+@ApiResponse(responseCode = "401")
 @RequestMapping(value = "discounts", produces = "application/json")
 public class DiscountsController {
 
