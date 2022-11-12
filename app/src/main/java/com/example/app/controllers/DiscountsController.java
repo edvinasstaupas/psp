@@ -1,6 +1,7 @@
 package com.example.app.controllers;
 
 
+import com.example.app.dto.DiscountDto;
 import com.example.app.dto.PersonalInformation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,4 +35,18 @@ public class DiscountsController {
         return null;
     }
 
+    @GetMapping
+    public ResponseEntity<?> getAll() {
+        return null;
+    }
+
+    @PutMapping("apply/{discountId}")
+    public ResponseEntity<?> applyDiscount(@PathVariable String discountId) {
+        return null;
+    }
+
+    @PutMapping
+    public ResponseEntity<?> editDetails(@RequestBody DiscountDto discountDto) {
+        return null;
+    }
 }
