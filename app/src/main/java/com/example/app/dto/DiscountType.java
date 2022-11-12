@@ -1,6 +1,8 @@
 package com.example.app.dto;
 
-public enum DiscountType {
-    PERCENTAGE,
-    FLAT
+import lombok.*;
+
+enum DiscountType {
+    NORMAL,
+    LOYALTY
 }
