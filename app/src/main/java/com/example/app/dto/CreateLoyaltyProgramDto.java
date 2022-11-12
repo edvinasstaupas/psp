@@ -2,6 +2,8 @@ package com.example.app.dto;
 
 import lombok.*;
 
+import java.time.OffsetDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -10,6 +12,6 @@ import lombok.*;
 public class CreateLoyaltyProgramDto {
     private User user;
     private String number;
-    private Datetime startDate;
-    private Datetime expirationDate;
+    private OffsetDateTime startDate;
+    private OffsetDateTime expirationDate;
 }

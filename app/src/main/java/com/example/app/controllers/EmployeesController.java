@@ -1,6 +1,7 @@
 package com.example.app.controllers;
 
 
+import com.example.app.dto.CreateEmployeeDto;
 import com.example.app.dto.PersonalInformation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,27 +20,21 @@ public class EmployeesController {
         return null;
     }
 
-    @ApiResponses({
-            @ApiResponse(responseCode = "401")
-    })
     @PostMapping("personal-information")
     public ResponseEntity<?> addPersonalInformation(@RequestBody PersonalInformation personalInformation) {
         return null;
     }
 
     @GetMapping("{employeeId}/information")
-    public ResponseEntity<?> getEmployeeInformation(@PathVariable employeeId) {
+    public ResponseEntity<?> getEmployeeInformation(@PathVariable String employeeId) {
         return null;
     }
 
     @GetMapping("activities")
-    public ResponseEntity<?> getEmployeeActivities(@PathVariable employeeId) {
+    public ResponseEntity<?> getEmployeeActivities(@PathVariable String employeeId) {
         return null;
     }
 
-    @ApiResponses({
-            @ApiResponse(responseCode = "401")
-    })
     @PostMapping
     public ResponseEntity<?> createEmployeeAccount(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateEmployeeDto employeeDto) {
         return null;
@@ -48,8 +43,6 @@ public class EmployeesController {
     public ResponseEntity<?> deleteEmployee(@PathVariable String employeeId) {
         return null;
     }
-
-
 
     @PostMapping("card-info")
     public ResponseEntity<?> enterCardInfo(String cardInfo) {
