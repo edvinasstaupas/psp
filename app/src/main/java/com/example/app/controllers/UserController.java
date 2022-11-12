@@ -9,11 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "users", produces = "application/json")
-@ApiResponses({
-        @ApiResponse(responseCode = "200"),
-        @ApiResponse(responseCode = "400"),
-        @ApiResponse(responseCode = "500")
-})
 public class UserController {
 
     @PostMapping("login")
@@ -26,9 +21,6 @@ public class UserController {
         return null;
     }
 
-    @ApiResponses({
-            @ApiResponse(responseCode = "401")
-    })
     @PostMapping("personal-information")
     public ResponseEntity<?> addPersonalInformation(@RequestBody PersonalInformation personalInformation) {
         return null;
