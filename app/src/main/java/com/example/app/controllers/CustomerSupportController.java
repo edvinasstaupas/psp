@@ -25,7 +25,7 @@ public class CustomerSupportController {
     public ResponseEntity<?> createRefundRequest(@RequestBody CreateRefundDto refundDto) { return null; }
 
     @PutMapping("refund/{requestId}/edit")
-    public ResponseEntity<?> updateRefundRequest(@RequestBody RefundDto refundDto) { return null; }
+    public ResponseEntity<?> updateRefundRequest(@PathVariable String requestId, @RequestBody RefundDto refundDto) { return null; }
 
     @PutMapping("refund/{requestId}/finalize")
     public ResponseEntity<?> finalizeRefundRequest(@PathVariable String requestId) { return null; }
@@ -37,6 +37,6 @@ public class CustomerSupportController {
     public ResponseEntity<?> createChat(@RequestBody String userId) { return null; }
 
     @PostMapping("chat/{chatId}")
-    public ResponseEntity<?> sendMessage(@RequestBody MessageDto messageDto) { return null; }
+    public ResponseEntity<?> sendMessage(@PathVariable String chatId, @RequestBody MessageDto messageDto) { return null; }
 
 }

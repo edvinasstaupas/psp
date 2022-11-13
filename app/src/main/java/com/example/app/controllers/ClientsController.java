@@ -13,8 +13,8 @@ public class ClientsController {
     public ResponseEntity<?> addStore(@RequestBody StoreDto storeDto) { return null; }
 
     @PutMapping("{storeId}")
-    public ResponseEntity<?> editStore(@RequestBody StoreDto storeDto) { return null; }
+    public ResponseEntity<?> editStore(@PathVariable String storeId, @RequestBody StoreDto storeDto) { return null; }
 
     @DeleteMapping("{storeId}")
-    public ResponseEntity<?> deleteStore() { return null; }
+    public ResponseEntity<?> deleteStore(@PathVariable String storeId) { return null; }
 }
