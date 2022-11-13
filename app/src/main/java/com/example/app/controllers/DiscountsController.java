@@ -16,31 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "discounts", produces = "application/json")
 public class DiscountsController {
 
-    @PostMapping("login")
-    public ResponseEntity<?> login(String email, String password) {
-        return null;
-    }
-
-    @PostMapping("register")
-    public ResponseEntity<?> register(String email, String password) {
-        return null;
-    }
-
-    @PostMapping("personal-information")
-    public ResponseEntity<?> addPersonalInformation(@RequestBody PersonalInformation personalInformation) {
-        return null;
-    }
-
-    @PostMapping("card-info")
-    public ResponseEntity<?> enterCardInfo(String cardInfo) {
-        return null;
-    }
-
-    @GetMapping("{storeId}")
-    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
-        return null;
-    }
-
     @GetMapping
     public ResponseEntity<?> getAll() {
         return null;

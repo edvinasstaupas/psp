@@ -18,26 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "orders", produces = "application/json")
 public class OrdersController {
 
-    @GetMapping("login")
-    public ResponseEntity<?> login(String email, String password) {
-        return null;
-    }
-
-    @GetMapping("register")
-    public ResponseEntity<?> register(@RequestBody PersonalInformation personalInformation) {
-        return null;
-    }
-
-    @PostMapping("card-info")
-    public ResponseEntity<?> enterCardInfo(String cardInfo) {
-        return null;
-    }
-
-    @GetMapping("store/{storeId}")
-    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
-        return null;
-    }
-
     @PostMapping("product/{productId}/{orderId}")
     public ResponseEntity<?> addProductToOrder(@PathVariable String productId, @PathVariable String orderId) {
         return null;
@@ -73,27 +53,27 @@ public class OrdersController {
         return null;
     }
 
-    @PutMapping("tip")
+    @PostMapping("tip")
     public ResponseEntity<?> addTipToOrder(@RequestBody TipDto tipDto) {
         return null;
     }
 
-    @DeleteMapping("{orderId}")
+    @PutMapping("{orderId}/cancel")
     public ResponseEntity<?> cancelOrder(@PathVariable String orderId) {
         return null;
     }
 
-    @GetMapping("status/{orderId}")
+    @GetMapping("{orderId}/status")
     public ResponseEntity<?> getOrderStatus(@PathVariable String orderId) {
         return null;
     }
 
-    @GetMapping("remaining-time/{orderId}")
+    @GetMapping("{orderId}/remaining-time")
     public ResponseEntity<?> getRemainingTime(@PathVariable String orderId) {
         return null;
     }
 
-    @PutMapping("confirm/{orderId}")
+    @PutMapping("{orderId}/confirm")
     public ResponseEntity<?> confirmOrder(@PathVariable String orderId) {
         return null;
     }
