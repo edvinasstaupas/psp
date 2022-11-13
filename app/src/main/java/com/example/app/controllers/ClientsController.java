@@ -1,5 +1,6 @@
 package com.example.app.controllers;
 
+import com.example.app.dto.StoreDto;
 import com.example.app.dto.PersonalInformation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,29 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "clients", produces = "application/json")
 public class ClientsController {
 
-    @PostMapping("login")
-    public ResponseEntity<?> login(String email, String password) {
-        return null;
-    }
+    @PostMapping
+    public ResponseEntity<?> addStore(@RequestBody StoreDto storeDto) { return null; }
 
-    @PostMapping("register")
-    public ResponseEntity<?> register(String email, String password) {
-        return null;
-    }
+    @PutMapping("{storeId}")
+    public ResponseEntity<?> editStore(@RequestBody StoreDto storeDto) { return null; }
 
-    @PostMapping("personal-information")
-    public ResponseEntity<?> addPersonalInformation(@RequestBody PersonalInformation personalInformation) {
-        return null;
-    }
-
-    @PostMapping("card-info")
-    public ResponseEntity<?> enterCardInfo(String cardInfo) {
-        return null;
-    }
-
-    @GetMapping("{storeId}")
-    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
-        return null;
-    } 
-
+    @DeleteMapping("{storeId}")
+    public ResponseEntity<?> deleteStore() { return null; }
 }
