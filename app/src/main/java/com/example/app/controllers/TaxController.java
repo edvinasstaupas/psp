@@ -12,10 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "tax", produces = "application/json")
-@ApiResponses({
-        @ApiResponse(responseCode = "200"),
-        @ApiResponse(responseCode = "500")
-})
 public class TaxController {
 
     @GetMapping("total")

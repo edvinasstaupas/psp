@@ -21,7 +21,7 @@ public class DiscountsController {
         return null;
     }
 
-    @PutMapping("apply/{discountId}")
+    @PutMapping("{discountId}/apply")
     public ResponseEntity<?> applyDiscount(@PathVariable String discountId) {
         return null;
     }
@@ -30,4 +30,5 @@ public class DiscountsController {
     public ResponseEntity<?> editDetails(@RequestBody DiscountDto discountDto) {
         return null;
     }
+    
 }

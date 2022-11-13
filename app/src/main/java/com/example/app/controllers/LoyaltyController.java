@@ -1,6 +1,6 @@
 package com.example.app.controllers;
 
-import com.example.app.dto.PersonalInformation;
+import com.example.app.dto.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,23 +8,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "loyalty", produces = "application/json")
 public class LoyaltyController {
 
-    @GetMapping("login")
-    public ResponseEntity<?> login(String email, String password) {
+    @GetMapping("information")
+    public ResponseEntity<?> getInformation() {
         return null;
     }
 
-    @GetMapping("register")
-    public ResponseEntity<?> register(@RequestBody PersonalInformation personalInformation) {
+    @PostMapping
+    public ResponseEntity<?> createLoyaltyProgram(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateLoyaltyProgramDto loyaltyProgramDto) {
         return null;
     }
 
-    @PostMapping("card-info")
-    public ResponseEntity<?> enterCardInfo(String cardInfo) {
-        return null;
-    }
-
-    @GetMapping("{storeId}")
-    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
+    @PostMapping("loyalty-information")
+    public ResponseEntity<?> addLoyaltyInformation(@RequestBody LoyaltyInformation loyaltyInformation) {
         return null;
     }
 
