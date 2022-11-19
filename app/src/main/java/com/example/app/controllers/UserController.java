@@ -1,12 +1,14 @@
 package com.example.app.controllers;
 
 import com.example.app.dto.PersonalInformation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@Tag(name = "users")
 @RestController
 @RequestMapping(value = "users", produces = "application/json")
 public class UserController {
