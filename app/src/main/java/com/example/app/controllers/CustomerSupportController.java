@@ -4,6 +4,7 @@ import com.example.app.dto.CreateRefundDto;
 import com.example.app.dto.FeedbackDto;
 import com.example.app.dto.MessageDto;
 import com.example.app.dto.RefundDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class CustomerSupportController {
 
     @PostMapping("feedback")
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<String> provideFeedback(@RequestBody FeedbackDto feedbackDto) {
         return null;
     }
@@ -24,6 +26,7 @@ public class CustomerSupportController {
     public ResponseEntity<List<FeedbackDto>> getProductsFeedbacks() { return null; }
 
     @PostMapping("refund")
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<String> createRefundRequest(@RequestBody CreateRefundDto refundDto) { return null; }
 
     @PutMapping("refund/{requestId}/edit")
@@ -36,6 +39,7 @@ public class CustomerSupportController {
     public ResponseEntity<RefundDto> downloadRefundInvoice(@PathVariable String requestId) { return null; }
 
     @PostMapping("chat")
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<String> createChat(@RequestBody String userId) { return null; }
 
     @PostMapping("chat/{chatId}")

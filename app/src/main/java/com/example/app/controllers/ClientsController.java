@@ -2,6 +2,7 @@ package com.example.app.controllers;
 
 import com.example.app.dto.StoreDto;
 import com.example.app.dto.PersonalInformation;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class ClientsController {
 
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<String> addStore(@RequestBody StoreDto storeDto) { return null; }
 
     @PutMapping("{storeId}")
