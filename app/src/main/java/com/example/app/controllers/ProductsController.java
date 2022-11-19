@@ -24,7 +24,7 @@ public class ProductsController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> addProduct(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateProductDto productDto) {
+    public ResponseEntity<String> addProduct(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateProductDto productDto) {
         return null;
     }
 
