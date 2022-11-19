@@ -11,17 +11,18 @@ import org.springframework.web.bind.annotation.*;
 public class LoyaltyController {
 
     @GetMapping("information")
-    public ResponseEntity<?> getInformation() {
+    public ResponseEntity<LoyaltyInformation> getInformation() {
         return null;
     }
 
     @PostMapping
-    public ResponseEntity<?> createLoyaltyProgram(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateLoyaltyProgramDto loyaltyProgramDto) {
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<String> createLoyaltyProgram(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateLoyaltyProgramDto loyaltyProgramDto) {
         return null;
     }
 
     @PostMapping("loyalty-information")
-    public ResponseEntity<?> addLoyaltyInformation(@RequestBody LoyaltyInformation loyaltyInformation) {
+    public ResponseEntity<Void> addLoyaltyInformation(@RequestBody LoyaltyInformation loyaltyInformation) {
         return null;
     }
 
