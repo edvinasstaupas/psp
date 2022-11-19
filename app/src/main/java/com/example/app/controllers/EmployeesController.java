@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "employees")
+@Tag(name = "Employees")
 @RestController
 @RequestMapping(value = "employees", produces = "application/json")
 public class EmployeesController {

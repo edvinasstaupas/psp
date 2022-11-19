@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Tag(name = "products")
+@Tag(name = "Products")
 @RestController
 @RequestMapping(value = "products", produces = "application/json")
 public class ProductsController {

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "orders")
+@Tag(name = "Orders")
 @RestController
 @RequestMapping(value = "orders", produces = "application/json")
 public class OrdersController {

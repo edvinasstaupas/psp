@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@Tag(name = "users")
+@Tag(name = "Users")
 @RestController
 @RequestMapping(value = "users", produces = "application/json")
 public class UserController {

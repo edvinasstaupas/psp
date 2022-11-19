@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "system")
+@Tag(name = "System")
 @RestController
 @RequestMapping(value = "system", produces = "application/json")
 public class SystemController {

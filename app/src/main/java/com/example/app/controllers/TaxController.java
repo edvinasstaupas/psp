@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 
-@Tag(name = "tax")
+@Tag(name = "Taxes")
 @RestController
 @RequestMapping(value = "tax", produces = "application/json")
 public class TaxController {
