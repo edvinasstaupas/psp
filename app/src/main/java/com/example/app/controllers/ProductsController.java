@@ -3,6 +3,7 @@ package com.example.app.controllers;
 import com.example.app.dto.CreateProductDto;
 import com.example.app.dto.EditProductDto;
 import com.example.app.dto.Product;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,7 @@ public class ProductsController {
         return null;
     }
 
+    @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping
     public ResponseEntity<String> addProduct(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateProductDto productDto) {
         return null;
