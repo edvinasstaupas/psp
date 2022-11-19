@@ -1,9 +1,10 @@
 package com.example.app.controllers;
 
 import com.example.app.dto.OrderDto;
-import com.example.app.dto.OrderInformation;
-import com.example.app.dto.PersonalInformation;
+import com.example.app.dto.OrderStatus;
+import com.example.app.dto.OrderTemplateDto;
 import com.example.app.dto.TipDto;
+import org.springframework.http.HttpStatus;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.Duration;
+import java.util.List;
 
 @Tag(name = "Orders")
 @RestController
@@ -21,67 +26,63 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrdersController {
 
     @PostMapping("product/{productId}/{orderId}")
-    public ResponseEntity<?> addProductToOrder(@PathVariable String productId, @PathVariable String orderId) {
-        return null;
+    public void addProductToOrder(@PathVariable String productId, @PathVariable String orderId) {
     }
 
     @DeleteMapping("product/{productId}/{orderId}")
-    public ResponseEntity<?> deleteProductFromOrder(@PathVariable String productId, @PathVariable String orderId) {
-        return null;
+    public void deleteProductFromOrder(@PathVariable String productId, @PathVariable String orderId) {
     }
 
     @PostMapping("save")
-    public ResponseEntity<?> saveOrderInformationAsTemplate(@RequestBody OrderInformation orderInformation) {
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public String saveOrderInformationAsTemplate(@RequestBody OrderTemplateDto orderInformation) {
         return null;
     }
 
     @GetMapping("previous/{userId}")
-    public ResponseEntity<?> getPreviousOrders(@PathVariable String userId) {
+    public List<OrderDto> getPreviousOrders(@PathVariable String userId) {
         return null;
     }
 
     @GetMapping("user/{userId}")
-    public ResponseEntity<?> getCurrentOrder(@PathVariable String userId) {
+    public OrderDto getCurrentOrder(@PathVariable String userId) {
         return null;
     }
 
     @PostMapping
-    public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public String createOrder(@RequestBody OrderDto orderDto) {
         return null;
     }
 
     @PutMapping
-    public ResponseEntity<?> updateOrder(@RequestBody OrderDto orderDto) {
-        return null;
+    public void updateOrder(@RequestBody OrderDto orderDto) {
     }
 
     @PostMapping("tip")
-    public ResponseEntity<?> addTipToOrder(@RequestBody TipDto tipDto) {
-        return null;
+    public void addTipToOrder(@RequestBody TipDto tipDto) {
     }
 
     @PutMapping("{orderId}/cancel")
-    public ResponseEntity<?> cancelOrder(@PathVariable String orderId) {
-        return null;
+    public void cancelOrder(@PathVariable String orderId) {
     }
 
     @GetMapping("{orderId}/status")
-    public ResponseEntity<?> getOrderStatus(@PathVariable String orderId) {
+    public OrderStatus getOrderStatus(@PathVariable String orderId) {
         return null;
     }
 
     @GetMapping("{orderId}/remaining-time")
-    public ResponseEntity<?> getRemainingTime(@PathVariable String orderId) {
+    public Duration getRemainingTime(@PathVariable String orderId) {
         return null;
     }
 
     @PutMapping("{orderId}/confirm")
-    public ResponseEntity<?> confirmOrder(@PathVariable String orderId) {
-        return null;
+    public void confirmOrder(@PathVariable String orderId) {
     }
 
     @GetMapping("completed")
-    public ResponseEntity<?> getAllCompletedOrders() {
+    public List<OrderDto> getAllCompletedOrders() {
         return null;
     }
 
