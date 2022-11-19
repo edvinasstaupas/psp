@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 public class ClientsController {
 
     @PostMapping
-    public ResponseEntity<?> addStore(@RequestBody StoreDto storeDto) { return null; }
+    public ResponseEntity<String> addStore(@RequestBody StoreDto storeDto) { return null; }
 
     @PutMapping("{storeId}")
-    public ResponseEntity<?> editStore(@PathVariable String storeId, @RequestBody StoreDto storeDto) { return null; }
+    public ResponseEntity<Void> editStore(@PathVariable String storeId, @RequestBody StoreDto storeDto) { return null; }
 
     @DeleteMapping("{storeId}")
-    public ResponseEntity<?> deleteStore(@PathVariable String storeId) { return null; }
+    public ResponseEntity<Void> deleteStore(@PathVariable String storeId) { return null; }
 }
