@@ -1,6 +1,6 @@
 package com.example.app.dto;
 
-public record OrderInformation(
+public record OrderTemplateDto(
         String orderId,
         String userId
 ) {
