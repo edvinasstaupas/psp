@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "system", produces = "application/json")
 public class SystemController {
 
-    @PostMapping("store-information")
+    @PutMapping("store-information")
     public ResponseEntity<Void> editStoreInformation(@RequestBody StoreInformation storeInformation) {
         return null;
     }
