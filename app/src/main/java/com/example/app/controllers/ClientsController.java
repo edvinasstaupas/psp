@@ -3,9 +3,11 @@ package com.example.app.controllers;
 import com.example.app.dto.StoreDto;
 import com.example.app.dto.PersonalInformation;
 import org.springframework.http.HttpStatus;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Clients")
 @RestController
 @RequestMapping(value = "clients", produces = "application/json")
 public class ClientsController {

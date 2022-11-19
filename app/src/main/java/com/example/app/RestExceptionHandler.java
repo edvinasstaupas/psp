@@ -44,18 +44,11 @@ public class RestExceptionHandler {
         return toResponse(e, HttpStatus.BAD_REQUEST);
     }
 
-    // 403 forbidden
-    @ExceptionHandler({AccessDeniedException.class})
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ResponseEntity<ErrorResponse> handleForbinedRequest(Exception e) {
-        return toResponse(e, HttpStatus.FORBIDDEN);
-    }
-
     // 401 unauthorized
     @ExceptionHandler({AccessException.class})
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ResponseEntity<ErrorResponse> handleUnauthorized(Exception e) {
-        return toResponse(e, HttpStatus.FORBIDDEN);
+        return toResponse(e, HttpStatus.UNAUTHORIZED);
     }
 
     // 404 not found
