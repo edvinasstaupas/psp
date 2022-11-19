@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping("personal-information")
-    public ResponseEntity<Map<String, String>> addPersonalInformation(@RequestBody PersonalInformation personalInformation) {
+    public ResponseEntity<Void> addPersonalInformation(@RequestBody PersonalInformation personalInformation) {
         return null;
     }
 
