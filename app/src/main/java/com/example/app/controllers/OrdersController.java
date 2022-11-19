@@ -5,6 +5,8 @@ import com.example.app.dto.OrderStatus;
 import com.example.app.dto.OrderTemplateDto;
 import com.example.app.dto.TipDto;
 import org.springframework.http.HttpStatus;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Duration;
 import java.util.List;
 
+@Tag(name = "Orders")
 @RestController
 @RequestMapping(value = "orders", produces = "application/json")
 public class OrdersController {

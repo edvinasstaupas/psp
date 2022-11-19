@@ -1,36 +1,24 @@
 package com.example.app.controllers;
 
+import com.example.app.dto.StoreDto;
 import com.example.app.dto.PersonalInformation;
+import org.springframework.http.HttpStatus;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Clients")
 @RestController
 @RequestMapping(value = "clients", produces = "application/json")
 public class ClientsController {
 
-    @PostMapping("login")
-    public ResponseEntity<?> login(String email, String password) {
-        return null;
-    }
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<String> addStore(@RequestBody StoreDto storeDto) { return null; }
 
-    @PostMapping("register")
-    public ResponseEntity<?> register(String email, String password) {
-        return null;
-    }
+    @PutMapping("{storeId}")
+    public ResponseEntity<Void> editStore(@PathVariable String storeId, @RequestBody StoreDto storeDto) { return null; }
 
-    @PostMapping("personal-information")
-    public ResponseEntity<?> addPersonalInformation(@RequestBody PersonalInformation personalInformation) {
-        return null;
-    }
-
-    @PostMapping("card-info")
-    public ResponseEntity<?> enterCardInfo(String cardInfo) {
-        return null;
-    }
-
-    @GetMapping("{storeId}")
-    public ResponseEntity<?> getTaxesForStore(@PathVariable String storeId) {
-        return null;
-    } 
-
+    @DeleteMapping("{storeId}")
+    public ResponseEntity<Void> deleteStore(@PathVariable String storeId) { return null; }
 }

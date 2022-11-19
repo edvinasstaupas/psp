@@ -1,14 +1,14 @@
 package com.example.app.controllers;
 
 import com.example.app.dto.PersonalInformation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@Tag(name = "Users")
 @RestController
 @RequestMapping(value = "users", produces = "application/json")
 public class UserController {
@@ -23,8 +23,9 @@ public class UserController {
         return null;
     }
 
+    @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("personal-information")
-    public ResponseEntity<Map<String, String>> addPersonalInformation(@RequestBody PersonalInformation personalInformation) {
+    public ResponseEntity<Void> addPersonalInformation(@RequestBody PersonalInformation personalInformation) {
         return null;
     }
 

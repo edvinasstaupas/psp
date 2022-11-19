@@ -3,12 +3,15 @@ package com.example.app.controllers;
 import com.example.app.dto.CreateProductDto;
 import com.example.app.dto.EditProductDto;
 import com.example.app.dto.Product;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Tag(name = "Products")
 @RestController
 @RequestMapping(value = "products", produces = "application/json")
 public class ProductsController {
@@ -23,6 +26,7 @@ public class ProductsController {
         return null;
     }
 
+    @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping
     public ResponseEntity<String> addProduct(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateProductDto productDto) {
         return null;
@@ -33,7 +37,7 @@ public class ProductsController {
         return null;
     }
 
-    @DeleteMapping
+    @DeleteMapping("{productId}")
     public ResponseEntity<Void> deleteProduct(@PathVariable String productId) {
         return null;
     }
