@@ -35,7 +35,7 @@ public class ProductsController {
         return null;
     }
 
-    @DeleteMapping
+    @DeleteMapping("{productId}")
     public ResponseEntity<Void> deleteProduct(@PathVariable String productId) {
         return null;
     }

@@ -20,7 +20,7 @@ public class EmployeesController {
         return null;
     }
 
-    @GetMapping("activities")
+    @GetMapping("{employeeId}/activities")
     public ResponseEntity<?> getEmployeeActivities(@PathVariable String employeeId) {
         return null;
     }
@@ -29,7 +29,7 @@ public class EmployeesController {
     public ResponseEntity<?> createEmployeeAccount(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateEmployeeDto employeeDto) {
         return null;
     }
-    @DeleteMapping
+    @DeleteMapping("{employeeId}")
     public ResponseEntity<?> deleteEmployee(@PathVariable String employeeId) {
         return null;
     }
