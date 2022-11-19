@@ -4,6 +4,7 @@ import com.example.app.dto.OrderDto;
 import com.example.app.dto.OrderStatus;
 import com.example.app.dto.OrderTemplateDto;
 import com.example.app.dto.TipDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Duration;
@@ -29,7 +31,8 @@ public class OrdersController {
     }
 
     @PostMapping("save")
-    public OrderTemplateDto saveOrderInformationAsTemplate(@RequestBody OrderTemplateDto orderInformation) {
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public String saveOrderInformationAsTemplate(@RequestBody OrderTemplateDto orderInformation) {
         return null;
     }
 
@@ -44,6 +47,7 @@ public class OrdersController {
     }
 
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public String createOrder(@RequestBody OrderDto orderDto) {
         return null;
     }
