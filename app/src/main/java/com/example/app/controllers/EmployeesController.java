@@ -12,27 +12,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "employees", produces = "application/json")
 public class EmployeesController {
 
-    @PostMapping("login")
-    public ResponseEntity<?> login(String email, String password) {
-        return null;
-    }
-
     @GetMapping("{employeeId}/information")
-    public ResponseEntity<?> getEmployeeInformation(@PathVariable String employeeId) {
+    public ResponseEntity<EmployeeInformation> getEmployeeInformation(@PathVariable String employeeId) {
         return null;
     }
 
-    @GetMapping("{employeeId}/activities")
-    public ResponseEntity<?> getEmployeeActivities(@PathVariable String employeeId) {
+    @GetMapping("{employeeId}/orders")
+    public ResponseEntity<List<OrderDto>> getEmployeeOrders(@PathVariable String employeeId) {
         return null;
     }
 
     @PostMapping
-    public ResponseEntity<?> createEmployeeAccount(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateEmployeeDto employeeDto) {
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<String> createEmployeeAccount(@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true) @RequestBody CreateEmployeeDto employeeDto) {
         return null;
     }
     @DeleteMapping("{employeeId}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable String employeeId) {
+    public ResponseEntity<Void> deleteEmployee(@PathVariable String employeeId) {
         return null;
     }
 

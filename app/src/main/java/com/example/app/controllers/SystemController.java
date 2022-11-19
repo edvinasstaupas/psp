@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class SystemController {
 
     @PostMapping("store-information")
-    public ResponseEntity<?> editStoreInformation(@RequestBody StoreInformation storeInformation) {
+    public ResponseEntity<Void> editStoreInformation(@RequestBody StoreInformation storeInformation) {
         return null;
     }
 
