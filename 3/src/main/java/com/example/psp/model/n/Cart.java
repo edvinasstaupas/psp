@@ -1,8 +1,13 @@
 package com.example.psp.model.n;
 
 
-import jakarta.persistence.Entity;
+import com.example.psp.model.a.CartItem;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -11,4 +16,20 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cart {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    private OffsetDateTime dateCreated;
+
+    private OffsetDateTime lastAccessed;
+
+    @OneToMany(mappedBy = "cart")
+    private List<CartItem> cartItems;
+
 }

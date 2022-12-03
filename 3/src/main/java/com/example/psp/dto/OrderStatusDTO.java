@@ -16,7 +16,7 @@ public class OrderStatusDTO   {
   private Integer orderId;
 
   @JsonProperty("status")
-  private OrderStatusTypes status;
+  private OrderStatusEnum status;
 
   public OrderStatusDTO orderId(Integer orderId) {
     this.orderId = orderId;
@@ -38,7 +38,7 @@ public class OrderStatusDTO   {
     this.orderId = orderId;
   }
 
-  public OrderStatusDTO status(OrderStatusTypes status) {
+  public OrderStatusDTO status(OrderStatusEnum status) {
     this.status = status;
     return this;
   }
@@ -51,11 +51,11 @@ public class OrderStatusDTO   {
 
   @Valid
 
-  public OrderStatusTypes getStatus() {
+  public OrderStatusEnum getStatus() {
     return status;
   }
 
-  public void setStatus(OrderStatusTypes status) {
+  public void setStatus(OrderStatusEnum status) {
     this.status = status;
   }
 

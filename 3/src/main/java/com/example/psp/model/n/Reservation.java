@@ -1,20 +1,9 @@
 package com.example.psp.model.n;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-
-import jakarta.persistence.Entity;
-        import jakarta.persistence.GeneratedValue;
-        import jakarta.persistence.GenerationType;
-        import jakarta.persistence.Id;
-        import lombok.*;
+import java.time.OffsetDateTime;
 
 @Entity
 @Getter
@@ -23,4 +12,18 @@ import jakarta.persistence.Entity;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reservation {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "time_slot_id")
+    private TimeSlot timeSlot;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    private OffsetDateTime dateCreated;
 }

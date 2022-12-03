@@ -8,16 +8,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * Gets or Sets PaymentType
  */
 public enum PaymentType {
-  
-  NUMBER_0(0),
-  
-  NUMBER_1(1),
-  
-  NUMBER_2(2),
-  
-  NUMBER_3(3),
-  
-  NUMBER_4(4);
+
+  CARD(0),
+
+  CASH(1),
+
+  BANK_TRANSACTION(2),
+
+  STORE_CREDIT(3),
+
+  GIFT_CARD(4);
 
   private Integer value;
 

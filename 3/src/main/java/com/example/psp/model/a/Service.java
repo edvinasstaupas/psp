@@ -1,11 +1,11 @@
 package com.example.psp.model.a;
 
+import com.example.psp.model.n.TaxRate;
 import com.example.psp.model.n.Tenant;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
@@ -17,11 +17,25 @@ public class Service {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "tenant_id")
     private Tenant tenantId;
+
+    @NotNull
     private String name;
+
     private Integer durationMins;
+
+    @NotNull
+    @ColumnDefault("true")
     private Boolean isAvailable;
-    private Integer taxRateId;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "tax_rate")
+    private TaxRate taxRate;
 
 }

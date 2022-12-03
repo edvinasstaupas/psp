@@ -2,15 +2,15 @@ package com.example.psp.model.a;
 
 public enum PaymentType {
 
-    NUMBER_0(0),
+    CARD(0),
 
-    NUMBER_1(1),
+    CASH(1),
 
-    NUMBER_2(2),
+    BANK_TRANSACTION(2),
 
-    NUMBER_3(3),
+    STORE_CREDIT(3),
 
-    NUMBER_4(4);
+    GIFT_CARD(4);
 
     private final Integer value;
 

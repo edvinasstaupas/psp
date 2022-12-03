@@ -1,10 +1,12 @@
 package com.example.psp.model.n;
 
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 @Entity
 @Getter
@@ -12,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Brand {
+public class DiscountProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +28,18 @@ public class Brand {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "brand")
-    private List<DiscountBrand> brands;
+    @NotNull
+    private BigDecimal rate;
 
-    @OneToMany(mappedBy = "brand")
-    private List<Product> products;
+    @NotNull
+    private OffsetDateTime validFrom;
+
+    @NotNull
+    private OffsetDateTime expiresAt;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
 }

@@ -1,7 +1,8 @@
 package com.example.psp.model.n;
 
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -10,18 +11,17 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
-import jakarta.persistence.Entity;
-        import jakarta.persistence.GeneratedValue;
-        import jakarta.persistence.GenerationType;
-        import jakarta.persistence.Id;
-        import lombok.*;
-
-@Entity
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class PermissionSet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "tenant_id")
+    private Tenant tenant;
+
+    @NotNull
+    private String name;
 }

@@ -6,7 +6,7 @@
 package com.example.psp.api;
 
 import com.example.psp.dto.OrderStatusDTO;
-import com.example.psp.dto.OrderStatusTypes;
+import com.example.psp.dto.OrderStatusEnum;
 import com.example.psp.dto.ProblemDetails;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -86,7 +86,7 @@ public interface OrderStatusApi {
         value = "/order-status/{orderStatusId}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Void> orderStatusOrderStatusIdPatch(@ApiParam(value = "",required=true) @PathVariable("orderStatusId") Integer orderStatusId,@ApiParam(value = "", allowableValues = "0, 1, 2, 3, 4, 5, 6, 7, 8, 9") @Valid @RequestParam(value = "newOrderStatus", required = false) OrderStatusTypes newOrderStatus) {
+    default ResponseEntity<Void> orderStatusOrderStatusIdPatch(@ApiParam(value = "",required=true) @PathVariable("orderStatusId") Integer orderStatusId,@ApiParam(value = "", allowableValues = "0, 1, 2, 3, 4, 5, 6, 7, 8, 9") @Valid @RequestParam(value = "newOrderStatus", required = false) OrderStatusEnum newOrderStatus) {
         return getDelegate().orderStatusOrderStatusIdPatch(orderStatusId, newOrderStatus);
     }
 

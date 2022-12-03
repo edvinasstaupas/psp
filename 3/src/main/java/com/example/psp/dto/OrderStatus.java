@@ -19,7 +19,7 @@ public class OrderStatus   {
   private Integer orderId;
 
   @JsonProperty("status")
-  private OrderStatusTypes status;
+  private OrderStatusEnum status;
 
   public OrderStatus id(Integer id) {
     this.id = id;
@@ -61,7 +61,7 @@ public class OrderStatus   {
     this.orderId = orderId;
   }
 
-  public OrderStatus status(OrderStatusTypes status) {
+  public OrderStatus status(OrderStatusEnum status) {
     this.status = status;
     return this;
   }
@@ -74,11 +74,11 @@ public class OrderStatus   {
 
   @Valid
 
-  public OrderStatusTypes getStatus() {
+  public OrderStatusEnum getStatus() {
     return status;
   }
 
-  public void setStatus(OrderStatusTypes status) {
+  public void setStatus(OrderStatusEnum status) {
     this.status = status;
   }
 

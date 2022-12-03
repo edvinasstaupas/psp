@@ -1,10 +1,10 @@
 package com.example.psp.model.n;
 
-
-import com.example.psp.model.a.PaymentType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -12,7 +12,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Payment {
+public class ProductMaterial {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,14 @@ public class Payment {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "product_id")
+    private Product product;
 
-    private PaymentType paymentType;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "material_id")
+    private Material material;
+
+    private BigDecimal quantity;
+
 }

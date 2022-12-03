@@ -7,31 +7,31 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 /**
  * Gets or Sets OrderStatusTypes
  */
-public enum OrderStatusTypes {
-  
-  NUMBER_0(0),
-  
-  NUMBER_1(1),
-  
-  NUMBER_2(2),
-  
-  NUMBER_3(3),
-  
-  NUMBER_4(4),
-  
-  NUMBER_5(5),
-  
-  NUMBER_6(6),
-  
-  NUMBER_7(7),
-  
-  NUMBER_8(8),
-  
-  NUMBER_9(9);
+public enum OrderStatusEnum {
+
+  NEW(0),
+
+  ACCEPTED(1),
+
+  IN_PROGRESS(2),
+
+  AWAITING_SHIPMENT(3),
+
+  SHIPPED(4),
+
+  AWAITING_PICKUP(5),
+
+  COMPLETED(6),
+
+  REJECTED(7),
+
+  CANCELED(8),
+
+  REFUNDED(9);
 
   private Integer value;
 
-  OrderStatusTypes(Integer value) {
+  OrderStatusEnum(Integer value) {
     this.value = value;
   }
 
@@ -46,8 +46,8 @@ public enum OrderStatusTypes {
   }
 
   @JsonCreator
-  public static OrderStatusTypes fromValue(Integer value) {
-    for (OrderStatusTypes b : OrderStatusTypes.values()) {
+  public static OrderStatusEnum fromValue(Integer value) {
+    for (OrderStatusEnum b : OrderStatusEnum.values()) {
       if (b.value.equals(value)) {
         return b;
       }
