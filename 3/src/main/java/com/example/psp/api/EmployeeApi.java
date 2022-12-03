@@ -5,9 +5,9 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.EmployeeDTO;
+import com.example.psp.dto.EmployeeDTO;
 import java.time.OffsetDateTime;
-import com.example.psp.model.ProblemDetails;
+import com.example.psp.dto.ProblemDetails;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

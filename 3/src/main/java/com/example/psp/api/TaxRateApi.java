@@ -5,11 +5,11 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.ApplyTaxRateToCategoryDTO;
-import com.example.psp.model.AssignTaxRateToItemDTO;
-import com.example.psp.model.ProblemDetails;
-import com.example.psp.model.TaxRate;
-import com.example.psp.model.TaxRateDto;
+import com.example.psp.dto.ApplyTaxRateToCategoryDTO;
+import com.example.psp.dto.AssignTaxRateToItemDTO;
+import com.example.psp.dto.ProblemDetails;
+import com.example.psp.dto.TaxRate;
+import com.example.psp.dto.TaxRateDto;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

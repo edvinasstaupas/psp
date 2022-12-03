@@ -5,8 +5,8 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.CreateReservationDTO;
-import com.example.psp.model.ReservationInformationDTO;
+import com.example.psp.dto.CreateReservationDTO;
+import com.example.psp.dto.ReservationInformationDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

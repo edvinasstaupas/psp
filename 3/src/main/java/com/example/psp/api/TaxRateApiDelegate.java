@@ -1,9 +1,9 @@
 package com.example.psp.api;
 
-import com.example.psp.model.ApplyTaxRateToCategoryDTO;
-import com.example.psp.model.AssignTaxRateToItemDTO;
-import com.example.psp.model.TaxRate;
-import com.example.psp.model.TaxRateDto;
+import com.example.psp.dto.ApplyTaxRateToCategoryDTO;
+import com.example.psp.dto.AssignTaxRateToItemDTO;
+import com.example.psp.dto.TaxRate;
+import com.example.psp.dto.TaxRateDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

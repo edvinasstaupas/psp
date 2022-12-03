@@ -5,9 +5,9 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.Location;
-import com.example.psp.model.LocationDto;
-import com.example.psp.model.ProblemDetails;
+import com.example.psp.dto.Location;
+import com.example.psp.dto.LocationDto;
+import com.example.psp.dto.ProblemDetails;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

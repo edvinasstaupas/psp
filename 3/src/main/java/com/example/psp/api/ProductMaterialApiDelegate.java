@@ -1,6 +1,6 @@
 package com.example.psp.api;
 
-import com.example.psp.model.ProductMaterial;
+import com.example.psp.dto.ProductMaterial;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

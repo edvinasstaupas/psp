@@ -1,7 +1,7 @@
 package com.example.psp.api;
 
-import com.example.psp.model.Location;
-import com.example.psp.model.LocationDto;
+import com.example.psp.dto.Location;
+import com.example.psp.dto.LocationDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

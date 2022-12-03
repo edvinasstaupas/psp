@@ -1,10 +1,10 @@
 package com.example.psp.api;
 
-import com.example.psp.model.AssignDiscountToBrandDTO;
-import com.example.psp.model.AssignDiscountToCategoryDTO;
-import com.example.psp.model.AssignDiscountToItemDTO;
-import com.example.psp.model.Discount;
-import com.example.psp.model.DiscountDto;
+import com.example.psp.dto.AssignDiscountToBrandDTO;
+import com.example.psp.dto.AssignDiscountToCategoryDTO;
+import com.example.psp.dto.AssignDiscountToItemDTO;
+import com.example.psp.dto.Discount;
+import com.example.psp.dto.DiscountDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -5,10 +5,10 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.ProblemDetails;
-import com.example.psp.model.Service;
-import com.example.psp.model.ServiceDto;
-import com.example.psp.model.ServiceFilterDto;
+import com.example.psp.dto.ProblemDetails;
+import com.example.psp.dto.Service;
+import com.example.psp.dto.ServiceDto;
+import com.example.psp.dto.ServiceFilterDto;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

@@ -5,7 +5,7 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.ProductMaterial;
+import com.example.psp.dto.ProductMaterial;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

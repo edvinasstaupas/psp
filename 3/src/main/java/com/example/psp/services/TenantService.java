@@ -1,6 +1,6 @@
 package com.example.psp.services;
 
-import com.example.psp.model.TokenDTO;
+import com.example.psp.dto.TokenDTO;
 
 public class TenantService {
 

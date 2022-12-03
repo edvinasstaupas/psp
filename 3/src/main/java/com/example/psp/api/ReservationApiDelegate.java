@@ -1,7 +1,7 @@
 package com.example.psp.api;
 
-import com.example.psp.model.CreateReservationDTO;
-import com.example.psp.model.ReservationInformationDTO;
+import com.example.psp.dto.CreateReservationDTO;
+import com.example.psp.dto.ReservationInformationDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

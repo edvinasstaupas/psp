@@ -1,7 +1,7 @@
 package com.example.psp.api;
 
-import com.example.psp.model.BriefSalesReportDTO;
-import com.example.psp.model.DetailedSalesReportDTO;
+import com.example.psp.dto.BriefSalesReportDTO;
+import com.example.psp.dto.DetailedSalesReportDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -5,11 +5,11 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.CreateTenantAccountDTO;
-import com.example.psp.model.CredentialsDto;
-import com.example.psp.model.ProblemDetails;
-import com.example.psp.model.TenantAccountDetailsDTO;
-import com.example.psp.model.TokenDTO;
+import com.example.psp.dto.CreateTenantAccountDTO;
+import com.example.psp.dto.CredentialsDto;
+import com.example.psp.dto.ProblemDetails;
+import com.example.psp.dto.TenantAccountDetailsDTO;
+import com.example.psp.dto.TokenDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

@@ -1,10 +1,10 @@
 package com.example.psp.api;
 
-import com.example.psp.model.AddCartItemDTO;
-import com.example.psp.model.CartDTO;
-import com.example.psp.model.CartItem;
-import com.example.psp.model.CartItemDTO;
-import com.example.psp.model.OrderDTO;
+import com.example.psp.dto.AddCartItemDTO;
+import com.example.psp.dto.CartDTO;
+import com.example.psp.dto.CartItem;
+import com.example.psp.dto.CartItemDTO;
+import com.example.psp.dto.OrderDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package com.example.psp.api;
 
-import com.example.psp.model.EmployeeDTO;
+import com.example.psp.dto.EmployeeDTO;
 import java.time.OffsetDateTime;
 
 import org.springframework.http.HttpStatus;

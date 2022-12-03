@@ -5,8 +5,8 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.EmployeePermissionDTO;
-import com.example.psp.model.ProblemDetails;
+import com.example.psp.dto.EmployeePermissionDTO;
+import com.example.psp.dto.ProblemDetails;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

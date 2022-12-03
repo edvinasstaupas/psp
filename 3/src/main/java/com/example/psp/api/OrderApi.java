@@ -5,9 +5,9 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.CreateOrderDTO;
-import com.example.psp.model.OrderDTO;
-import com.example.psp.model.PaymentDTO;
+import com.example.psp.dto.CreateOrderDTO;
+import com.example.psp.dto.OrderDTO;
+import com.example.psp.dto.PaymentDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

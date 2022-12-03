@@ -1,8 +1,8 @@
 package com.example.psp.api;
 
-import com.example.psp.model.CreateOrderDTO;
-import com.example.psp.model.OrderDTO;
-import com.example.psp.model.PaymentDTO;
+import com.example.psp.dto.CreateOrderDTO;
+import com.example.psp.dto.OrderDTO;
+import com.example.psp.dto.PaymentDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

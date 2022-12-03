@@ -5,9 +5,9 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.OrderStatusDTO;
-import com.example.psp.model.OrderStatusTypes;
-import com.example.psp.model.ProblemDetails;
+import com.example.psp.dto.OrderStatusDTO;
+import com.example.psp.dto.OrderStatusTypes;
+import com.example.psp.dto.ProblemDetails;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

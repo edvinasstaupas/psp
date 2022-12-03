@@ -1,8 +1,8 @@
 package com.example.psp.api;
 
-import com.example.psp.model.Service;
-import com.example.psp.model.ServiceDto;
-import com.example.psp.model.ServiceFilterDto;
+import com.example.psp.dto.Service;
+import com.example.psp.dto.ServiceDto;
+import com.example.psp.dto.ServiceFilterDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -2,7 +2,7 @@ package com.example.psp.api;
 
 import java.time.OffsetDateTime;
 
-import com.example.psp.model.TimeSlotDTO;
+import com.example.psp.dto.TimeSlotDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -5,13 +5,13 @@
  */
 package com.example.psp.api;
 
-import com.example.psp.model.AccountDetailsDTO;
-import com.example.psp.model.BearerTokenDTO;
-import com.example.psp.model.CartDTO;
-import com.example.psp.model.CreateAccountDTO;
-import com.example.psp.model.LoginDetailsDTO;
+import com.example.psp.dto.AccountDetailsDTO;
+import com.example.psp.dto.BearerTokenDTO;
+import com.example.psp.dto.CartDTO;
+import com.example.psp.dto.CreateAccountDTO;
+import com.example.psp.dto.LoginDetailsDTO;
 import java.time.OffsetDateTime;
-import com.example.psp.model.ReservationInformationDTO;
+import com.example.psp.dto.ReservationInformationDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
