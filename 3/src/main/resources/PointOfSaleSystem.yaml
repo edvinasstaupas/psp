@@ -1,0 +1,4937 @@
+openapi: 3.0.1
+info:
+  title: Point of sale system
+  version: v1
+paths:
+  /bundle:
+    post:
+      tags:
+        - Bundle
+      summary: Create bundle.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BundleDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BundleDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BundleDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some bundle details are missing.
+    get:
+      tags:
+        - Bundle
+      summary: Get a list of bundles.
+      parameters:
+        - name: pageSize
+          in: query
+          description: Parameter to define how many records are in a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: Parameter to specify which page of records to return.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BundleDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BundleDTO'
+  /bundle/{bundleId}:
+    get:
+      tags:
+        - Bundle
+      summary: Get bundle by Id.
+      parameters:
+        - name: bundleId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BundleDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BundleDTO'
+        '404':
+          description: If bundle with such id does not exist.
+    put:
+      tags:
+        - Bundle
+      summary: Update bundle by id.
+      parameters:
+        - name: bundleId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BundleDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BundleDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BundleDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some bundle details are missing.
+        '404':
+          description: If bundle with such id does not exist.
+    delete:
+      tags:
+        - Bundle
+      summary: Delete bundle by id.
+      parameters:
+        - name: bundleId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: If bundle with such id does not exist.
+  /bundle-product:
+    post:
+      tags:
+        - BundleProduct
+      summary: Assign product to a bundle.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BundleProduct'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BundleProduct'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BundleProduct'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some class details are missing.
+  /bundle-product/{bundleId}/{productId}:
+    get:
+      tags:
+        - BundleProduct
+      summary: Get bundle's assigned product by bundle Id and product Id.
+      parameters:
+        - name: bundleId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BundleProduct'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BundleProduct'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BundleProduct'
+        '404':
+          description: If product with such id is not assigned to bundle with such id.
+    put:
+      tags:
+        - BundleProduct
+      summary: Update bundle's assigned product by bundle Id and product Id.
+      parameters:
+        - name: bundleId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BundleProduct'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BundleProduct'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BundleProduct'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some class details are missing.
+        '404':
+          description: If product with such id is not assigned to bundle with such id.
+    delete:
+      tags:
+        - BundleProduct
+      summary: Delete bundle's assigned product by bundle Id and product Id.
+      parameters:
+        - name: bundleId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: If product with such id is not assigned to bundle with such id.
+  /bundle-product/{bundleId}:
+    get:
+      tags:
+        - BundleProduct
+      summary: Get list of bundle's all assigned products by bundle Id.
+      parameters:
+        - name: bundleId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BundleProduct'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BundleProduct'
+        '404':
+          description: If bundle with such id does not exist.
+  /customer/{customerId}/reservation:
+    get:
+      tags:
+        - Cart
+      summary: Returns a cart of a specified customer.
+      parameters:
+        - name: customerId
+          in: path
+          description: Id of the customer.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartDTO'
+        '404':
+          description: If customer doesn't exist.
+  /cart:
+    post:
+      tags:
+        - Cart
+      summary: Creates a cart for a specified customer.
+      requestBody:
+        description: Id of the customer.
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int32
+          text/json:
+            schema:
+              type: integer
+              format: int32
+          application/*+json:
+            schema:
+              type: integer
+              format: int32
+      responses:
+        '200':
+          description: Returns newly created cart.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartDTO'
+        '404':
+          description: If customer doesn't exists.
+  /cart/{cartId}:
+    post:
+      tags:
+        - Cart
+      summary: Adds an item to a cart.
+      parameters:
+        - name: cartId
+          in: path
+          description: Id of the cart.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Item to be added to the cart.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddCartItemDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AddCartItemDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AddCartItemDTO'
+      responses:
+        '200':
+          description: Returns newly added cart item.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItemDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItemDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItemDTO'
+        '400':
+          description: If ids of both product and bundle are provided.
+        '404':
+          description: If cart doen't exist.
+    get:
+      tags:
+        - Cart
+      summary: Get a cart by id.
+      parameters:
+        - name: cartId
+          in: path
+          description: Id of the cart.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns the cart.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartDTO'
+        '404':
+          description: If cart doesn't exist.
+  /cart/item/{itemId}:
+    put:
+      tags:
+        - Cart
+      summary: Updates cart item.
+      description: If item quantity is set to 0, item should be removed from the cart.
+      parameters:
+        - name: itemId
+          in: path
+          description: Id of the cart item.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Cart item with updated information.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+      responses:
+        '200':
+          description: Returns cart item with updated information.
+        '404':
+          description: If cart item doesn't exist.
+  /cart/item/{cartItemId}:
+    delete:
+      tags:
+        - Cart
+      summary: Removes cart item from a cart.
+      parameters:
+        - name: cartItemId
+          in: path
+          description: Id of the cart item.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns a response that cart item was removed successfully.
+        '404':
+          description: If cart item doesn't exist.
+  /customer:
+    post:
+      tags:
+        - Customer
+      summary: Endpoint for creating a new customer account.
+      requestBody:
+        description: Customer account details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountDTO'
+        required: true
+      responses:
+        '201':
+          description: Returns a bearer token of newly created account.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BearerTokenDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BearerTokenDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BearerTokenDTO'
+        '400':
+          description: If account details don't pass validation.
+        '409':
+          description: If email matches a previously registered users email.
+    get:
+      tags:
+        - Customer
+      summary: Endpoint for admins to get a list of registered users.
+      parameters:
+        - name: email
+          in: query
+          description: Optional parameter to query by email.
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: Optional parameter to query by name.
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          description: Parameter to define how many records are in a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: Parameter to specify which page of records to return.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountDetailsDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountDetailsDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountDetailsDTO'
+        '404':
+          description: If user doesn't exist
+  /customer/{userId}:
+    get:
+      tags:
+        - Customer
+      summary: Endpoint to get user account details.
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccountDetailsDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDetailsDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountDetailsDTO'
+        '404':
+          description: If user doesn't exist
+    put:
+      tags:
+        - Customer
+      summary: Endpoint to update user account details.
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Customer account details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If account details don't pass validation.
+        '404':
+          description: If user doesn't exists.
+  /customer/login:
+    post:
+      tags:
+        - Customer
+      summary: Endpoint for customer to log in.
+      requestBody:
+        description: Login details of the customer.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDetailsDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LoginDetailsDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LoginDetailsDTO'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BearerTokenDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BearerTokenDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BearerTokenDTO'
+  /discount/{pageSize}/{pageNumber}:
+    get:
+      tags:
+        - Discount
+      summary: Endpoint to get multiple discounts.
+      parameters:
+        - name: pageSize
+          in: path
+          description: The maximum amount of discounts in response.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: path
+          description: The page number of discounts to return.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Discount'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Discount'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Discount'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /discount/{id}:
+    get:
+      tags:
+        - Discount
+      summary: Endpoint to get a single discount.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the discount to get
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DiscountDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscountDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DiscountDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - Discount
+      summary: Endpoint to update a discount.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the discount to update.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Discount to update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscountDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DiscountDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DiscountDto'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /discount:
+    post:
+      tags:
+        - Discount
+      summary: Endpoint to create a new discount.
+      requestBody:
+        description: Discount to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscountDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DiscountDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DiscountDto'
+      responses:
+        '201':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /discount/AssignDiscountToItem:
+    post:
+      tags:
+        - Discount
+      summary: Endpoint to assign a discount to a product or service.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignDiscountToItemDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AssignDiscountToItemDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AssignDiscountToItemDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /discount/AssignDiscountToBrand:
+    post:
+      tags:
+        - Discount
+      summary: Endpoint to assign a discount to a brand.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignDiscountToBrandDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AssignDiscountToBrandDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AssignDiscountToBrandDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /discount/assignDiscountToCategory:
+    post:
+      tags:
+        - Discount
+      summary: Endpoint to assign a discount to a category.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignDiscountToCategoryDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AssignDiscountToCategoryDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AssignDiscountToCategoryDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employee/{employeeId}:
+    get:
+      tags:
+        - Employee
+      summary: Gets employee details
+      parameters:
+        - name: employeeId
+          in: path
+          description: ID of the employee
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns employee details
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EmployeeDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeDTO'
+        '400':
+          description: If employee ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no employee ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - Employee
+      summary: Updates employee details
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDTO'
+      responses:
+        '200':
+          description: If employee details have been succesfully updated
+        '400':
+          description: If provided employee details do not pass the validation
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no employee ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - Employee
+      summary: Deletes employee
+      parameters:
+        - name: employeeId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: If employee have been succesfully deleted
+        '400':
+          description: If employee ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no employee ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    patch:
+      tags:
+        - Employee
+      summary: Hides the employee
+      parameters:
+        - name: employeeId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: date
+          in: query
+          description: ''
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: If employee have been succesfully hiden
+        '400':
+          description: If invalid date provided
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no employee ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employee:
+    post:
+      tags:
+        - Employee
+      summary: Creates an employee
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDTO'
+      responses:
+        '201':
+          description: If employee has been succesfully created
+        '400':
+          description: If provided employee details do not pass the validation
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employee/{employeeId}/{permissionId}:
+    patch:
+      tags:
+        - Employee
+      summary: Changes employee permissions
+      parameters:
+        - name: employeeId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: permissionId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: If the employee permissions have been succesfully updated
+        '400':
+          description: If employee ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no permission ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employee-permission/{employeeId}:
+    get:
+      tags:
+        - EmployeePermission
+      summary: Gets permission details
+      parameters:
+        - name: permissionId
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns permissions
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EmployeePermissionDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeePermissionDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EmployeePermissionDTO'
+        '400':
+          description: If permission ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no permission ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employee-permission:
+    post:
+      tags:
+        - EmployeePermission
+      summary: Creates a permission
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePermissionDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePermissionDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EmployeePermissionDTO'
+      responses:
+        '201':
+          description: If permission has been succesfully created
+        '400':
+          description: If provided permission details do not pass the validation
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employee-permission/{permissionId}:
+    put:
+      tags:
+        - EmployeePermission
+      summary: Updates permission details
+      parameters:
+        - name: permissionId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePermissionDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePermissionDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EmployeePermissionDTO'
+      responses:
+        '200':
+          description: If permission details hae been succesfully updates
+        '400':
+          description: If provided permission details do not pass the validation
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no permission ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - EmployeePermission
+      summary: Deletes permission
+      parameters:
+        - name: permissionId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: If permission has been succesfully deleted
+        '400':
+          description: If permission ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no permission ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /location/{pageSize}/{pageNumber}:
+    get:
+      tags:
+        - Location
+      summary: Endpoint to get multiple business locations.
+      parameters:
+        - name: pageSize
+          in: path
+          description: The maximum amount of business locations in response.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: path
+          description: The page number of business locations to return.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /location/{id}:
+    get:
+      tags:
+        - Location
+      summary: Endpoint to get a single business location.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the business location to get
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - Location
+      summary: Endpoint to update a business location.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the business location to update.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Business location to update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LocationDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LocationDto'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - Location
+      summary: Endpoint to delete a business location.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the business location to delete.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /location:
+    post:
+      tags:
+        - Location
+      summary: Endpoint to create a new business location.
+      requestBody:
+        description: Business location to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LocationDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LocationDto'
+      responses:
+        '201':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /material:
+    post:
+      tags:
+        - Material
+      summary: Create material.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaterialDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MaterialDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MaterialDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some material details are missing.
+    get:
+      tags:
+        - Material
+      summary: Get a list of materials.
+      parameters:
+        - name: pageSize
+          in: query
+          description: Parameter to define how many records are in a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: Parameter to specify which page of records to return.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MaterialDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MaterialDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MaterialDTO'
+  /material/{materialId}:
+    get:
+      tags:
+        - Material
+      summary: Get material by Id.
+      parameters:
+        - name: materialId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MaterialDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaterialDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MaterialDTO'
+        '404':
+          description: If material with such id does not exist.
+    put:
+      tags:
+        - Material
+      summary: Update material by id.
+      parameters:
+        - name: materialId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaterialDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MaterialDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MaterialDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some material details are missing.
+        '404':
+          description: If material with such id does not exist.
+    delete:
+      tags:
+        - Material
+      summary: Delete material by id.
+      parameters:
+        - name: materialId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: If material with such id does not exist.
+  /order/{orderId}:
+    get:
+      tags:
+        - Order
+      summary: Gets order by id.
+      parameters:
+        - name: orderId
+          in: path
+          description: Id of the order.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns order information.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+        '404':
+          description: If order doesn't exist.
+  /order:
+    post:
+      tags:
+        - Order
+      summary: Creates and order.
+      requestBody:
+        description: Information required to create an order.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderDTO'
+      responses:
+        '200':
+          description: Returns information of the newly created order.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+  /cart/{cartId}/order:
+    post:
+      tags:
+        - Order
+      summary: Creates and order from a cart.
+      parameters:
+        - name: cartId
+          in: path
+          description: Id of the cart.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns information of the newly created order.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+        '404':
+          description: If cart doesn't exists.
+  /order/{orderId}/payment:
+    post:
+      tags:
+        - Order
+      summary: Links a payment to an order.
+      parameters:
+        - name: orderId
+          in: path
+          description: Id of the order.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Payment information.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentDTO'
+      responses:
+        '200':
+          description: Returns payment information.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentDTO'
+        '400':
+          description: If paid with digital money, but change field is filled.
+        '404':
+          description: If order doesn't exists.
+  /order/{orderId}/refund:
+    post:
+      tags:
+        - Order
+      summary: Refunds an order.
+      description: This endpoint can only be used by an authorised service providers.
+      parameters:
+        - name: orderId
+          in: path
+          description: Id of the order.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns a response that order was refunded successfully.
+        '404':
+          description: If order doesn't exists.
+  /order-status/{orderStatusId}:
+    get:
+      tags:
+        - OrderStatus
+      summary: Gets order status
+      parameters:
+        - name: orderStatusId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns order status
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderStatusDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderStatusDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderStatusDTO'
+        '400':
+          description: If order status ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no orderstatus ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - OrderStatus
+      summary: Updates order status
+      parameters:
+        - name: orderStatusId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderStatusDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/OrderStatusDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/OrderStatusDTO'
+      responses:
+        '200':
+          description: If order status have been succesfully updated
+        '400':
+          description: If provided order status details do not pass the validation
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no order status ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - OrderStatus
+      summary: Deletes order status
+      parameters:
+        - name: orderStatusId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: If order status have been succesfully delete
+        '400':
+          description: If provided order status details do not pass the validation
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no order status ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    patch:
+      tags:
+        - OrderStatus
+      summary: Updates order status
+      parameters:
+        - name: orderStatusId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: newOrderStatus
+          in: query
+          description: ''
+          schema:
+            $ref: '#/components/schemas/OrderStatusTypes'
+      responses:
+        '200':
+          description: If order status have been succesfully updated
+        '400':
+          description: If the provided order status enum value is invalid
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no order status ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /order-status:
+    post:
+      tags:
+        - OrderStatus
+      summary: Creates order status
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderStatusDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/OrderStatusDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/OrderStatusDTO'
+      responses:
+        '201':
+          description: If order status has been succesfully created
+        '400':
+          description: If provided order status details do not pass the validation
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /product:
+    post:
+      tags:
+        - Product
+      summary: Create product.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProductDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some product details are missing.
+    get:
+      tags:
+        - Product
+      summary: Get a list of products.
+      parameters:
+        - name: materialId
+          in: query
+          description: >-
+            Parameter to return all products that contain one or more specified
+            materials.
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: categoryId
+          in: query
+          description: >-
+            Parameter to return all products that belong in one or more
+            specified categories.
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: brandId
+          in: query
+          description: Parameter to return all products assigned to specific brands.
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pageSize
+          in: query
+          description: Parameter to define how many records are in a page.
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: Parameter to specify which page of records to return.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDTO'
+  /product/{productId}:
+    get:
+      tags:
+        - Product
+      summary: Get product by Id.
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductDTO'
+        '404':
+          description: If product with such id does not exist.
+    put:
+      tags:
+        - Product
+      summary: Update product by id.
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProductDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some product details are missing.
+        '404':
+          description: If product with such id does not exist.
+    delete:
+      tags:
+        - Product
+      summary: Delete product by id.
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: If product with such id does not exist.
+  /product-material:
+    post:
+      tags:
+        - ProductMaterial
+      summary: Assign material to a product.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductMaterial'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProductMaterial'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductMaterial'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some class details are missing.
+  /product-material/{productId}/{materialId}:
+    get:
+      tags:
+        - ProductMaterial
+      summary: Get product's assigned material by product Id and material Id.
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: materialId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductMaterial'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductMaterial'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductMaterial'
+        '404':
+          description: If material with such id is not assigned to product with such id.
+    put:
+      tags:
+        - ProductMaterial
+      summary: Update product's assigned material by product Id and material Id.
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: materialId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductMaterial'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProductMaterial'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductMaterial'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some class details are missing.
+        '404':
+          description: If material with such id is not assigned to product with such id.
+    delete:
+      tags:
+        - ProductMaterial
+      summary: Delete product's assigned material by product Id and material Id.
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: materialId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: If material with such id is not assigned to product with such id.
+  /product-material/{productId}:
+    get:
+      tags:
+        - ProductMaterial
+      summary: Get list of product's all assigned materials by product Id.
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductMaterial'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductMaterial'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductMaterial'
+        '404':
+          description: If product with such id does not exist.
+  /product-status/:
+    post:
+      tags:
+        - ProductStatus
+      summary: Create product status.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductStatusDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProductStatusDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductStatusDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some product status details are missing.
+  /product-status//{productId}:
+    get:
+      tags:
+        - ProductStatus
+      summary: Get product status by Id.
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductStatusDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductStatusDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductStatusDTO'
+        '404':
+          description: If product with such id does not exist.
+    put:
+      tags:
+        - ProductStatus
+      summary: Update product status by id (Enable/Disable, update quantity).
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductStatusDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProductStatusDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductStatusDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: If some product status details are missing.
+        '404':
+          description: If product with such id does not exist.
+    delete:
+      tags:
+        - ProductStatus
+      summary: Delete product status by id.
+      parameters:
+        - name: productId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: If product with such id does not exist.
+  /report/detailed-sales-report:
+    get:
+      tags:
+        - Report
+      summary: Endpoint to get detailed sales report.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DetailedSalesReportDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedSalesReportDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DetailedSalesReportDTO'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /report/brief-sales-report:
+    get:
+      tags:
+        - Report
+      summary: Endpoint to get brief sales report.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BriefSalesReportDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BriefSalesReportDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BriefSalesReportDTO'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /reservation:
+    post:
+      tags:
+        - Reservation
+      summary: Creates a reservation.
+      requestBody:
+        description: Details needed to create a reservation.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReservationDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateReservationDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateReservationDTO'
+      responses:
+        '200':
+          description: Returns information of the newly created reservation.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationInformationDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationInformationDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationInformationDTO'
+  /reservation/{reservationId}:
+    get:
+      tags:
+        - Reservation
+      summary: Gets a reservation by id.
+      parameters:
+        - name: reservationId
+          in: path
+          description: Id of the reservation
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns information of the specified reservation.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationInformationDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationInformationDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationInformationDTO'
+        '404':
+          description: When reservation doesn't exist.
+  /customer/{customerId}/reservation/list:
+    get:
+      tags:
+        - Reservation
+      summary: Gets alist of reservations of a customer optionally filtered by date.
+      parameters:
+        - name: customerId
+          in: path
+          description: Id of the customer.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: from
+          in: query
+          description: Get reservations starting after specified date.
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          description: Get reservations starting before specified date.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Returns empty lsit is no reservations were found.
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservationInformationDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservationInformationDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservationInformationDTO'
+        '401':
+          description: If user doesn't have authorization to view data.
+        '403':
+          description: If user is not authenticated.
+  /reservation/{reservationId}/cancel:
+    post:
+      tags:
+        - Reservation
+      summary: Cancels a reservation.
+      description: "At first should check if the action is being performed by an authorized user or service provider.\r\nWhen the reservation gets canceled this endpoint should send a notification to the customer and the shop."
+      parameters:
+        - name: reservationId
+          in: path
+          description: Id of the reservation.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns that cancelation completed successfully.
+  /service/{pageSize}/{pageNumber}:
+    get:
+      tags:
+        - Service
+      summary: Endpoint to get multiple services.
+      parameters:
+        - name: pageSize
+          in: path
+          description: The maximum amount of services in response.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: path
+          description: The page number of services to return.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    post:
+      tags:
+        - Service
+      summary: Endpoint to get multiple services with applied filter.
+      parameters:
+        - name: pageSize
+          in: path
+          description: The maximum amount of services in response.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: path
+          description: The page number of services to return.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Filter to apply to the services.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceFilterDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ServiceFilterDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ServiceFilterDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /service/{id}:
+    get:
+      tags:
+        - Service
+      summary: Endpoint to get a single service.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the service to get
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Service'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - Service
+      summary: Endpoint to update a service.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the service to update.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Service to update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ServiceDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ServiceDto'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - Service
+      summary: Endpoint to delete a service.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the service to delete.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /service:
+    post:
+      tags:
+        - Service
+      summary: Endpoint to create a new service.
+      requestBody:
+        description: Service to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ServiceDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ServiceDto'
+      responses:
+        '201':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /tax-rate/{pageSize}/{pageNumber}:
+    get:
+      tags:
+        - TaxRate
+      summary: Endpoint to get multiple tax rates.
+      parameters:
+        - name: pageSize
+          in: path
+          description: The maximum amount of tax rates in response.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: pageNumber
+          in: path
+          description: The page number of tax rates to return.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaxRate'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaxRate'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaxRate'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /tax-rate/{id}:
+    get:
+      tags:
+        - TaxRate
+      summary: Endpoint to get a single tax rate.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the tax rate to get
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TaxRate'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxRate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TaxRate'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - TaxRate
+      summary: Endpoint to update a tax rate.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the tax rate to update.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Tax rate to update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxRateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TaxRateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TaxRateDto'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - TaxRate
+      summary: Endpoint to delete a tax rate.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the tax rate to delete.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /tax-rate:
+    post:
+      tags:
+        - TaxRate
+      summary: Endpoint to create a new tax rate.
+      requestBody:
+        description: Tax rate to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxRateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TaxRateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TaxRateDto'
+      responses:
+        '201':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /tax-rate/AssignTaxRateToItem:
+    post:
+      tags:
+        - TaxRate
+      summary: Endpoint for assigning tax rate to an item.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignTaxRateToItemDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AssignTaxRateToItemDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AssignTaxRateToItemDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /tax-rate/apply-tax-rate-to-category:
+    post:
+      tags:
+        - TaxRate
+      summary: Endpoint for applying tax rate to all items in the category.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplyTaxRateToCategoryDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ApplyTaxRateToCategoryDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ApplyTaxRateToCategoryDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /tenant:
+    post:
+      tags:
+        - Tenant
+      summary: Endpoint to create a new store.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantAccountDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantAccountDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantAccountDTO'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - Tenant
+      summary: Endpoint to delete a store.
+      responses:
+        '200':
+          description: Success
+    get:
+      tags:
+        - Tenant
+      summary: Endpoint to get the details of a store.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantAccountDetailsDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantAccountDetailsDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantAccountDetailsDTO'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - Tenant
+      summary: Endpoint to update a store.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantAccountDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantAccountDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantAccountDTO'
+      responses:
+        '200':
+          description: Success
+  /tenant/login:
+    post:
+      tags:
+        - Tenant
+      summary: Endpoint to login to a store.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialsDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CredentialsDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CredentialsDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TokenDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TokenDTO'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /time-slot/{timeSlotId}:
+    get:
+      tags:
+        - TimeSlot
+      summary: Gets time slot details
+      parameters:
+        - name: timeSlotId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns time slot details
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+        '400':
+          description: If time slot ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no time slot ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - TimeSlot
+      summary: Updates time slot
+      parameters:
+        - name: timeSlotId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimeSlotDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TimeSlotDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TimeSlotDTO'
+      responses:
+        '200':
+          description: If time slot details have been succesfully updated
+        '400':
+          description: If provided time slot details do not pass the validation
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no time slot ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - TimeSlot
+      summary: Deletes time slot
+      parameters:
+        - name: timeSlotId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: If time slot have been succesfully deleted
+        '400':
+          description: If time slot ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no time slot ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /time-slot/{serviceId}:
+    get:
+      tags:
+        - TimeSlot
+      summary: Gets all time slots by service id
+      parameters:
+        - name: serviceId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+        '400':
+          description: If time slot service ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no time slot service ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /time-slot/{locationId}:
+    get:
+      tags:
+        - TimeSlot
+      summary: Gets all time slots by location id
+      parameters:
+        - name: locationId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns time slot details
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+        '400':
+          description: If time slot location ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no time slot location ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /time-slot/{employeeId}:
+    get:
+      tags:
+        - TimeSlot
+      summary: Gets all time slots by employee id
+      parameters:
+        - name: employeeId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns time slot details
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+        '400':
+          description: If time slot ID is less or equal to 0
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no time slot ID matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /time-slot:
+    get:
+      tags:
+        - TimeSlot
+      summary: Gets all time slots by date
+      parameters:
+        - name: FromDate
+          in: query
+          description: ''
+          schema:
+            type: string
+            format: date-time
+        - name: ToDate
+          in: query
+          description: ''
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Returns time slot details
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimeSlotDTO'
+        '400':
+          description: If provided dates are invalid
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: If no dates matched the search
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    post:
+      tags:
+        - TimeSlot
+      summary: Creates a time slot
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimeSlotDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TimeSlotDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TimeSlotDTO'
+      responses:
+        '201':
+          description: If time slot has been succesfully created
+        '400':
+          description: If provided time slot details do not pass the validation
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    AccountDetailsDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the customer.
+          nullable: true
+        email:
+          type: string
+          description: Email of the customer.
+          nullable: true
+      additionalProperties: false
+    AddCartItemDTO:
+      type: object
+      properties:
+        productId:
+          type: integer
+          description: If item is a product, id of that product
+          format: int32
+          nullable: true
+        bundleId:
+          type: integer
+          description: If item is a bundle, id of that bundle
+          format: int32
+          nullable: true
+        quantity:
+          type: integer
+          description: Quantity of the item
+          format: int32
+        comments:
+          type: string
+          description: Additional comments for te item.
+          nullable: true
+      additionalProperties: false
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        line1:
+          type: string
+          nullable: true
+        line2:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        region:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AddressDto:
+      type: object
+      properties:
+        line1:
+          type: string
+          nullable: true
+        line2:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        region:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ApplyTaxRateToCategoryDTO:
+      type: object
+      properties:
+        categoryId:
+          type: integer
+          format: int32
+        taxRateId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    AssignDiscountToBrandDTO:
+      type: object
+      properties:
+        discountId:
+          type: integer
+          format: int32
+        brandId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    AssignDiscountToCategoryDTO:
+      type: object
+      properties:
+        discountId:
+          type: integer
+          format: int32
+        brandId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    AssignDiscountToItemDTO:
+      type: object
+      properties:
+        discountId:
+          type: integer
+          format: int32
+        productId:
+          type: integer
+          format: int32
+          nullable: true
+        serviceId:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    AssignTaxRateToItemDTO:
+      type: object
+      properties:
+        taxRateId:
+          type: integer
+          format: int32
+        productId:
+          type: integer
+          format: int32
+          nullable: true
+        serviceId:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    BearerTokenDTO:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Bearer token
+          nullable: true
+      additionalProperties: false
+    BriefSalesReportDTO:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BriefSalesReportItemDTO'
+          nullable: true
+        total:
+          type: number
+          format: double
+      additionalProperties: false
+    BriefSalesReportItemDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        tax:
+          type: number
+          format: double
+        discount:
+          type: number
+          format: double
+        quantity:
+          type: integer
+          format: int32
+        totalPrice:
+          type: number
+          format: double
+      additionalProperties: false
+    BundleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        price:
+          type: integer
+          format: int32
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/BundleProduct'
+          nullable: true
+      additionalProperties: false
+    BundleProduct:
+      type: object
+      properties:
+        bundle_id:
+          type: integer
+          format: int32
+        product_id:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CartDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        customerId:
+          type: integer
+          format: int32
+          nullable: true
+        dateCreated:
+          type: string
+          format: date-time
+        lastAccessed:
+          type: string
+          format: date-time
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItemDTO'
+          nullable: true
+      additionalProperties: false
+    CartItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Id of the cart item
+          format: int32
+        cartId:
+          type: integer
+          description: Id of the cart
+          format: int32
+        productId:
+          type: integer
+          description: If item is product, id of that produuct.
+          format: int32
+          nullable: true
+        bundleId:
+          type: integer
+          description: If item is a bundle, id of that bundle.
+          format: int32
+          nullable: true
+        quantity:
+          type: integer
+          description: Quantity of the item.
+          format: int32
+      additionalProperties: false
+    CartItemDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Cart item id
+          format: int32
+        cartId:
+          type: integer
+          description: Cart id
+          format: int32
+        productId:
+          type: integer
+          description: If item is product, id of that produuct.
+          format: int32
+          nullable: true
+        bundleId:
+          type: integer
+          description: If item is a bundle, id of that bundle.
+          format: int32
+          nullable: true
+        itemName:
+          type: string
+          description: Name of the cart item.
+          nullable: true
+        itemPrice:
+          type: number
+          description: Price of the cart item.
+          format: double
+        quantity:
+          type: integer
+          description: Quantity of the item in the cart.
+          format: int32
+      additionalProperties: false
+    CreateAccountDTO:
+      required:
+        - email
+        - name
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the customer.
+        email:
+          type: string
+          description: Email of the customer.
+        password:
+          type: string
+          description: Password of the customer.
+      additionalProperties: false
+    CreateOrderDTO:
+      type: object
+      properties:
+        customerId:
+          type: integer
+          description: Id of the customer
+          format: int32
+          nullable: true
+        employeeId:
+          type: integer
+          description: Id of the employee who completed the order in store.
+          format: int32
+          nullable: true
+        tipsAmmount:
+          type: number
+          description: Tips
+          format: double
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateOrderItemDTO'
+          description: Order items
+          nullable: true
+      additionalProperties: false
+    CreateOrderItemDTO:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int32
+          nullable: true
+        serviceId:
+          type: integer
+          format: int32
+          nullable: true
+        bundleId:
+          type: integer
+          format: int32
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        quantity:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CreateReservationDTO:
+      type: object
+      properties:
+        timeSlotId:
+          type: integer
+          description: Chosen timeslot.
+          format: int32
+        customerId:
+          type: integer
+          description: Id of the customer that's making the reservation.
+          format: int32
+      additionalProperties: false
+    CreateTenantAccountDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CredentialsDto:
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DetailedSalesReportDTO:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemDTO'
+          nullable: true
+        total:
+          type: number
+          format: double
+      additionalProperties: false
+    Discount:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        tenantId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        rate:
+          type: number
+          format: double
+        validFrom:
+          type: string
+          format: date-time
+        expiresAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    DiscountDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        rate:
+          type: number
+          format: double
+        validFrom:
+          type: string
+          format: date-time
+        expiresAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    EmployeeDTO:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: First name of the employee
+          nullable: true
+        lastName:
+          type: string
+          description: Last name of the employee
+          nullable: true
+        role:
+          type: string
+          description: Role of the employee
+          nullable: true
+        dateHired:
+          type: string
+          description: Date when the employee was hired
+          format: date-time
+        dateDeleted:
+          type: string
+          description: Date when the employee has been deleted, aka hiden, from the system
+          format: date-time
+      additionalProperties: false
+    EmployeePermissionDTO:
+      type: object
+      properties:
+        permissionId:
+          type: integer
+          description: Permission ID
+          format: int32
+        employeeId:
+          type: integer
+          description: Employee ID to who the permission is granted to
+          format: int32
+      additionalProperties: false
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        tenantId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        address:
+          $ref: '#/components/schemas/Address'
+      additionalProperties: false
+    LocationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        address:
+          $ref: '#/components/schemas/AddressDto'
+      additionalProperties: false
+    LoginDetailsDTO:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email of the customer.
+        password:
+          type: string
+          description: Password of the customer.
+      additionalProperties: false
+    MaterialDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        available_quantity:
+          type: integer
+          format: int32
+      additionalProperties: false
+    OrderDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Order id.
+          format: int32
+        customerId:
+          type: integer
+          description: Id of the customer.
+          format: int32
+          nullable: true
+        employeeId:
+          type: integer
+          description: Id of the employee who completed the order.
+          format: int32
+          nullable: true
+        tipsAmmount:
+          type: number
+          description: Tips
+          format: double
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemDTO'
+          description: Ordered items.
+          nullable: true
+        total:
+          type: number
+          description: Amount to be paid for the order.
+          format: double
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+        payment:
+          $ref: '#/components/schemas/PaymentDTO'
+      additionalProperties: false
+    OrderItemDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Order item id.
+          format: int32
+        productId:
+          type: integer
+          description: If item is a product, id of that product.
+          format: int32
+          nullable: true
+        serviceId:
+          type: integer
+          description: If item is a service, id of that service.
+          format: int32
+          nullable: true
+        bundleId:
+          type: integer
+          description: If item is a bundle, id of that bundle.
+          format: int32
+          nullable: true
+        name:
+          type: string
+          description: Name of the item.
+          nullable: true
+        notes:
+          type: string
+          description: Additional notes added to the item.
+          nullable: true
+        quantity:
+          type: integer
+          description: Quantity of the item.
+          format: int32
+        unitPrice:
+          type: number
+          description: Unit price of the item.
+          format: double
+        discountRate:
+          type: number
+          description: Discount applied to the item.
+          format: double
+        taxRate:
+          type: number
+          description: Tax rate applied to the item.
+          format: double
+        total:
+          type: number
+          description: Total amount that should be paid for the item.
+          format: double
+      additionalProperties: false
+    OrderStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Order status ID
+          format: int32
+        orderId:
+          type: integer
+          description: Order ID
+          format: int32
+        status:
+          $ref: '#/components/schemas/OrderStatusTypes'
+      additionalProperties: false
+    OrderStatusDTO:
+      type: object
+      properties:
+        orderId:
+          type: integer
+          description: Order ID
+          format: int32
+        status:
+          $ref: '#/components/schemas/OrderStatusTypes'
+      additionalProperties: false
+    OrderStatusTypes:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+      type: integer
+      format: int32
+    PaymentDTO:
+      type: object
+      properties:
+        orderId:
+          type: integer
+          description: Order id
+          format: int32
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        ammount:
+          type: number
+          description: Ammount paid
+          format: double
+        change:
+          type: number
+          description: If paid by cash, ammount of change given
+          format: double
+          nullable: true
+      additionalProperties: false
+    PaymentType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      type: integer
+      format: int32
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ProductCategory:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int32
+        category_id:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProductDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        price:
+          type: integer
+          format: int32
+        brand_id:
+          type: integer
+          format: int32
+        tax_rate_id:
+          type: integer
+          format: int32
+        materials:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductMaterial'
+          nullable: true
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductCategory'
+          nullable: true
+      additionalProperties: false
+    ProductMaterial:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int32
+        material_id:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ProductStatusDTO:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int32
+        available_quantity:
+          type: integer
+          format: int32
+        is_disabled:
+          type: boolean
+      additionalProperties: false
+    ReservationInformationDTO:
+      type: object
+      properties:
+        reservationId:
+          type: integer
+          description: Id of the reservation.
+          format: int32
+        customerId:
+          type: integer
+          description: Id of the customer.
+          format: int32
+        timeSlotId:
+          type: integer
+          description: Id of the timeslot.
+          format: int32
+        customerName:
+          type: string
+          description: Name of the customer.
+          nullable: true
+        serviceWorkerName:
+          type: string
+          description: Name of the assigned service provider.
+          nullable: true
+        serviceName:
+          type: string
+          description: Name of the booked service.
+          nullable: true
+        starts:
+          type: string
+          description: When the reservation starts.
+          format: date-time
+        ends:
+          type: string
+          description: When the reservation ends.
+          format: date-time
+      additionalProperties: false
+    Service:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        tenantId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        durationMins:
+          type: integer
+          format: int32
+        isAvailable:
+          type: boolean
+        taxRateId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ServiceDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        durationMins:
+          type: integer
+          format: int32
+        isAvailable:
+          type: boolean
+        taxRateId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ServiceFilterDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        minDurationMins:
+          type: integer
+          format: int32
+          nullable: true
+        maxDurationMins:
+          type: integer
+          format: int32
+          nullable: true
+        isAvailable:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    TaxRate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        tenantId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        rate:
+          type: number
+          format: double
+      additionalProperties: false
+    TaxRateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        rate:
+          type: number
+          format: double
+      additionalProperties: false
+    TenantAccountDetailsDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TimeSlotDTO:
+      type: object
+      properties:
+        serviceId:
+          type: integer
+          description: ID of the service that is provided during the time slot
+          format: int32
+        locationId:
+          type: integer
+          description: ID of the location where the service is provided
+          format: int32
+        employeeId:
+          type: integer
+          description: ID of the employer which provides the service
+          format: int32
+        startTime:
+          type: string
+          description: Time slot start time
+          format: date-time
+        endTime:
+          type: string
+          description: Time slot end time
+          format: date-time
+      additionalProperties: false
+    TokenDTO:
+      type: object
+      properties:
+        token:
+          type: string
+          nullable: true
+        tenantId:
+          type: integer
+          format: int32
+      additionalProperties: false
