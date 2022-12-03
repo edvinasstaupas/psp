@@ -4197,10 +4197,10 @@ components:
     BundleProduct:
       type: object
       properties:
-        bundle_id:
+        bundleId:
           type: integer
           format: int32
-        product_id:
+        productId:
           type: integer
           format: int32
         quantity:
@@ -4528,7 +4528,7 @@ components:
         unit:
           type: string
           nullable: true
-        available_quantity:
+        availableQuantity:
           type: integer
           format: int32
       additionalProperties: false
@@ -4708,10 +4708,10 @@ components:
     ProductCategory:
       type: object
       properties:
-        product_id:
+        productId:
           type: integer
           format: int32
-        category_id:
+        categoryId:
           type: string
           nullable: true
       additionalProperties: false
@@ -4730,10 +4730,10 @@ components:
         price:
           type: integer
           format: int32
-        brand_id:
+        brandId:
           type: integer
           format: int32
-        tax_rate_id:
+        taxRateId:
           type: integer
           format: int32
         materials:
@@ -4750,10 +4750,10 @@ components:
     ProductMaterial:
       type: object
       properties:
-        product_id:
+        productId:
           type: integer
           format: int32
-        material_id:
+        materialId:
           type: integer
           format: int32
         quantity:
@@ -4763,13 +4763,13 @@ components:
     ProductStatusDTO:
       type: object
       properties:
-        product_id:
+        productId:
           type: integer
           format: int32
-        available_quantity:
+        availableQuantity:
           type: integer
           format: int32
-        is_disabled:
+        isDisabled:
           type: boolean
       additionalProperties: false
     ReservationInformationDTO:

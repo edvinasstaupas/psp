@@ -34,8 +34,8 @@ public interface ReservationApi {
         @ApiResponse(code = 200, message = "Returns information of the newly created reservation.", response = ReservationInformationDTO.class) })
     @PostMapping(
         value = "/reservation",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<ReservationInformationDTO> reservationPost(@ApiParam(value = "Details needed to create a reservation."  )  @Valid @RequestBody(required = false) CreateReservationDTO createReservationDTO) {
         return getDelegate().reservationPost(createReservationDTO);
@@ -73,7 +73,7 @@ public interface ReservationApi {
         @ApiResponse(code = 404, message = "When reservation doesn't exist.") })
     @GetMapping(
         value = "/reservation/{reservationId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<ReservationInformationDTO> reservationReservationIdGet(@ApiParam(value = "Id of the reservation",required=true) @PathVariable("reservationId") Integer reservationId) {
         return getDelegate().reservationReservationIdGet(reservationId);

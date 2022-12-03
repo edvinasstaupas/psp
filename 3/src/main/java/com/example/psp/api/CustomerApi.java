@@ -42,7 +42,7 @@ public interface CustomerApi {
         @ApiResponse(code = 404, message = "If customer doesn't exist.") })
     @GetMapping(
         value = "/customer/{customerId}/reservation",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<CartDTO> customerCustomerIdReservationGet(@ApiParam(value = "Id of the customer.",required=true) @PathVariable("customerId") Integer customerId) {
         return getDelegate().customerCustomerIdReservationGet(customerId);
@@ -66,7 +66,7 @@ public interface CustomerApi {
         @ApiResponse(code = 403, message = "If user is not authenticated.") })
     @GetMapping(
         value = "/customer/{customerId}/reservation/list",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<List<ReservationInformationDTO>> customerCustomerIdReservationListGet(@ApiParam(value = "Id of the customer.",required=true) @PathVariable("customerId") Integer customerId,@ApiParam(value = "Get reservations starting after specified date.") @Valid @RequestParam(value = "from", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime from,@ApiParam(value = "Get reservations starting before specified date.") @Valid @RequestParam(value = "to", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime to) {
         return getDelegate().customerCustomerIdReservationListGet(customerId, from, to);
@@ -89,7 +89,7 @@ public interface CustomerApi {
         @ApiResponse(code = 404, message = "If user doesn't exist") })
     @GetMapping(
         value = "/customer",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<List<AccountDetailsDTO>> customerGet(@ApiParam(value = "Optional parameter to query by email.") @Valid @RequestParam(value = "email", required = false) String email,@ApiParam(value = "Optional parameter to query by name.") @Valid @RequestParam(value = "name", required = false) String name,@ApiParam(value = "Parameter to define how many records are in a page.") @Valid @RequestParam(value = "pageSize", required = false) Integer pageSize,@ApiParam(value = "Parameter to specify which page of records to return.") @Valid @RequestParam(value = "page", required = false) Integer page) {
         return getDelegate().customerGet(email, name, pageSize, page);
@@ -107,8 +107,8 @@ public interface CustomerApi {
         @ApiResponse(code = 200, message = "Success", response = BearerTokenDTO.class) })
     @PostMapping(
         value = "/customer/login",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<BearerTokenDTO> customerLoginPost(@ApiParam(value = "Login details of the customer."  )  @Valid @RequestBody(required = false) LoginDetailsDTO loginDetailsDTO) {
         return getDelegate().customerLoginPost(loginDetailsDTO);
@@ -130,8 +130,8 @@ public interface CustomerApi {
         @ApiResponse(code = 409, message = "If email matches a previously registered users email.") })
     @PostMapping(
         value = "/customer",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<BearerTokenDTO> customerPost(@ApiParam(value = "Customer account details." ,required=true )  @Valid @RequestBody CreateAccountDTO createAccountDTO) {
         return getDelegate().customerPost(createAccountDTO);
@@ -151,7 +151,7 @@ public interface CustomerApi {
         @ApiResponse(code = 404, message = "If user doesn't exist") })
     @GetMapping(
         value = "/customer/{userId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<AccountDetailsDTO> customerUserIdGet(@ApiParam(value = "",required=true) @PathVariable("userId") Integer userId) {
         return getDelegate().customerUserIdGet(userId);
@@ -174,7 +174,7 @@ public interface CustomerApi {
         @ApiResponse(code = 404, message = "If user doesn't exists.") })
     @PutMapping(
         value = "/customer/{userId}",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> customerUserIdPut(@ApiParam(value = "",required=true) @PathVariable("userId") Integer userId,@ApiParam(value = "Customer account details."  )  @Valid @RequestBody(required = false) CreateAccountDTO createAccountDTO) {
         return getDelegate().customerUserIdPut(userId, createAccountDTO);

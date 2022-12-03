@@ -39,7 +39,7 @@ public interface EmployeeApi {
         @ApiResponse(code = 404, message = "If no employee ID matched the search", response = ProblemDetails.class) })
     @DeleteMapping(
         value = "/employee/{employeeId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> employeeEmployeeIdDelete(@ApiParam(value = "",required=true) @PathVariable("employeeId") Integer employeeId) {
         return getDelegate().employeeEmployeeIdDelete(employeeId);
@@ -61,7 +61,7 @@ public interface EmployeeApi {
         @ApiResponse(code = 404, message = "If no employee ID matched the search", response = ProblemDetails.class) })
     @GetMapping(
         value = "/employee/{employeeId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<EmployeeDTO> employeeEmployeeIdGet(@ApiParam(value = "ID of the employee",required=true) @PathVariable("employeeId") Integer employeeId) {
         return getDelegate().employeeEmployeeIdGet(employeeId);
@@ -84,7 +84,7 @@ public interface EmployeeApi {
         @ApiResponse(code = 404, message = "If no employee ID matched the search", response = ProblemDetails.class) })
     @PatchMapping(
         value = "/employee/{employeeId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> employeeEmployeeIdPatch(@ApiParam(value = "",required=true) @PathVariable("employeeId") Integer employeeId,@ApiParam(value = "") @Valid @RequestParam(value = "date", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime date) {
         return getDelegate().employeeEmployeeIdPatch(employeeId, date);
@@ -107,7 +107,7 @@ public interface EmployeeApi {
         @ApiResponse(code = 404, message = "If no permission ID matched the search", response = ProblemDetails.class) })
     @PatchMapping(
         value = "/employee/{employeeId}/{permissionId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> employeeEmployeeIdPermissionIdPatch(@ApiParam(value = "",required=true) @PathVariable("employeeId") Integer employeeId,@ApiParam(value = "",required=true) @PathVariable("permissionId") Integer permissionId) {
         return getDelegate().employeeEmployeeIdPermissionIdPatch(employeeId, permissionId);
@@ -130,8 +130,8 @@ public interface EmployeeApi {
         @ApiResponse(code = 404, message = "If no employee ID matched the search", response = ProblemDetails.class) })
     @PutMapping(
         value = "/employee/{employeeId}",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> employeeEmployeeIdPut(@ApiParam(value = "",required=true) @PathVariable("employeeId") Integer employeeId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) EmployeeDTO employeeDTO) {
         return getDelegate().employeeEmployeeIdPut(employeeId, employeeDTO);
@@ -151,8 +151,8 @@ public interface EmployeeApi {
         @ApiResponse(code = 400, message = "If provided employee details do not pass the validation", response = ProblemDetails.class) })
     @PostMapping(
         value = "/employee",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> employeePost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) EmployeeDTO employeeDTO) {
         return getDelegate().employeePost(employeeDTO);

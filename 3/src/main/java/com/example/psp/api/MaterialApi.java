@@ -35,7 +35,7 @@ public interface MaterialApi {
         @ApiResponse(code = 200, message = "Success", response = MaterialDTO.class, responseContainer = "List") })
     @GetMapping(
         value = "/material",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<List<MaterialDTO>> materialGet(@ApiParam(value = "Parameter to define how many records are in a page.") @Valid @RequestParam(value = "pageSize", required = false) Integer pageSize,@ApiParam(value = "Parameter to specify which page of records to return.") @Valid @RequestParam(value = "page", required = false) Integer page) {
         return getDelegate().materialGet(pageSize, page);
@@ -74,7 +74,7 @@ public interface MaterialApi {
         @ApiResponse(code = 404, message = "If material with such id does not exist.") })
     @GetMapping(
         value = "/material/{materialId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<MaterialDTO> materialMaterialIdGet(@ApiParam(value = "",required=true) @PathVariable("materialId") Integer materialId) {
         return getDelegate().materialMaterialIdGet(materialId);
@@ -97,7 +97,7 @@ public interface MaterialApi {
         @ApiResponse(code = 404, message = "If material with such id does not exist.") })
     @PutMapping(
         value = "/material/{materialId}",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> materialMaterialIdPut(@ApiParam(value = "",required=true) @PathVariable("materialId") Integer materialId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) MaterialDTO materialDTO) {
         return getDelegate().materialMaterialIdPut(materialId, materialDTO);
@@ -117,7 +117,7 @@ public interface MaterialApi {
         @ApiResponse(code = 400, message = "If some material details are missing.") })
     @PostMapping(
         value = "/material",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> materialPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) MaterialDTO materialDTO) {
         return getDelegate().materialPost(materialDTO);

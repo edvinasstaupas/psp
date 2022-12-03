@@ -38,7 +38,7 @@ public interface ProductApi {
         @ApiResponse(code = 200, message = "Success", response = ProductDTO.class, responseContainer = "List") })
     @GetMapping(
         value = "/product",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<List<ProductDTO>> productGet(@ApiParam(value = "Parameter to return all products that contain one or more specified materials.") @Valid @RequestParam(value = "materialId", required = false) List<Integer> materialId,@ApiParam(value = "Parameter to return all products that belong in one or more specified categories.") @Valid @RequestParam(value = "categoryId", required = false) List<Integer> categoryId,@ApiParam(value = "Parameter to return all products assigned to specific brands.") @Valid @RequestParam(value = "brandId", required = false) List<Integer> brandId,@ApiParam(value = "Parameter to define how many records are in a page.") @Valid @RequestParam(value = "pageSize", required = false) Integer pageSize,@ApiParam(value = "Parameter to specify which page of records to return.") @Valid @RequestParam(value = "page", required = false) Integer page) {
         return getDelegate().productGet(materialId, categoryId, brandId, pageSize, page);
@@ -58,7 +58,7 @@ public interface ProductApi {
         @ApiResponse(code = 400, message = "If some product details are missing.") })
     @PostMapping(
         value = "/product",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> productPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) ProductDTO productDTO) {
         return getDelegate().productPost(productDTO);
@@ -97,7 +97,7 @@ public interface ProductApi {
         @ApiResponse(code = 404, message = "If product with such id does not exist.") })
     @GetMapping(
         value = "/product/{productId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<ProductDTO> productProductIdGet(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId) {
         return getDelegate().productProductIdGet(productId);
@@ -120,7 +120,7 @@ public interface ProductApi {
         @ApiResponse(code = 404, message = "If product with such id does not exist.") })
     @PutMapping(
         value = "/product/{productId}",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> productProductIdPut(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) ProductDTO productDTO) {
         return getDelegate().productProductIdPut(productId, productDTO);

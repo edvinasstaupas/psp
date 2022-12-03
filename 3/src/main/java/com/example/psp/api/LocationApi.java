@@ -40,7 +40,7 @@ public interface LocationApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @DeleteMapping(
         value = "/location/{id}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> locationIdDelete(@ApiParam(value = "Id of the business location to delete.",required=true) @PathVariable("id") Integer id) {
         return getDelegate().locationIdDelete(id);
@@ -62,7 +62,7 @@ public interface LocationApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @GetMapping(
         value = "/location/{id}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<LocationDto> locationIdGet(@ApiParam(value = "Id of the business location to get",required=true) @PathVariable("id") Integer id) {
         return getDelegate().locationIdGet(id);
@@ -87,8 +87,8 @@ public interface LocationApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @PutMapping(
         value = "/location/{id}",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> locationIdPut(@ApiParam(value = "Id of the business location to update.",required=true) @PathVariable("id") Integer id,@ApiParam(value = "Business location to update."  )  @Valid @RequestBody(required = false) LocationDto locationDto) {
         return getDelegate().locationIdPut(id, locationDto);
@@ -111,7 +111,7 @@ public interface LocationApi {
         @ApiResponse(code = 401, message = "Unauthorized", response = ProblemDetails.class) })
     @GetMapping(
         value = "/location/{pageSize}/{pageNumber}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<List<Location>> locationPageSizePageNumberGet(@ApiParam(value = "The maximum amount of business locations in response.",required=true) @PathVariable("pageSize") Integer pageSize,@ApiParam(value = "The page number of business locations to return.",required=true) @PathVariable("pageNumber") Integer pageNumber) {
         return getDelegate().locationPageSizePageNumberGet(pageSize, pageNumber);
@@ -133,8 +133,8 @@ public interface LocationApi {
         @ApiResponse(code = 401, message = "Unauthorized", response = ProblemDetails.class) })
     @PostMapping(
         value = "/location",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> locationPost(@ApiParam(value = "Business location to create."  )  @Valid @RequestBody(required = false) LocationDto locationDto) {
         return getDelegate().locationPost(locationDto);

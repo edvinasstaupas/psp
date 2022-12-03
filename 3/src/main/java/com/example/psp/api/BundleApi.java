@@ -78,7 +78,7 @@ public interface BundleApi {
         @ApiResponse(code = 404, message = "If bundle with such id does not exist.") })
     @PutMapping(
         value = "/bundle/{bundleId}",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> bundleBundleIdPut(@ApiParam(value = "",required=true) @PathVariable("bundleId") Integer bundleId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) BundleDTO bundleDTO) {
         return getDelegate().bundleBundleIdPut(bundleId, bundleDTO);
@@ -117,7 +117,7 @@ public interface BundleApi {
         @ApiResponse(code = 400, message = "If some bundle details are missing.") })
     @PostMapping(
         value = "/bundle",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> bundlePost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) BundleDTO bundleDTO) {
         return getDelegate().bundlePost(bundleDTO);

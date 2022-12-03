@@ -36,7 +36,7 @@ public interface ProductMaterialApi {
         @ApiResponse(code = 400, message = "If some class details are missing.") })
     @PostMapping(
         value = "/product-material",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> productMaterialPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) ProductMaterial productMaterial) {
         return getDelegate().productMaterialPost(productMaterial);
@@ -56,7 +56,7 @@ public interface ProductMaterialApi {
         @ApiResponse(code = 404, message = "If product with such id does not exist.") })
     @GetMapping(
         value = "/product-material/{productId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<List<ProductMaterial>> productMaterialProductIdGet(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId) {
         return getDelegate().productMaterialProductIdGet(productId);
@@ -97,7 +97,7 @@ public interface ProductMaterialApi {
         @ApiResponse(code = 404, message = "If material with such id is not assigned to product with such id.") })
     @GetMapping(
         value = "/product-material/{productId}/{materialId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<ProductMaterial> productMaterialProductIdMaterialIdGet(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId,@ApiParam(value = "",required=true) @PathVariable("materialId") Integer materialId) {
         return getDelegate().productMaterialProductIdMaterialIdGet(productId, materialId);
@@ -121,7 +121,7 @@ public interface ProductMaterialApi {
         @ApiResponse(code = 404, message = "If material with such id is not assigned to product with such id.") })
     @PutMapping(
         value = "/product-material/{productId}/{materialId}",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> productMaterialProductIdMaterialIdPut(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId,@ApiParam(value = "",required=true) @PathVariable("materialId") Integer materialId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) ProductMaterial productMaterial) {
         return getDelegate().productMaterialProductIdMaterialIdPut(productId, materialId, productMaterial);

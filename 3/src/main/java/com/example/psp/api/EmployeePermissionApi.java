@@ -39,7 +39,7 @@ public interface EmployeePermissionApi {
         @ApiResponse(code = 404, message = "If no permission ID matched the search", response = ProblemDetails.class) })
     @GetMapping(
         value = "/employee-permission/{employeeId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<EmployeePermissionDTO> employeePermissionEmployeeIdGet(@ApiParam(value = "",required=true) @PathVariable("employeeId") String employeeId,@ApiParam(value = "") @Valid @RequestParam(value = "permissionId", required = false) Integer permissionId) {
         return getDelegate().employeePermissionEmployeeIdGet(employeeId, permissionId);
@@ -61,7 +61,7 @@ public interface EmployeePermissionApi {
         @ApiResponse(code = 404, message = "If no permission ID matched the search", response = ProblemDetails.class) })
     @DeleteMapping(
         value = "/employee-permission/{permissionId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> employeePermissionPermissionIdDelete(@ApiParam(value = "",required=true) @PathVariable("permissionId") Integer permissionId) {
         return getDelegate().employeePermissionPermissionIdDelete(permissionId);
@@ -84,8 +84,8 @@ public interface EmployeePermissionApi {
         @ApiResponse(code = 404, message = "If no permission ID matched the search", response = ProblemDetails.class) })
     @PutMapping(
         value = "/employee-permission/{permissionId}",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> employeePermissionPermissionIdPut(@ApiParam(value = "",required=true) @PathVariable("permissionId") Integer permissionId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) EmployeePermissionDTO employeePermissionDTO) {
         return getDelegate().employeePermissionPermissionIdPut(permissionId, employeePermissionDTO);
@@ -105,8 +105,8 @@ public interface EmployeePermissionApi {
         @ApiResponse(code = 400, message = "If provided permission details do not pass the validation", response = ProblemDetails.class) })
     @PostMapping(
         value = "/employee-permission",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> employeePermissionPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) EmployeePermissionDTO employeePermissionDTO) {
         return getDelegate().employeePermissionPost(employeePermissionDTO);

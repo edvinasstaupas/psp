@@ -39,7 +39,7 @@ public interface TimeSlotApi {
         @ApiResponse(code = 404, message = "If no time slot ID matched the search", response = ProblemDetails.class) })
     @GetMapping(
         value = "/time-slot/{employeeId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<TimeSlotDTO> timeSlotEmployeeIdGet(@ApiParam(value = "",required=true) @PathVariable("employeeId") Integer employeeId) {
         return getDelegate().timeSlotEmployeeIdGet(employeeId);
@@ -62,7 +62,7 @@ public interface TimeSlotApi {
         @ApiResponse(code = 404, message = "If no dates matched the search", response = ProblemDetails.class) })
     @GetMapping(
         value = "/time-slot",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<TimeSlotDTO> timeSlotGet(@ApiParam(value = "") @Valid @RequestParam(value = "FromDate", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime fromDate,@ApiParam(value = "") @Valid @RequestParam(value = "ToDate", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime toDate) {
         return getDelegate().timeSlotGet(fromDate, toDate);
@@ -84,7 +84,7 @@ public interface TimeSlotApi {
         @ApiResponse(code = 404, message = "If no time slot location ID matched the search", response = ProblemDetails.class) })
     @GetMapping(
         value = "/time-slot/{locationId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<TimeSlotDTO> timeSlotLocationIdGet(@ApiParam(value = "",required=true) @PathVariable("locationId") Integer locationId) {
         return getDelegate().timeSlotLocationIdGet(locationId);
@@ -104,8 +104,8 @@ public interface TimeSlotApi {
         @ApiResponse(code = 400, message = "If provided time slot details do not pass the validation", response = ProblemDetails.class) })
     @PostMapping(
         value = "/time-slot",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> timeSlotPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) TimeSlotDTO timeSlotDTO) {
         return getDelegate().timeSlotPost(timeSlotDTO);
@@ -127,7 +127,7 @@ public interface TimeSlotApi {
         @ApiResponse(code = 404, message = "If no time slot service ID matched the search", response = ProblemDetails.class) })
     @GetMapping(
         value = "/time-slot/{serviceId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<TimeSlotDTO> timeSlotServiceIdGet(@ApiParam(value = "",required=true) @PathVariable("serviceId") Integer serviceId) {
         return getDelegate().timeSlotServiceIdGet(serviceId);
@@ -149,7 +149,7 @@ public interface TimeSlotApi {
         @ApiResponse(code = 404, message = "If no time slot ID matched the search", response = ProblemDetails.class) })
     @DeleteMapping(
         value = "/time-slot/{timeSlotId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> timeSlotTimeSlotIdDelete(@ApiParam(value = "",required=true) @PathVariable("timeSlotId") Integer timeSlotId) {
         return getDelegate().timeSlotTimeSlotIdDelete(timeSlotId);
@@ -171,7 +171,7 @@ public interface TimeSlotApi {
         @ApiResponse(code = 404, message = "If no time slot ID matched the search", response = ProblemDetails.class) })
     @GetMapping(
         value = "/time-slot/{timeSlotId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<TimeSlotDTO> timeSlotTimeSlotIdGet(@ApiParam(value = "",required=true) @PathVariable("timeSlotId") Integer timeSlotId) {
         return getDelegate().timeSlotTimeSlotIdGet(timeSlotId);
@@ -194,8 +194,8 @@ public interface TimeSlotApi {
         @ApiResponse(code = 404, message = "If no time slot ID matched the search", response = ProblemDetails.class) })
     @PutMapping(
         value = "/time-slot/{timeSlotId}",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> timeSlotTimeSlotIdPut(@ApiParam(value = "",required=true) @PathVariable("timeSlotId") Integer timeSlotId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) TimeSlotDTO timeSlotDTO) {
         return getDelegate().timeSlotTimeSlotIdPut(timeSlotId, timeSlotDTO);

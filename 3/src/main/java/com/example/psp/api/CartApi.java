@@ -39,7 +39,7 @@ public interface CartApi {
         @ApiResponse(code = 404, message = "If cart doesn't exist.") })
     @GetMapping(
         value = "/cart/{cartId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<CartDTO> cartCartIdGet(@ApiParam(value = "Id of the cart.",required=true) @PathVariable("cartId") Integer cartId) {
         return getDelegate().cartCartIdGet(cartId);
@@ -59,7 +59,7 @@ public interface CartApi {
         @ApiResponse(code = 404, message = "If cart doesn't exists.") })
     @PostMapping(
         value = "/cart/{cartId}/order",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<OrderDTO> cartCartIdOrderPost(@ApiParam(value = "Id of the cart.",required=true) @PathVariable("cartId") Integer cartId) {
         return getDelegate().cartCartIdOrderPost(cartId);
@@ -82,8 +82,8 @@ public interface CartApi {
         @ApiResponse(code = 404, message = "If cart doen't exist.") })
     @PostMapping(
         value = "/cart/{cartId}",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<CartItemDTO> cartCartIdPost(@ApiParam(value = "Id of the cart.",required=true) @PathVariable("cartId") Integer cartId,@ApiParam(value = "Item to be added to the cart."  )  @Valid @RequestBody(required = false) AddCartItemDTO addCartItemDTO) {
         return getDelegate().cartCartIdPost(cartId, addCartItemDTO);
@@ -124,7 +124,7 @@ public interface CartApi {
         @ApiResponse(code = 404, message = "If cart item doesn't exist.") })
     @PutMapping(
         value = "/cart/item/{itemId}",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> cartItemItemIdPut(@ApiParam(value = "Id of the cart item.",required=true) @PathVariable("itemId") Integer itemId,@ApiParam(value = "Cart item with updated information."  )  @Valid @RequestBody(required = false) CartItem cartItem) {
         return getDelegate().cartItemItemIdPut(itemId, cartItem);
@@ -144,8 +144,8 @@ public interface CartApi {
         @ApiResponse(code = 404, message = "If customer doesn't exists.") })
     @PostMapping(
         value = "/cart",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<CartDTO> cartPost(@ApiParam(value = "Id of the customer."  )  @Valid @RequestBody(required = false) Integer body) {
         return getDelegate().cartPost(body);

@@ -35,7 +35,7 @@ public interface ProductStatusApi {
         @ApiResponse(code = 400, message = "If some product status details are missing.") })
     @PostMapping(
         value = "/product-status/",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> productStatusPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) ProductStatusDTO productStatusDTO) {
         return getDelegate().productStatusPost(productStatusDTO);
@@ -74,7 +74,7 @@ public interface ProductStatusApi {
         @ApiResponse(code = 404, message = "If product with such id does not exist.") })
     @GetMapping(
         value = "/product-status//{productId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<ProductStatusDTO> productStatusProductIdGet(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId) {
         return getDelegate().productStatusProductIdGet(productId);
@@ -97,7 +97,7 @@ public interface ProductStatusApi {
         @ApiResponse(code = 404, message = "If product with such id does not exist.") })
     @PutMapping(
         value = "/product-status//{productId}",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> productStatusProductIdPut(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) ProductStatusDTO productStatusDTO) {
         return getDelegate().productStatusProductIdPut(productId, productStatusDTO);

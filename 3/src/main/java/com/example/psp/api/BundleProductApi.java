@@ -77,7 +77,7 @@ public interface BundleProductApi {
         @ApiResponse(code = 404, message = "If product with such id is not assigned to bundle with such id.") })
     @GetMapping(
         value = "/bundle-product/{bundleId}/{productId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<BundleProduct> bundleProductBundleIdProductIdGet(@ApiParam(value = "",required=true) @PathVariable("bundleId") Integer bundleId,@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId) {
         return getDelegate().bundleProductBundleIdProductIdGet(bundleId, productId);
@@ -101,7 +101,7 @@ public interface BundleProductApi {
         @ApiResponse(code = 404, message = "If product with such id is not assigned to bundle with such id.") })
     @PutMapping(
         value = "/bundle-product/{bundleId}/{productId}",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> bundleProductBundleIdProductIdPut(@ApiParam(value = "",required=true) @PathVariable("bundleId") Integer bundleId,@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) BundleProduct bundleProduct) {
         return getDelegate().bundleProductBundleIdProductIdPut(bundleId, productId, bundleProduct);
@@ -121,7 +121,7 @@ public interface BundleProductApi {
         @ApiResponse(code = 400, message = "If some class details are missing.") })
     @PostMapping(
         value = "/bundle-product",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> bundleProductPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) BundleProduct bundleProduct) {
         return getDelegate().bundleProductPost(bundleProduct);

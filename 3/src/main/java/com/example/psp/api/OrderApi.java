@@ -37,7 +37,7 @@ public interface OrderApi {
         @ApiResponse(code = 404, message = "If order doesn't exist.") })
     @GetMapping(
         value = "/order/{orderId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<OrderDTO> orderOrderIdGet(@ApiParam(value = "Id of the order.",required=true) @PathVariable("orderId") Integer orderId) {
         return getDelegate().orderOrderIdGet(orderId);
@@ -60,8 +60,8 @@ public interface OrderApi {
         @ApiResponse(code = 404, message = "If order doesn't exists.") })
     @PostMapping(
         value = "/order/{orderId}/payment",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<PaymentDTO> orderOrderIdPaymentPost(@ApiParam(value = "Id of the order.",required=true) @PathVariable("orderId") Integer orderId,@ApiParam(value = "Payment information."  )  @Valid @RequestBody(required = false) PaymentDTO paymentDTO) {
         return getDelegate().orderOrderIdPaymentPost(orderId, paymentDTO);
@@ -99,8 +99,8 @@ public interface OrderApi {
         @ApiResponse(code = 200, message = "Returns information of the newly created order.", response = OrderDTO.class) })
     @PostMapping(
         value = "/order",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<OrderDTO> orderPost(@ApiParam(value = "Information required to create an order."  )  @Valid @RequestBody(required = false) CreateOrderDTO createOrderDTO) {
         return getDelegate().orderPost(createOrderDTO);

@@ -7,15 +7,15 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * ProductStatusDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:27:47.624170900+02:00[Europe/Vilnius]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:59:11.404204200+02:00[Europe/Vilnius]")
 public class ProductStatusDTO   {
-  @JsonProperty("product_id")
+  @JsonProperty("productId")
   private Integer productId;
 
-  @JsonProperty("available_quantity")
+  @JsonProperty("availableQuantity")
   private Integer availableQuantity;
 
-  @JsonProperty("is_disabled")
+  @JsonProperty("isDisabled")
   private Boolean isDisabled;
 
   public ProductStatusDTO productId(Integer productId) {

@@ -56,7 +56,7 @@ public interface TenantApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @GetMapping(
         value = "/tenant",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<TenantAccountDetailsDTO> tenantGet() {
         return getDelegate().tenantGet();
@@ -76,8 +76,8 @@ public interface TenantApi {
         @ApiResponse(code = 400, message = "Bad Request", response = ProblemDetails.class) })
     @PostMapping(
         value = "/tenant/login",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<TokenDTO> tenantLoginPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) CredentialsDto credentialsDto) {
         return getDelegate().tenantLoginPost(credentialsDto);
@@ -97,8 +97,8 @@ public interface TenantApi {
         @ApiResponse(code = 400, message = "Bad Request", response = ProblemDetails.class) })
     @PostMapping(
         value = "/tenant",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> tenantPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) CreateTenantAccountDTO createTenantAccountDTO) {
         return getDelegate().tenantPost(createTenantAccountDTO);
@@ -116,7 +116,7 @@ public interface TenantApi {
         @ApiResponse(code = 200, message = "Success") })
     @PutMapping(
         value = "/tenant",
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> tenantPut(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) CreateTenantAccountDTO createTenantAccountDTO) {
         return getDelegate().tenantPut(createTenantAccountDTO);

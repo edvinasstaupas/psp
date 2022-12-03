@@ -8,12 +8,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * ProductCategory
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:27:47.624170900+02:00[Europe/Vilnius]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:59:11.404204200+02:00[Europe/Vilnius]")
 public class ProductCategory   {
-  @JsonProperty("product_id")
+  @JsonProperty("productId")
   private Integer productId;
 
-  @JsonProperty("category_id")
+  @JsonProperty("categoryId")
   private JsonNullable<String> categoryId = JsonNullable.undefined();
 
   public ProductCategory productId(Integer productId) {

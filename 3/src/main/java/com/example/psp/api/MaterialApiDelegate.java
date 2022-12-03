@@ -39,7 +39,7 @@ public interface MaterialApiDelegate {
                 }
             }
         });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        return ResponseEntity.ok(List.of(new MaterialDTO().id(1).availableQuantity(1), new MaterialDTO().id(2).availableQuantity(1), new MaterialDTO().id(3).availableQuantity(1)));
 
     }
 

@@ -34,7 +34,7 @@ public interface ReportApi {
         @ApiResponse(code = 401, message = "Unauthorized", response = ProblemDetails.class) })
     @GetMapping(
         value = "/report/brief-sales-report",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<BriefSalesReportDTO> reportBriefSalesReportGet() {
         return getDelegate().reportBriefSalesReportGet();
@@ -53,7 +53,7 @@ public interface ReportApi {
         @ApiResponse(code = 401, message = "Unauthorized", response = ProblemDetails.class) })
     @GetMapping(
         value = "/report/detailed-sales-report",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<DetailedSalesReportDTO> reportDetailedSalesReportGet() {
         return getDelegate().reportDetailedSalesReportGet();

@@ -44,8 +44,8 @@ public interface TaxRateApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @PostMapping(
         value = "/tax-rate/apply-tax-rate-to-category",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> taxRateApplyTaxRateToCategoryPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) ApplyTaxRateToCategoryDTO applyTaxRateToCategoryDTO) {
         return getDelegate().taxRateApplyTaxRateToCategoryPost(applyTaxRateToCategoryDTO);
@@ -69,8 +69,8 @@ public interface TaxRateApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @PostMapping(
         value = "/tax-rate/AssignTaxRateToItem",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> taxRateAssignTaxRateToItemPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) AssignTaxRateToItemDTO assignTaxRateToItemDTO) {
         return getDelegate().taxRateAssignTaxRateToItemPost(assignTaxRateToItemDTO);
@@ -92,7 +92,7 @@ public interface TaxRateApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @DeleteMapping(
         value = "/tax-rate/{id}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> taxRateIdDelete(@ApiParam(value = "Id of the tax rate to delete.",required=true) @PathVariable("id") Integer id) {
         return getDelegate().taxRateIdDelete(id);
@@ -114,7 +114,7 @@ public interface TaxRateApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @GetMapping(
         value = "/tax-rate/{id}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<TaxRate> taxRateIdGet(@ApiParam(value = "Id of the tax rate to get",required=true) @PathVariable("id") Integer id) {
         return getDelegate().taxRateIdGet(id);
@@ -139,8 +139,8 @@ public interface TaxRateApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @PutMapping(
         value = "/tax-rate/{id}",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> taxRateIdPut(@ApiParam(value = "Id of the tax rate to update.",required=true) @PathVariable("id") Integer id,@ApiParam(value = "Tax rate to update."  )  @Valid @RequestBody(required = false) TaxRateDto taxRateDto) {
         return getDelegate().taxRateIdPut(id, taxRateDto);
@@ -163,7 +163,7 @@ public interface TaxRateApi {
         @ApiResponse(code = 401, message = "Unauthorized", response = ProblemDetails.class) })
     @GetMapping(
         value = "/tax-rate/{pageSize}/{pageNumber}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<List<TaxRate>> taxRatePageSizePageNumberGet(@ApiParam(value = "The maximum amount of tax rates in response.",required=true) @PathVariable("pageSize") Integer pageSize,@ApiParam(value = "The page number of tax rates to return.",required=true) @PathVariable("pageNumber") Integer pageNumber) {
         return getDelegate().taxRatePageSizePageNumberGet(pageSize, pageNumber);
@@ -185,8 +185,8 @@ public interface TaxRateApi {
         @ApiResponse(code = 401, message = "Unauthorized", response = ProblemDetails.class) })
     @PostMapping(
         value = "/tax-rate",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> taxRatePost(@ApiParam(value = "Tax rate to create."  )  @Valid @RequestBody(required = false) TaxRateDto taxRateDto) {
         return getDelegate().taxRatePost(taxRateDto);

@@ -39,7 +39,7 @@ public interface OrderStatusApi {
         @ApiResponse(code = 404, message = "If no order status ID matched the search", response = ProblemDetails.class) })
     @DeleteMapping(
         value = "/order-status/{orderStatusId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> orderStatusOrderStatusIdDelete(@ApiParam(value = "",required=true) @PathVariable("orderStatusId") Integer orderStatusId) {
         return getDelegate().orderStatusOrderStatusIdDelete(orderStatusId);
@@ -61,7 +61,7 @@ public interface OrderStatusApi {
         @ApiResponse(code = 404, message = "If no orderstatus ID matched the search", response = ProblemDetails.class) })
     @GetMapping(
         value = "/order-status/{orderStatusId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<OrderStatusDTO> orderStatusOrderStatusIdGet(@ApiParam(value = "",required=true) @PathVariable("orderStatusId") Integer orderStatusId) {
         return getDelegate().orderStatusOrderStatusIdGet(orderStatusId);
@@ -84,7 +84,7 @@ public interface OrderStatusApi {
         @ApiResponse(code = 404, message = "If no order status ID matched the search", response = ProblemDetails.class) })
     @PatchMapping(
         value = "/order-status/{orderStatusId}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> orderStatusOrderStatusIdPatch(@ApiParam(value = "",required=true) @PathVariable("orderStatusId") Integer orderStatusId,@ApiParam(value = "", allowableValues = "0, 1, 2, 3, 4, 5, 6, 7, 8, 9") @Valid @RequestParam(value = "newOrderStatus", required = false) OrderStatusTypes newOrderStatus) {
         return getDelegate().orderStatusOrderStatusIdPatch(orderStatusId, newOrderStatus);
@@ -107,8 +107,8 @@ public interface OrderStatusApi {
         @ApiResponse(code = 404, message = "If no order status ID matched the search", response = ProblemDetails.class) })
     @PutMapping(
         value = "/order-status/{orderStatusId}",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> orderStatusOrderStatusIdPut(@ApiParam(value = "",required=true) @PathVariable("orderStatusId") Integer orderStatusId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) OrderStatusDTO orderStatusDTO) {
         return getDelegate().orderStatusOrderStatusIdPut(orderStatusId, orderStatusDTO);
@@ -128,8 +128,8 @@ public interface OrderStatusApi {
         @ApiResponse(code = 400, message = "If provided order status details do not pass the validation", response = ProblemDetails.class) })
     @PostMapping(
         value = "/order-status",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> orderStatusPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) OrderStatusDTO orderStatusDTO) {
         return getDelegate().orderStatusPost(orderStatusDTO);

@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * EmployeePermissionDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:27:47.624170900+02:00[Europe/Vilnius]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:59:11.404204200+02:00[Europe/Vilnius]")
 public class EmployeePermissionDTO   {
   @JsonProperty("permissionId")
   private Integer permissionId;

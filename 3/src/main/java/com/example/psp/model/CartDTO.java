@@ -13,7 +13,7 @@ import javax.validation.Valid;
 /**
  * CartDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:27:47.624170900+02:00[Europe/Vilnius]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:59:11.404204200+02:00[Europe/Vilnius]")
 public class CartDTO   {
   @JsonProperty("id")
   private Integer id;

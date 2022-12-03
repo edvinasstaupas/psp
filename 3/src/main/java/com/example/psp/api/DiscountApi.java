@@ -45,8 +45,8 @@ public interface DiscountApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @PostMapping(
         value = "/discount/AssignDiscountToBrand",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> discountAssignDiscountToBrandPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) AssignDiscountToBrandDTO assignDiscountToBrandDTO) {
         return getDelegate().discountAssignDiscountToBrandPost(assignDiscountToBrandDTO);
@@ -70,8 +70,8 @@ public interface DiscountApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @PostMapping(
         value = "/discount/assignDiscountToCategory",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> discountAssignDiscountToCategoryPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) AssignDiscountToCategoryDTO assignDiscountToCategoryDTO) {
         return getDelegate().discountAssignDiscountToCategoryPost(assignDiscountToCategoryDTO);
@@ -95,8 +95,8 @@ public interface DiscountApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @PostMapping(
         value = "/discount/AssignDiscountToItem",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> discountAssignDiscountToItemPost(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) AssignDiscountToItemDTO assignDiscountToItemDTO) {
         return getDelegate().discountAssignDiscountToItemPost(assignDiscountToItemDTO);
@@ -118,7 +118,7 @@ public interface DiscountApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @GetMapping(
         value = "/discount/{id}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<DiscountDto> discountIdGet(@ApiParam(value = "Id of the discount to get",required=true) @PathVariable("id") Integer id) {
         return getDelegate().discountIdGet(id);
@@ -143,8 +143,8 @@ public interface DiscountApi {
         @ApiResponse(code = 404, message = "Not Found", response = ProblemDetails.class) })
     @PutMapping(
         value = "/discount/{id}",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> discountIdPut(@ApiParam(value = "Id of the discount to update.",required=true) @PathVariable("id") Integer id,@ApiParam(value = "Discount to update."  )  @Valid @RequestBody(required = false) DiscountDto discountDto) {
         return getDelegate().discountIdPut(id, discountDto);
@@ -167,7 +167,7 @@ public interface DiscountApi {
         @ApiResponse(code = 401, message = "Unauthorized", response = ProblemDetails.class) })
     @GetMapping(
         value = "/discount/{pageSize}/{pageNumber}",
-        produces = { "text/plain", "application/json", "text/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<List<Discount>> discountPageSizePageNumberGet(@ApiParam(value = "The maximum amount of discounts in response.",required=true) @PathVariable("pageSize") Integer pageSize,@ApiParam(value = "The page number of discounts to return.",required=true) @PathVariable("pageNumber") Integer pageNumber) {
         return getDelegate().discountPageSizePageNumberGet(pageSize, pageNumber);
@@ -189,8 +189,8 @@ public interface DiscountApi {
         @ApiResponse(code = 401, message = "Unauthorized", response = ProblemDetails.class) })
     @PostMapping(
         value = "/discount",
-        produces = { "text/plain", "application/json", "text/json" },
-        consumes = { "application/json", "text/json", "application/_*+json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> discountPost(@ApiParam(value = "Discount to create."  )  @Valid @RequestBody(required = false) DiscountDto discountDto) {
         return getDelegate().discountPost(discountDto);
