@@ -12,13 +12,12 @@ import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T13:36:52.004410700+02:00[Europe/Vilnius]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:27:47.624170900+02:00[Europe/Vilnius]")
 @Validated
-@Api(value = "Order", description = "the Order API")
+@Api(value = "order", description = "the order API")
 public interface OrderApi {
 
     default OrderApiDelegate getDelegate() {
@@ -26,111 +25,85 @@ public interface OrderApi {
     }
 
     /**
-     * POST /Order/{teantId}/Cart/{cartId}/Order : Creates and order from a cart.
+     * GET /order/{orderId} : Gets order by id.
      *
-     * @param cartId Id of the cart. (required)
-     * @param teantId  (required)
-     * @param tenantId Id of the tenant. (optional)
-     * @return Returns information of the newly created order. (status code 200)
-     *         or If cart doesn&#39;t exists. (status code 404)
-     */
-    @ApiOperation(value = "Creates and order from a cart.", nickname = "orderTeantIdCartCartIdOrderPost", notes = "", response = OrderDTO.class, tags={ "Order", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Returns information of the newly created order.", response = OrderDTO.class),
-        @ApiResponse(code = 404, message = "If cart doesn't exists.") })
-    @PostMapping(
-        value = "/Order/{teantId}/Cart/{cartId}/Order",
-        produces = { "text/plain", "application/json", "text/json" }
-    )
-    default ResponseEntity<OrderDTO> orderTeantIdCartCartIdOrderPost(@ApiParam(value = "Id of the cart.",required=true) @PathVariable("cartId") Integer cartId,@ApiParam(value = "",required=true) @PathVariable("teantId") String teantId,@ApiParam(value = "Id of the tenant.") @Valid @RequestParam(value = "tenantId", required = false) Integer tenantId) {
-        return getDelegate().orderTeantIdCartCartIdOrderPost(cartId, teantId, tenantId);
-    }
-
-
-    /**
-     * GET /Order/{tenantId}/Order/{orderId} : Gets order by id.
-     *
-     * @param tenantId Id of the tenant. (required)
      * @param orderId Id of the order. (required)
      * @return Returns order information. (status code 200)
      *         or If order doesn&#39;t exist. (status code 404)
      */
-    @ApiOperation(value = "Gets order by id.", nickname = "orderTenantIdOrderOrderIdGet", notes = "", response = OrderDTO.class, tags={ "Order", })
+    @ApiOperation(value = "Gets order by id.", nickname = "orderOrderIdGet", notes = "", response = OrderDTO.class, tags={ "Order", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Returns order information.", response = OrderDTO.class),
         @ApiResponse(code = 404, message = "If order doesn't exist.") })
     @GetMapping(
-        value = "/Order/{tenantId}/Order/{orderId}",
+        value = "/order/{orderId}",
         produces = { "text/plain", "application/json", "text/json" }
     )
-    default ResponseEntity<OrderDTO> orderTenantIdOrderOrderIdGet(@ApiParam(value = "Id of the tenant.",required=true) @PathVariable("tenantId") Integer tenantId,@ApiParam(value = "Id of the order.",required=true) @PathVariable("orderId") Integer orderId) {
-        return getDelegate().orderTenantIdOrderOrderIdGet(tenantId, orderId);
+    default ResponseEntity<OrderDTO> orderOrderIdGet(@ApiParam(value = "Id of the order.",required=true) @PathVariable("orderId") Integer orderId) {
+        return getDelegate().orderOrderIdGet(orderId);
     }
 
 
     /**
-     * POST /Order/{tenantId}/Order/{orderId}/Payment : Links a payment to an order.
+     * POST /order/{orderId}/payment : Links a payment to an order.
      *
-     * @param tenantId Id of the tenant. (required)
      * @param orderId Id of the order. (required)
      * @param paymentDTO Payment information. (optional)
      * @return Returns payment information. (status code 200)
      *         or If paid with digital money, but change field is filled. (status code 400)
      *         or If order doesn&#39;t exists. (status code 404)
      */
-    @ApiOperation(value = "Links a payment to an order.", nickname = "orderTenantIdOrderOrderIdPaymentPost", notes = "", response = PaymentDTO.class, tags={ "Order", })
+    @ApiOperation(value = "Links a payment to an order.", nickname = "orderOrderIdPaymentPost", notes = "", response = PaymentDTO.class, tags={ "Order", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Returns payment information.", response = PaymentDTO.class),
         @ApiResponse(code = 400, message = "If paid with digital money, but change field is filled."),
         @ApiResponse(code = 404, message = "If order doesn't exists.") })
     @PostMapping(
-        value = "/Order/{tenantId}/Order/{orderId}/Payment",
+        value = "/order/{orderId}/payment",
         produces = { "text/plain", "application/json", "text/json" },
         consumes = { "application/json", "text/json", "application/_*+json" }
     )
-    default ResponseEntity<PaymentDTO> orderTenantIdOrderOrderIdPaymentPost(@ApiParam(value = "Id of the tenant.",required=true) @PathVariable("tenantId") Integer tenantId,@ApiParam(value = "Id of the order.",required=true) @PathVariable("orderId") Integer orderId,@ApiParam(value = "Payment information."  )  @Valid @RequestBody(required = false) PaymentDTO paymentDTO) {
-        return getDelegate().orderTenantIdOrderOrderIdPaymentPost(tenantId, orderId, paymentDTO);
+    default ResponseEntity<PaymentDTO> orderOrderIdPaymentPost(@ApiParam(value = "Id of the order.",required=true) @PathVariable("orderId") Integer orderId,@ApiParam(value = "Payment information."  )  @Valid @RequestBody(required = false) PaymentDTO paymentDTO) {
+        return getDelegate().orderOrderIdPaymentPost(orderId, paymentDTO);
     }
 
 
     /**
-     * POST /Order/{tenantId}/Order/{orderId}/Refund : Refunds an order.
+     * POST /order/{orderId}/refund : Refunds an order.
      * This endpoint can only be used by an authorised service providers.
      *
-     * @param tenantId Id of the tenant. (required)
      * @param orderId Id of the order. (required)
      * @return Returns a response that order was refunded successfully. (status code 200)
      *         or If order doesn&#39;t exists. (status code 404)
      */
-    @ApiOperation(value = "Refunds an order.", nickname = "orderTenantIdOrderOrderIdRefundPost", notes = "This endpoint can only be used by an authorised service providers.", tags={ "Order", })
+    @ApiOperation(value = "Refunds an order.", nickname = "orderOrderIdRefundPost", notes = "This endpoint can only be used by an authorised service providers.", tags={ "Order", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Returns a response that order was refunded successfully."),
         @ApiResponse(code = 404, message = "If order doesn't exists.") })
     @PostMapping(
-        value = "/Order/{tenantId}/Order/{orderId}/Refund"
+        value = "/order/{orderId}/refund"
     )
-    default ResponseEntity<Void> orderTenantIdOrderOrderIdRefundPost(@ApiParam(value = "Id of the tenant.",required=true) @PathVariable("tenantId") Integer tenantId,@ApiParam(value = "Id of the order.",required=true) @PathVariable("orderId") Integer orderId) {
-        return getDelegate().orderTenantIdOrderOrderIdRefundPost(tenantId, orderId);
+    default ResponseEntity<Void> orderOrderIdRefundPost(@ApiParam(value = "Id of the order.",required=true) @PathVariable("orderId") Integer orderId) {
+        return getDelegate().orderOrderIdRefundPost(orderId);
     }
 
 
     /**
-     * POST /Order/{tenantId}/Order : Creates and order.
+     * POST /order : Creates and order.
      *
-     * @param tenantId Id of the tenant. (required)
      * @param createOrderDTO Information required to create an order. (optional)
      * @return Returns information of the newly created order. (status code 200)
      */
-    @ApiOperation(value = "Creates and order.", nickname = "orderTenantIdOrderPost", notes = "", response = OrderDTO.class, tags={ "Order", })
+    @ApiOperation(value = "Creates and order.", nickname = "orderPost", notes = "", response = OrderDTO.class, tags={ "Order", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Returns information of the newly created order.", response = OrderDTO.class) })
     @PostMapping(
-        value = "/Order/{tenantId}/Order",
+        value = "/order",
         produces = { "text/plain", "application/json", "text/json" },
         consumes = { "application/json", "text/json", "application/_*+json" }
     )
-    default ResponseEntity<OrderDTO> orderTenantIdOrderPost(@ApiParam(value = "Id of the tenant.",required=true) @PathVariable("tenantId") Integer tenantId,@ApiParam(value = "Information required to create an order."  )  @Valid @RequestBody(required = false) CreateOrderDTO createOrderDTO) {
-        return getDelegate().orderTenantIdOrderPost(tenantId, createOrderDTO);
+    default ResponseEntity<OrderDTO> orderPost(@ApiParam(value = "Information required to create an order."  )  @Valid @RequestBody(required = false) CreateOrderDTO createOrderDTO) {
+        return getDelegate().orderPost(createOrderDTO);
     }
 
 }

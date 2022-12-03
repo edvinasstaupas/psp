@@ -15,7 +15,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link TenantApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T13:36:52.004410700+02:00[Europe/Vilnius]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:27:47.624170900+02:00[Europe/Vilnius]")
 public interface TenantApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -23,19 +23,40 @@ public interface TenantApiDelegate {
     }
 
     /**
-     * DELETE /Tenant : Endpoint to delete a store.
+     * DELETE /tenant : Endpoint to delete a store.
      *
-     * @param tenantId Id of the store. (optional)
      * @return Success (status code 200)
      * @see TenantApi#tenantDelete
      */
-    default ResponseEntity<Void> tenantDelete(Integer tenantId) {
+    default ResponseEntity<Void> tenantDelete() {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
     /**
-     * POST /Tenant/login : Endpoint to login to a store.
+     * GET /tenant : Endpoint to get the details of a store.
+     *
+     * @return Success (status code 200)
+     *         or Unauthorized (status code 401)
+     *         or Not Found (status code 404)
+     * @see TenantApi#tenantGet
+     */
+    default ResponseEntity<TenantAccountDetailsDTO> tenantGet() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"phoneNumber\" : \"phoneNumber\", \"name\" : \"name\", \"email\" : \"email\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
+     * POST /tenant/login : Endpoint to login to a store.
      *
      * @param credentialsDto  (optional)
      * @return Success (status code 200)
@@ -57,7 +78,7 @@ public interface TenantApiDelegate {
     }
 
     /**
-     * POST /Tenant : Endpoint to create a new store.
+     * POST /tenant : Endpoint to create a new store.
      *
      * @param createTenantAccountDTO  (optional)
      * @return Success (status code 200)
@@ -70,38 +91,13 @@ public interface TenantApiDelegate {
     }
 
     /**
-     * GET /Tenant/{tenantId} : Endpoint to get the details of a store.
+     * PUT /tenant : Endpoint to update a store.
      *
-     * @param tenantId  (required)
-     * @return Success (status code 200)
-     *         or Unauthorized (status code 401)
-     *         or Not Found (status code 404)
-     * @see TenantApi#tenantTenantIdGet
-     */
-    default ResponseEntity<TenantAccountDetailsDTO> tenantTenantIdGet(Integer tenantId) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"phoneNumber\" : \"phoneNumber\", \"name\" : \"name\", \"email\" : \"email\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-    /**
-     * PUT /Tenant/{tenantId} : Endpoint to update a store.
-     *
-     * @param tenantId Id of the store. (required)
      * @param createTenantAccountDTO  (optional)
      * @return Success (status code 200)
-     * @see TenantApi#tenantTenantIdPut
+     * @see TenantApi#tenantPut
      */
-    default ResponseEntity<Void> tenantTenantIdPut(Integer tenantId,
-        CreateTenantAccountDTO createTenantAccountDTO) {
+    default ResponseEntity<Void> tenantPut(CreateTenantAccountDTO createTenantAccountDTO) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
