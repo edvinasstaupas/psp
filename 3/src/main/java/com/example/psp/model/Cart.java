@@ -1,7 +1,7 @@
 package com.example.psp.model;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.time.OffsetDateTime;
