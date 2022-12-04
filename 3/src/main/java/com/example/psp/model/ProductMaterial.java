@@ -1,7 +1,5 @@
 package com.example.psp.model;
 
-import com.example.psp.model.Material;
-import com.example.psp.model.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

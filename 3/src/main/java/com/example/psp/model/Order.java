@@ -8,7 +8,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Entity
+@Entity(name = "orders")
 @Getter
 @Setter
 @Builder
@@ -41,8 +41,11 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     private List<OrderStatus> orderStatuses;
+
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
+
     @OneToMany(mappedBy = "order")
     private List<Payment> payments;
+
 }

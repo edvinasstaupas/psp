@@ -6,7 +6,6 @@ import lombok.*;
 
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -17,8 +16,7 @@ import java.util.UUID;
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private String id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

@@ -1,10 +1,8 @@
 package com.example.psp.services;
 
-import com.example.psp.dto.TokenDTO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TenantService {
 
-    public TokenDTO getTokenDTO() {
-        return new TokenDTO();
-    }
 }

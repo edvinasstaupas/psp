@@ -26,4 +26,5 @@ public class Reservation {
     private Customer customer;
 
     private OffsetDateTime dateCreated;
+
 }
