@@ -43,7 +43,7 @@ public interface ProductStatusApi {
 
 
     /**
-     * DELETE /product-status//{productId} : Delete product status by id.
+     * DELETE /product-status/{productId} : Delete product status by id.
      *
      * @param productId  (required)
      * @return Success (status code 200)
@@ -54,7 +54,7 @@ public interface ProductStatusApi {
         @ApiResponse(code = 200, message = "Success"),
         @ApiResponse(code = 404, message = "If product with such id does not exist.") })
     @DeleteMapping(
-        value = "/product-status//{productId}"
+        value = "/product-status/{productId}"
     )
     default ResponseEntity<Void> productStatusProductIdDelete(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId) {
         return getDelegate().productStatusProductIdDelete(productId);
@@ -62,7 +62,7 @@ public interface ProductStatusApi {
 
 
     /**
-     * GET /product-status//{productId} : Get product status by Id.
+     * GET /product-status/{productId} : Get product status by Id.
      *
      * @param productId  (required)
      * @return Success (status code 200)
@@ -73,7 +73,7 @@ public interface ProductStatusApi {
         @ApiResponse(code = 200, message = "Success", response = ProductStatusDTO.class),
         @ApiResponse(code = 404, message = "If product with such id does not exist.") })
     @GetMapping(
-        value = "/product-status//{productId}",
+        value = "/product-status/{productId}",
         produces = { "application/json" }
     )
     default ResponseEntity<ProductStatusDTO> productStatusProductIdGet(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId) {
@@ -82,7 +82,7 @@ public interface ProductStatusApi {
 
 
     /**
-     * PUT /product-status//{productId} : Update product status by id (Enable/Disable, update quantity).
+     * PUT /product-status/{productId} : Update product status by id (Enable/Disable, update quantity).
      *
      * @param productId  (required)
      * @param productStatusDTO  (optional)
@@ -96,7 +96,7 @@ public interface ProductStatusApi {
         @ApiResponse(code = 400, message = "If some product status details are missing."),
         @ApiResponse(code = 404, message = "If product with such id does not exist.") })
     @PutMapping(
-        value = "/product-status//{productId}",
+        value = "/product-status/{productId}",
         consumes = { "application/json" }
     )
     default ResponseEntity<Void> productStatusProductIdPut(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) ProductStatusDTO productStatusDTO) {

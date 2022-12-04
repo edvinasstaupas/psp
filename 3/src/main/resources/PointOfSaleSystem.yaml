@@ -2549,7 +2549,7 @@ paths:
           description: Success
         '400':
           description: If some product status details are missing.
-  /product-status//{productId}:
+  /product-status/{productId}:
     get:
       tags:
         - ProductStatus

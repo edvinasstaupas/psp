@@ -33,7 +33,7 @@ public interface ProductStatusApiDelegate {
     }
 
     /**
-     * DELETE /product-status//{productId} : Delete product status by id.
+     * DELETE /product-status/{productId} : Delete product status by id.
      *
      * @param productId  (required)
      * @return Success (status code 200)
@@ -46,7 +46,7 @@ public interface ProductStatusApiDelegate {
     }
 
     /**
-     * GET /product-status//{productId} : Get product status by Id.
+     * GET /product-status/{productId} : Get product status by Id.
      *
      * @param productId  (required)
      * @return Success (status code 200)
@@ -68,7 +68,7 @@ public interface ProductStatusApiDelegate {
     }
 
     /**
-     * PUT /product-status//{productId} : Update product status by id (Enable/Disable, update quantity).
+     * PUT /product-status/{productId} : Update product status by id (Enable/Disable, update quantity).
      *
      * @param productId  (required)
      * @param productStatusDTO  (optional)
