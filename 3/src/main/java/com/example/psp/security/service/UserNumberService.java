@@ -11,6 +11,13 @@ public class UserNumberService {
     private final UserRepository userRepository;
 
     public String getUserNumber() {
-        return "" + (userRepository.getBiggestUserNumber() + 1);
+        int num;
+        try {
+            num = userRepository.getBiggestUserNumber();
+        } catch (Exception e) {
+            num = 0;
+        }
+        return "" + (num + 1);
     }
+
 }

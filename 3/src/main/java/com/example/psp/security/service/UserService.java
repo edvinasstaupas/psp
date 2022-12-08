@@ -63,8 +63,15 @@ public class UserService implements IEntityService<User, UserDto, CreateUserDto>
 
     @Override
     public UserDto create(CreateUserDto createUserDto) {
-        User user = userMapper.convertToDomainFromCreate(createUserDto);
-        user.setRoles(Set.of(RoleFactory.getUserRole()));
+        if (!createUserDto.getPassword().equals(createUserDto.getPassword2()))
+            throw new RuntimeException(); //TODO change to specific exception
+        User user = User.builder()
+                .firstName(createUserDto.getFirstName())
+                .lastName(createUserDto.getLastName())
+                .roles(Set.of(RoleFactory.getRolesByString(createUserDto.getRole())))
+                .userNumber(userNumberService.getUserNumber())
+                .password(createUserDto.getPassword())
+                .build();
         save(user);
         return userMapper.convertToDto(user);
     }
@@ -89,16 +96,5 @@ public class UserService implements IEntityService<User, UserDto, CreateUserDto>
     @Override
     public UserDetails loadUserByUsername(String userNumber) throws UsernameNotFoundException {
         return userRepository.loadByUserNumber(userNumber);
-    }
-
-    public UserDto register(CreateUserDto createUserDto) {
-        if (!createUserDto.getPassword().equals(createUserDto.getPassword2()))
-            throw new RuntimeException(); //TODO change to specific exception
-        User user = userMapper.convertToDomainFromCreate(createUserDto);
-        user.setUserNumber(userNumberService.getUserNumber());
-        user.getRoles().add(RoleFactory.getUserRole());
-        user.setPassword("{bcrypt}" + passwordEncoder.encode(user.getPassword()));
-        save(user);
-        return userMapper.convertToDto(user);
     }
 }

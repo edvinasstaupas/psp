@@ -22,6 +22,6 @@ public class RegisterController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDto> register(@RequestBody CreateUserDto createUserDto) {
-        return ok(userService.register(createUserDto));
+        return ok(userService.create(createUserDto));
     }
 }

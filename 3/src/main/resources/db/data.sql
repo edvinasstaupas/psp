@@ -1,13 +1,13 @@
--- insert into USERS (id, first_name, last_name, user_number, password)
--- values (1, 'Edvinas', 'Staupas', '1234', '{bcrypt}$2a$12$Kaw0R6WQ4I/vWA7vayUGyeGmwVfqcdPZf59ZGRszT3jH2iscyOHD.');
--- insert into ROLE (id, name)
--- values (1, 'MEMBER'),
---        (2, 'ADMIN'),
---        (3, 'LIBRARIAN');
--- insert into USERS_ROLES
--- values (1, 1),
---        (1, 3),
---        (1, 2);
+insert into ROLE (id, name)
+values (1, 'EMPLOYEE'),
+       (2, 'ADMIN'),
+       (3, 'CUSTOMER');
+insert into USERS (id, first_name, last_name, user_number, password)
+values (1, 'Edvinas', 'Staupas', '1234', '{bcrypt}$2a$12$Kaw0R6WQ4I/vWA7vayUGyeGmwVfqcdPZf59ZGRszT3jH2iscyOHD.');
+insert into USERS_ROLES
+values (1, 1),
+       (1, 3),
+       (1, 2);
 -- insert into AUTHOR (id, isbn, name)
 -- values (1, 9781782924142, 'J. K. Rowling'),
 --        (2, 9781782924143, 'Suzanne Collins');

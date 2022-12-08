@@ -38,8 +38,8 @@ public class JwtTokenProvider {
         Date now = new Date();
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
-                .setIssuer("eshop-api")
-                .setAudience("eshop-ui")
+                .setIssuer("psp-api")
+                .setAudience("psp-ui")
                 .setSubject(user.getUsername())
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + tokenValidityInMillis))
