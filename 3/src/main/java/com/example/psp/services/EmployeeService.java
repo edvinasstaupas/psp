@@ -25,6 +25,7 @@ public class EmployeeService {
     public void employeeEmployeeIdPut(Integer employeeId, EmployeeDTO employeeDTO, User user) {
     }
 
+    @Deprecated
     public void employeePost(EmployeeDTO employeeDTO, User user) {
     }
 }

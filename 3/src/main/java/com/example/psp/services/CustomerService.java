@@ -20,6 +20,7 @@ public class CustomerService {
         return null;
     }
 
+    @Deprecated
     public void customerPost(CreateAccountDTO createAccountDTO, User user) {
     }
 
