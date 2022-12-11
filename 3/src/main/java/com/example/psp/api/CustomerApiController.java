@@ -48,7 +48,7 @@ public class CustomerApiController {
     )
     public ResponseEntity<CartDTO> customerCustomerIdReservationGet(@ApiParam(value = "Id of the customer.", required = true) @PathVariable("customerId") Integer customerId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(customerService.customerCustomerIdReservationGet(customerId, user));
+        return RestUtils.okOrNotFound(customerService.getCustomerCart(customerId, user));
     }
 
 
