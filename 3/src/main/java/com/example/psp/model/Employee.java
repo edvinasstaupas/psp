@@ -1,6 +1,7 @@
 package com.example.psp.model;
 
 
+import com.example.psp.security.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -20,14 +21,8 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    private String firstName;
-
-    @NotNull
-    private String lastName;
-
-    @NotNull
-    private String role;
+    @OneToOne
+    private User user;
 
     @NotNull
     private OffsetDateTime dateHired;

@@ -2859,68 +2859,6 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-    post:
-      tags:
-        - Service
-      summary: Endpoint to get multiple services with applied filter.
-      parameters:
-        - name: pageSize
-          in: path
-          description: The maximum amount of services in response.
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: pageNumber
-          in: path
-          description: The page number of services to return.
-          required: true
-          schema:
-            type: integer
-            format: int32
-      requestBody:
-        description: Filter to apply to the services.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ServiceFilterDto'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/ServiceFilterDto'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/ServiceFilterDto'
-      responses:
-        '200':
-          description: Success
-          content:
-            text/plain:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Service'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Service'
-            text/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Service'
-        '400':
-          description: Bad Request
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
   /service/{id}:
     get:
       tags:
