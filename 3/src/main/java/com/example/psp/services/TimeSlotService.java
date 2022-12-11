@@ -22,20 +22,20 @@ public class TimeSlotService {
         return null;
     }
 
-    public void timeSlotPost(TimeSlotDTO timeSlotDTO, User user)  {
+    public void timeSlotPost(TimeSlotDTO timeSlotDTO, User user) {
     }
 
     public List<TimeSlotDTO> timeSlotServiceIdGet(Integer serviceId, User user) {
         return null;
     }
 
-    public void timeSlotTimeSlotIdDelete(Integer timeSlotId, User user)  {
+    public void timeSlotTimeSlotIdDelete(Integer timeSlotId, User user) {
     }
 
     public TimeSlotDTO timeSlotTimeSlotIdGet(Integer timeSlotId, User user) {
         return null;
     }
 
-    public void timeSlotTimeSlotIdPut(Integer timeSlotId, TimeSlotDTO timeSlotDTO, User user)  {
+    public void timeSlotTimeSlotIdPut(Integer timeSlotId, TimeSlotDTO timeSlotDTO, User user) {
     }
 }

@@ -1,6 +1,5 @@
 package com.example.psp.api.utils;
 
-import com.example.psp.dto.Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

@@ -1,17 +1,12 @@
 package com.example.psp.model;
 
 
-import com.example.psp.dto.*;
-import com.example.psp.dto.Discount;
-import com.example.psp.security.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.List;
 
 @Entity
 @Getter
