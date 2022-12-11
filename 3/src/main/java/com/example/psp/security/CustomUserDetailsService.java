@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.getByUsername(username);
     }
-//
+
 //    public void createInitialUsers(User user) {
 //        user.getAuthorities().forEach(r -> roleRepository.save((Role) r));
 //        roleRepository.flush();

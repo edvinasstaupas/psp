@@ -2,6 +2,7 @@ package com.example.psp.security;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.Getter;
@@ -29,8 +30,8 @@ public class User implements UserDetails {
 
     private String username;
 
-    @ManyToMany()
-    private Set<Role> authorities;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
 
     public User(String username, String password, List<Role> authorities, Integer tenantId) {
 
@@ -39,7 +40,7 @@ public class User implements UserDetails {
         this.id = UUID.randomUUID().toString();
         this.username = username;
         this.password = password;
-        this.authorities = Collections.unmodifiableSet(sortAuthorities(authorities));
+        this.roles = Collections.unmodifiableSet(sortAuthorities(authorities));
         this.tenantId = tenantId;
     }
 
@@ -55,7 +56,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return roles;
     }
 
     @Override

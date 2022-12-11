@@ -46,7 +46,6 @@ public class ServiceApiController {
             value = "/service/{id}",
             produces = {"application/json"}
     )
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> serviceIdDelete(@ApiParam(value = "Id of the service to delete.", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         serviceService.serviceIdDelete(id, user);
