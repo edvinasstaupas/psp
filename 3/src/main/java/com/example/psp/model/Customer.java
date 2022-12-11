@@ -1,6 +1,7 @@
 package com.example.psp.model;
 
 
+import com.example.psp.security.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -17,10 +18,8 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "tenant_id")
-    private Tenant tenant;
+    @OneToOne
+    private User user;
 
     @NotNull
     private String name;

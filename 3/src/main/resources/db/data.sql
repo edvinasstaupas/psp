@@ -1,13 +1,16 @@
--- insert into USERS (id, first_name, last_name, user_number, password)
--- values (1, 'Edvinas', 'Staupas', '1234', '{bcrypt}$2a$12$Kaw0R6WQ4I/vWA7vayUGyeGmwVfqcdPZf59ZGRszT3jH2iscyOHD.');
--- insert into ROLE (id, name)
--- values (1, 'MEMBER'),
---        (2, 'ADMIN'),
---        (3, 'LIBRARIAN');
--- insert into USERS_ROLES
--- values (1, 1),
---        (1, 3),
---        (1, 2);
+insert into role (id, name)
+values (1, 'EMPLOYEE'),
+       (2, 'CUSTOMER'),
+       (3, 'ADMIN');
+insert into users (id, username, password, tenant_id)
+values ('1', 'employee', '{bcrypt}$2a$12$l6aRIhm9qqnEmBQQvWOb8OOaKhlL7pEZjwM5GLC.Qc1WQ1ovhwPGW', 1),
+       ('2', 'customer', '{bcrypt}$2a$12$1BOJEhlhicYSKhioUf7zz.WXCv8ItHI821iW9h8ahp3kUdOXB6jMi', 1),
+       ('3', 'admin', '{bcrypt}$2a$12$PDm06RVyE.QTeX87xYn/Y.AgWrpaELjsYn36fZV/TdAVxwTSytXaG', 1);
+insert into users_authorities
+values ('1', 1),
+       ('2', 2),
+       ('3', 2),
+       ('3', 3);
 -- insert into AUTHOR (id, isbn, name)
 -- values (1, 9781782924142, 'J. K. Rowling'),
 --        (2, 9781782924143, 'Suzanne Collins');

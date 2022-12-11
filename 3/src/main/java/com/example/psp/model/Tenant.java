@@ -27,6 +27,4 @@ public class Tenant {
 
     private String email;
 
-    private String password;
-
 }
