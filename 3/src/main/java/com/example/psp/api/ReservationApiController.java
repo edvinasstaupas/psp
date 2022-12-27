@@ -59,7 +59,10 @@ public class ReservationApiController {
      */
     @ApiOperation(value = "Cancels a reservation.", nickname = "reservationReservationIdCancelPost", notes = "At first should check if the action is being performed by an authorized user or service provider.  When the reservation gets canceled this endpoint should send a notification to the customer and the shop.", tags = {"Reservation",})
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Returns that cancelation completed successfully.")})
+            @ApiResponse(code = 200, message = "Returns that cancelation completed successfully."),
+            @ApiResponse(code = 404, message = "Returns that reservation was not found.")
+})
+
     @PostMapping(
             value = "/reservation/{reservationId}/cancel"
     )

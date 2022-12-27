@@ -126,7 +126,8 @@ public class LocationApiController {
     )
     public ResponseEntity<List<Location>> locationPageSizePageNumberGet(@ApiParam(value = "The maximum amount of business locations in response.", required = true) @PathVariable("pageSize") Integer pageSize, @ApiParam(value = "The page number of business locations to return.", required = true) @PathVariable("pageNumber") Integer pageNumber, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return ResponseEntity.ok(locationService.locationPageSizePageNumberGet(pageSize, pageNumber, user));
+        return null;
+//        return ResponseEntity.ok(locationService.locationPageSizePageNumberGet(pageSize, pageNumber, user));
     }
 
 
