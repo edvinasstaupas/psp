@@ -37,7 +37,7 @@ public class Product {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "tax_rate_Id")
+    @JoinColumn(name = "tax_rate_id")
     private TaxRate taxRate;
 
     private BigDecimal availableQuantity;

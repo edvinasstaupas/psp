@@ -2,45 +2,22 @@ package com.example.psp.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import java.util.Objects;
 
 /**
- * BundleProduct
+ * ProductCategoryDTO
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:59:11.404204200+02:00[Europe/Vilnius]")
-public class BundleProduct {
-    @JsonProperty("bundleId")
-    private Integer bundleId;
-
+public class ProductCategoryDTO {
     @JsonProperty("productId")
     private Integer productId;
 
-    @JsonProperty("quantity")
-    private Integer quantity;
+    @JsonProperty("categoryId")
+    private JsonNullable<String> categoryId = JsonNullable.undefined();
 
-    public BundleProduct bundleId(Integer bundleId) {
-        this.bundleId = bundleId;
-        return this;
-    }
-
-    /**
-     * Get bundleId
-     *
-     * @return bundleId
-     */
-    @ApiModelProperty(value = "")
-
-
-    public Integer getBundleId() {
-        return bundleId;
-    }
-
-    public void setBundleId(Integer bundleId) {
-        this.bundleId = bundleId;
-    }
-
-    public BundleProduct productId(Integer productId) {
+    public ProductCategoryDTO productId(Integer productId) {
         this.productId = productId;
         return this;
     }
@@ -61,25 +38,25 @@ public class BundleProduct {
         this.productId = productId;
     }
 
-    public BundleProduct quantity(Integer quantity) {
-        this.quantity = quantity;
+    public ProductCategoryDTO categoryId(String categoryId) {
+        this.categoryId = JsonNullable.of(categoryId);
         return this;
     }
 
     /**
-     * Get quantity
+     * Get categoryId
      *
-     * @return quantity
+     * @return categoryId
      */
     @ApiModelProperty(value = "")
 
 
-    public Integer getQuantity() {
-        return quantity;
+    public JsonNullable<String> getCategoryId() {
+        return categoryId;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setCategoryId(JsonNullable<String> categoryId) {
+        this.categoryId = categoryId;
     }
 
 
@@ -91,25 +68,23 @@ public class BundleProduct {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BundleProduct bundleProduct = (BundleProduct) o;
-        return Objects.equals(this.bundleId, bundleProduct.bundleId) &&
-                Objects.equals(this.productId, bundleProduct.productId) &&
-                Objects.equals(this.quantity, bundleProduct.quantity);
+        ProductCategoryDTO productCategoryDTO = (ProductCategoryDTO) o;
+        return Objects.equals(this.productId, productCategoryDTO.productId) &&
+                Objects.equals(this.categoryId, productCategoryDTO.categoryId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bundleId, productId, quantity);
+        return Objects.hash(productId, categoryId);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class BundleProduct {\n");
+        sb.append("class ProductCategoryDTO {\n");
 
-        sb.append("    bundleId: ").append(toIndentedString(bundleId)).append("\n");
         sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
-        sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
+        sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
         sb.append("}");
         return sb.toString();
     }

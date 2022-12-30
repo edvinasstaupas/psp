@@ -57,8 +57,8 @@ public class MaterialDTO {
     @ApiModelProperty(value = "")
 
 
-    public JsonNullable<String> getName() {
-        return name;
+    public String getName() {
+        return name.orElse(null);
     }
 
     public void setName(JsonNullable<String> name) {
@@ -78,8 +78,8 @@ public class MaterialDTO {
     @ApiModelProperty(value = "")
 
 
-    public JsonNullable<String> getUnit() {
-        return unit;
+    public String getUnit() {
+        return unit.orElse(null);
     }
 
     public void setUnit(JsonNullable<String> unit) {
