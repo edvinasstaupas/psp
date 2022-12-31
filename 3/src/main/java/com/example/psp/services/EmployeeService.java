@@ -35,8 +35,12 @@ public class EmployeeService {
                     HttpStatus.NOT_FOUND
             );
         }
+        try {
+            employeeRepository.deleteById(employeeId);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Employee cannot be deleted");
+        }
 
-        employeeRepository.deleteById(employeeId);
 
     }
 

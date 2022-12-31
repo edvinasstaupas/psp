@@ -12,7 +12,18 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:59:11.404204200+02:00[Europe/Vilnius]")
 public class AddCartItemDTO {
     @JsonProperty("productId")
-    private JsonNullable<Integer> productId = JsonNullable.undefined();
+    private JsonNullable<Integer> productIdDeprecated = JsonNullable.undefined();
+
+    private Integer productIdNew;
+
+    public Integer getProductIdNew() {
+        return productIdNew;
+    }
+    private Integer bundleIdNew;
+
+    public Integer getBundleIdNew() {
+        return bundleIdNew;
+    }
 
     @JsonProperty("bundleId")
     private JsonNullable<Integer> bundleId = JsonNullable.undefined();
@@ -24,7 +35,7 @@ public class AddCartItemDTO {
     private JsonNullable<String> comments = JsonNullable.undefined();
 
     public AddCartItemDTO productId(Integer productId) {
-        this.productId = JsonNullable.of(productId);
+        this.productIdDeprecated = JsonNullable.of(productId);
         return this;
     }
 
@@ -37,11 +48,11 @@ public class AddCartItemDTO {
 
 
     public JsonNullable<Integer> getProductId() {
-        return productId;
+        return productIdDeprecated;
     }
 
     public void setProductId(JsonNullable<Integer> productId) {
-        this.productId = productId;
+        this.productIdDeprecated = productId;
     }
 
     public AddCartItemDTO bundleId(Integer bundleId) {
@@ -117,7 +128,7 @@ public class AddCartItemDTO {
             return false;
         }
         AddCartItemDTO addCartItemDTO = (AddCartItemDTO) o;
-        return Objects.equals(this.productId, addCartItemDTO.productId) &&
+        return Objects.equals(this.productIdDeprecated, addCartItemDTO.productIdDeprecated) &&
                 Objects.equals(this.bundleId, addCartItemDTO.bundleId) &&
                 Objects.equals(this.quantity, addCartItemDTO.quantity) &&
                 Objects.equals(this.comments, addCartItemDTO.comments);
@@ -125,7 +136,7 @@ public class AddCartItemDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, bundleId, quantity, comments);
+        return Objects.hash(productIdDeprecated, bundleId, quantity, comments);
     }
 
     @Override
@@ -133,7 +144,7 @@ public class AddCartItemDTO {
         StringBuilder sb = new StringBuilder();
         sb.append("class AddCartItemDTO {\n");
 
-        sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
+        sb.append("    productId: ").append(toIndentedString(productIdDeprecated)).append("\n");
         sb.append("    bundleId: ").append(toIndentedString(bundleId)).append("\n");
         sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
