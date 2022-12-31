@@ -72,12 +72,16 @@ public class CartService {
                     HttpStatus.NOT_FOUND
             );
         }
-
-        Bundle bundle = bundleRepository.findBundleById(addCartItemDTO.getBundleIdNew());
-        Product product = productRepository.findProductById(addCartItemDTO.getProductIdNew());
-        if(bundle != null && product != null) {
+        if(addCartItemDTO.getBundleId().isPresent() && addCartItemDTO.getProductId().isPresent()) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST
+            );
+        }
+        Bundle bundle = bundleRepository.findBundleById(addCartItemDTO.getBundleId().orElse(-1));
+        Product product = productRepository.findProductById(addCartItemDTO.getProductId().orElse(-1));
+        if((bundle == null && product == null)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND
             );
         }
         com.example.psp.model.CartItem cartItem = new com.example.psp.model.CartItem();
