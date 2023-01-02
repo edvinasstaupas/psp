@@ -19,8 +19,12 @@ public class EmployeeDTO {
     @JsonProperty("lastName")
     private JsonNullable<String> lastName = JsonNullable.undefined();
 
+    @JsonProperty("userId")
+    private JsonNullable<Integer> userId = JsonNullable.undefined();
     @JsonProperty("role")
     private JsonNullable<String> role = JsonNullable.undefined();
+
+
 
     @JsonProperty("dateHired")
     @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
@@ -30,6 +34,26 @@ public class EmployeeDTO {
     @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
     private OffsetDateTime dateDeleted;
 
+    public EmployeeDTO userId(Integer userId) {
+        this.userId = JsonNullable.of(userId);
+        return this;
+    }
+
+    /**
+     * User ID
+     *
+     * @return userId
+     */
+    @ApiModelProperty(value = "User ID")
+
+
+    public JsonNullable<Integer> getUserId() {
+        return userId;
+    }
+
+    public void setUserId(JsonNullable<Integer> userId) {
+        this.userId = userId;
+    }
     public EmployeeDTO firstName(String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;

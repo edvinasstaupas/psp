@@ -13,11 +13,10 @@ import java.util.List;
 
 @Mapper(config = DefaultMapperConfig.class)
 public interface OrderItemMapper {
-    @Mapping(source = "id",  target = "id")
-    @Mapping(source = "name",  target = "name")
+
+
     @Mapping(source = "taxRate",  target = "tax")
     @Mapping(source = "discountRate",  target = "discount")
-    @Mapping(source = "quantity",  target = "quantity")
     @Mapping(source = "total",  target = "totalPrice")
     BriefSalesReportItemDTO mapToReportItem(OrderItem orderItem);
 

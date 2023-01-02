@@ -40,7 +40,6 @@ public class OrderService {
 
     public OrderDTO orderOrderIdGet(Integer orderId, User user) {
         Order order = orderRepository.findOrderById(orderId);
-        System.out.println(order.getOrderStatuses().size());
         return orderMapper.map(order);
     }
 
@@ -51,7 +50,6 @@ public class OrderService {
                     HttpStatus.NOT_FOUND
             );
         }
-        System.out.println(paymentDTO.getChange());
         if(!paymentDTO.getPaymentType().equals(com.example.psp.dto.PaymentType.CASH) && paymentDTO.getChange() != null) {
             throw new ResponseStatusException(
                    HttpStatus.BAD_REQUEST

@@ -39,7 +39,6 @@ public class CartService {
 
     public CartDTO cartCartIdGet(Integer cartId, User user) {
         Cart cart =  cartRepository.findCartById(cartId.toString());
-        System.out.println(cart.getCartItems().size());
         return cartMapper.map(cart);
     }
 
