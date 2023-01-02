@@ -46,7 +46,12 @@ public class ProductMaterialService {
         if (product.getTenant().getId() != user.getTenantId()) {
             throw new RuntimeException("Product does not belong to this tenant");
         }
-        productMaterialRepository.deleteById(materialId);
+        productMaterialRepository.deleteById(product.getProductMaterials()
+                .stream()
+                .filter(productMaterial -> productMaterial.getMaterial().getId() == materialId)
+                .findFirst()
+                .orElseThrow()
+                .getId());
     }
 
     public ProductMaterialDTO productMaterialProductIdMaterialIdGet(Integer productId, Integer materialId, User user) {
@@ -54,7 +59,11 @@ public class ProductMaterialService {
         if (product.getTenant().getId() != user.getTenantId()) {
             throw new RuntimeException("Product does not belong to this tenant");
         }
-        return productMapper.mapProductMaterial(productMaterialRepository.findById(materialId).orElseThrow());
+        return productMapper.mapProductMaterial(product.getProductMaterials()
+                .stream()
+                .filter(productMaterial -> productMaterial.getMaterial().getId() == materialId)
+                .findFirst()
+                .orElseThrow());
     }
 
     public void productMaterialProductIdMaterialIdPut(Integer productId, Integer materialId, ProductMaterialDTO productMaterialDTO, User user) {

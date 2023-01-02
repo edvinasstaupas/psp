@@ -55,8 +55,8 @@ public class ProductCategoryDTO {
         return categoryId;
     }
 
-    public void setCategoryId(JsonNullable<String> categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = JsonNullable.of(categoryId);
     }
 
 

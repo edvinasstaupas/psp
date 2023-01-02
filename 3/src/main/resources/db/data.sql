@@ -15,18 +15,20 @@ values ('1', 1),
        ('3', 2),
        ('3', 3);
 insert into bundle (id, name, price, tenant_id)
-values (1, 'Bundle 1', 10, 1),
-       (2, 'Bundle 2', 20, 1);
+values (-1, 'Bundle 1', 10, 1),
+       (0, 'Bundle 2', 20, 1);
 insert into brand (id, name, tenant_id)
 values (1, 'Brand 1', 1),
        (2, 'Brand 2', 1);
 insert into tax_rate (id, name, rate, tenant_id)
 values (1, 'Tax rate 1', 0.21, 1),
        (2, 'Tax rate 2', 0.21, 1);
-insert into product (id, name, price, is_disabled, brand_id, tax_rate_id, tenant_id)
-values (1, 'Product 1', 1, false, 1, 1, 1),
-       (2, 'Product 2', 2, false, 2, 1, 1);
+insert into product (id, name, price, unit, is_disabled, brand_id, tax_rate_id, tenant_id)
+values (0, 'Product 1', 1, 'kg', false, 1, 1, 1);
 insert into bundle_product (bundle_id, product_id)
-values (1, 1),
-       (1, 2),
-       (2, 1);
+values (-1, 0),
+       (0, 0);
+insert into material (id, name, unit, available_quantity, tenant_id)
+values (0, 'Material 1', 'kg', 100, 1);
+insert into product_material (product_id, material_id, quantity)
+values (0, 0, 1);

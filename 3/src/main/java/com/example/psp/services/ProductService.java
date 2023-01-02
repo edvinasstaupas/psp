@@ -4,8 +4,10 @@ import com.example.psp.dto.ProductCategoryDTO;
 import com.example.psp.dto.ProductDTO;
 import com.example.psp.dto.ProductMaterialDTO;
 import com.example.psp.mapper.ProductMapper;
+import com.example.psp.model.BundleProduct;
 import com.example.psp.model.Product;
 import com.example.psp.model.Tenant;
+import com.example.psp.repositories.BundleProductRepository;
 import com.example.psp.repositories.ProductRepository;
 import com.example.psp.repositories.TenantRepository;
 import com.example.psp.security.User;
@@ -18,17 +20,20 @@ import java.util.stream.Stream;
 public class ProductService {
 
     ProductRepository productRepository;
+    BundleProductRepository bundleProductRepository;
     TenantRepository tenantRepository;
     ProductMapper productMapper;
 
-    public ProductService(ProductRepository productRepository, TenantRepository tenantRepository, ProductMapper productMapper) {
+    public ProductService(ProductRepository productRepository, TenantRepository tenantRepository, ProductMapper productMapper, BundleProductRepository bundleProductRepository) {
         this.productRepository = productRepository;
         this.tenantRepository = tenantRepository;
         this.productMapper = productMapper;
+        this.bundleProductRepository = bundleProductRepository;
     }
 
     public List<ProductDTO> productGet(List<Integer> materialId, List<Integer> categoryId, List<Integer> brandId, Integer pageSize, Integer page, User user) {
-        Stream<ProductDTO> products = productMapper.mapProducts(productRepository.findAll()).stream();
+        Stream<ProductDTO> products = productRepository.findAll().stream()
+                .filter(bundle -> bundle.getTenant().getId() == user.getTenantId()).map(productMapper::map);
         if (materialId != null) {
             products = products.filter(product -> {
                 List<ProductMaterialDTO> productMaterials = product.getMaterials();
@@ -62,6 +67,9 @@ public class ProductService {
         if (product.getTenant().getId() != user.getTenantId()) {
             throw new RuntimeException("Product does not belong to tenant");
         }
+
+        List<BundleProduct> bundleProducts = bundleProductRepository.findAllByProductId(productId);
+        bundleProductRepository.deleteAll(bundleProducts);
         productRepository.delete(product);
     }
 

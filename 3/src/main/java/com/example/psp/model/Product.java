@@ -48,6 +48,9 @@ public class Product {
     private List<ProductMaterial> productMaterials;
 
     @OneToMany(mappedBy = "product")
+    private List<Category> categories;
+
+    @OneToMany(mappedBy = "product")
     private List<DiscountProduct> discounts;
 
 }

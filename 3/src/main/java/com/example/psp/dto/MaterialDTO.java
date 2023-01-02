@@ -61,8 +61,8 @@ public class MaterialDTO {
         return name.orElse(null);
     }
 
-    public void setName(JsonNullable<String> name) {
-        this.name = name;
+    public void setName(String name) {
+        this.name = JsonNullable.of(name);
     }
 
     public MaterialDTO unit(String unit) {
@@ -82,8 +82,8 @@ public class MaterialDTO {
         return unit.orElse(null);
     }
 
-    public void setUnit(JsonNullable<String> unit) {
-        this.unit = unit;
+    public void setUnit(String unit) {
+        this.unit = JsonNullable.of(unit);
     }
 
     public MaterialDTO availableQuantity(Integer availableQuantity) {

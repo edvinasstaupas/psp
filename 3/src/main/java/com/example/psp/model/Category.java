@@ -29,4 +29,8 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<DiscountCategory> discounts;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
 }

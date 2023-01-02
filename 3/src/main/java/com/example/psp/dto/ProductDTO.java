@@ -78,8 +78,8 @@ public class ProductDTO {
         return name.orElse(null);
     }
 
-    public void setName(JsonNullable<String> name) {
-        this.name = name;
+    public void setName(String name) {
+        this.name = JsonNullable.of(name);
     }
 
     public ProductDTO unit(String unit) {
@@ -99,8 +99,8 @@ public class ProductDTO {
         return unit.orElse(null);
     }
 
-    public void setUnit(JsonNullable<String> unit) {
-        this.unit = unit;
+    public void setUnit(String unit) {
+        this.unit = JsonNullable.of(unit);
     }
 
     public ProductDTO price(Integer price) {
@@ -192,8 +192,8 @@ public class ProductDTO {
         return materials.orElse(null);
     }
 
-    public void setMaterials(JsonNullable<List<ProductMaterialDTO>> materials) {
-        this.materials = materials;
+    public void setMaterials(List<ProductMaterialDTO> materials) {
+        this.materials = JsonNullable.of(materials);
     }
 
     public ProductDTO categories(List<ProductCategoryDTO> categories) {
@@ -222,8 +222,8 @@ public class ProductDTO {
         return categories.orElse(null);
     }
 
-    public void setCategories(JsonNullable<List<ProductCategoryDTO>> categories) {
-        this.categories = categories;
+    public void setCategories(List<ProductCategoryDTO> categories) {
+        this.categories = JsonNullable.of(categories);
     }
 
 

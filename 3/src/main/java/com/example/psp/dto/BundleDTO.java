@@ -65,8 +65,8 @@ public class BundleDTO {
         return name.orElse(null);
     }
 
-    public void setName(JsonNullable<String> name) {
-        this.name = name;
+    public void setName(String name) {
+        this.name = JsonNullable.of(name);
     }
 
     public BundleDTO price(Integer price) {
@@ -116,8 +116,8 @@ public class BundleDTO {
         return products.orElse(null);
     }
 
-    public void setProducts(JsonNullable<List<BundleProductDTO>> products) {
-        this.products = products;
+    public void setProducts(List<BundleProductDTO> products) {
+        this.products = JsonNullable.of(products);
     }
 
 
