@@ -11,8 +11,17 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -70,6 +79,7 @@ public class TimeSlotApiController {
             value = "/time-slot",
             produces = {"application/json"}
     )
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<TimeSlotDTO>> timeSlotGet(@ApiParam(value = "") @Valid @RequestParam(value = "FromDate", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime fromDate, @ApiParam(value = "") @Valid @RequestParam(value = "ToDate", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime toDate, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         return RestUtils.okOrNotFound(timeSlotService.getSlotsByInterval(fromDate, toDate, user));
@@ -115,6 +125,7 @@ public class TimeSlotApiController {
             produces = {"application/json"},
             consumes = {"application/json"}
     )
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
     public ResponseEntity<Void> timeSlotPost(@ApiParam(value = "") @Valid @RequestBody(required = false) TimeSlotDTO timeSlotDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         timeSlotService.createTimeSlot(timeSlotDTO, user);

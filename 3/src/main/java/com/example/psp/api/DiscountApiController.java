@@ -1,7 +1,12 @@
 package com.example.psp.api;
 
 import com.example.psp.api.utils.RestUtils;
-import com.example.psp.dto.*;
+import com.example.psp.dto.AssignDiscountToBrandDTO;
+import com.example.psp.dto.AssignDiscountToCategoryDTO;
+import com.example.psp.dto.AssignDiscountToItemDTO;
+import com.example.psp.dto.Discount;
+import com.example.psp.dto.DiscountDto;
+import com.example.psp.dto.ProblemDetails;
 import com.example.psp.security.User;
 import com.example.psp.services.DiscountService;
 import io.swagger.annotations.ApiOperation;
@@ -10,9 +15,16 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -179,6 +191,7 @@ public class DiscountApiController {
             value = "/discount/{pageSize}/{pageNumber}",
             produces = {"application/json"}
     )
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<Discount>> discountPageSizePageNumberGet(@ApiParam(value = "The maximum amount of discounts in response.", required = true) @PathVariable("pageSize") Integer pageSize, @ApiParam(value = "The page number of discounts to return.", required = true) @PathVariable("pageNumber") Integer pageNumber, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         return ResponseEntity.ok(discountService.getDiscounts(pageSize, pageNumber, user));
@@ -203,6 +216,7 @@ public class DiscountApiController {
             produces = {"application/json"},
             consumes = {"application/json"}
     )
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
     public ResponseEntity<Void> discountPost(@ApiParam(value = "Discount to create.") @Valid @RequestBody(required = false) DiscountDto discountDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         discountService.createDiscount(discountDto, user);
