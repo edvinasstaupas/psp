@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,7 +19,6 @@ public class TimeSlot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "service_id")
     private Service service;
@@ -33,8 +33,15 @@ public class TimeSlot {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
+    @OneToMany(mappedBy = "timeSlot")
+    private List<Reservation> reservations;
+
     private OffsetDateTime startTime;
 
     private OffsetDateTime endTime;
 
+    @PreRemove
+    private void preRemove() {
+        reservations.forEach(reservation -> reservation.setTimeSlot(null));
+    }
 }

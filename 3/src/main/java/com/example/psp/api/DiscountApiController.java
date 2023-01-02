@@ -51,7 +51,7 @@ public class DiscountApiController {
     )
     public ResponseEntity<Void> discountAssignDiscountToBrandPost(@ApiParam(value = "") @Valid @RequestBody(required = false) AssignDiscountToBrandDTO assignDiscountToBrandDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        discountService.discountAssignDiscountToBrandPost(assignDiscountToBrandDTO, user);
+        discountService.assignDiscountToBrand(assignDiscountToBrandDTO, user);
         return RestUtils.ok();
     }
 
@@ -78,7 +78,7 @@ public class DiscountApiController {
     )
     public ResponseEntity<Void> discountAssignDiscountToCategoryPost(@ApiParam(value = "") @Valid @RequestBody(required = false) AssignDiscountToCategoryDTO assignDiscountToCategoryDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        discountService.discountAssignDiscountToCategoryPost(assignDiscountToCategoryDTO, user);
+        discountService.assignDiscountToCategory(assignDiscountToCategoryDTO, user);
         return RestUtils.ok();
     }
 
@@ -105,7 +105,7 @@ public class DiscountApiController {
     )
     public ResponseEntity<Void> discountAssignDiscountToItemPost(@ApiParam(value = "") @Valid @RequestBody(required = false) AssignDiscountToItemDTO assignDiscountToItemDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        discountService.discountAssignDiscountToItemPost(assignDiscountToItemDTO, user);
+        discountService.assignDiscountToItem(assignDiscountToItemDTO, user);
         return RestUtils.ok();
     }
 
@@ -127,9 +127,9 @@ public class DiscountApiController {
             value = "/discount/{id}",
             produces = {"application/json"}
     )
-    public ResponseEntity<DiscountDto> discountIdGet(@ApiParam(value = "Id of the discount to get", required = true) @PathVariable("id") Integer id, Principal principal) {
+    public ResponseEntity<Discount> discountIdGet(@ApiParam(value = "Id of the discount to get", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(discountService.discountIdGet(id, user));
+        return RestUtils.okOrNotFound(discountService.getDiscount(id, user));
     }
 
 
@@ -156,7 +156,7 @@ public class DiscountApiController {
     )
     public ResponseEntity<Void> discountIdPut(@ApiParam(value = "Id of the discount to update.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "Discount to update.") @Valid @RequestBody(required = false) DiscountDto discountDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        discountService.discountIdPut(id, discountDto, user);
+        discountService.updateDiscount(id, discountDto, user);
         return RestUtils.ok();
     }
 
@@ -181,7 +181,7 @@ public class DiscountApiController {
     )
     public ResponseEntity<List<Discount>> discountPageSizePageNumberGet(@ApiParam(value = "The maximum amount of discounts in response.", required = true) @PathVariable("pageSize") Integer pageSize, @ApiParam(value = "The page number of discounts to return.", required = true) @PathVariable("pageNumber") Integer pageNumber, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return ResponseEntity.ok(discountService.discountPageSizePageNumberGet(pageSize, pageNumber, user));
+        return ResponseEntity.ok(discountService.getDiscounts(pageSize, pageNumber, user));
     }
 
 
@@ -205,7 +205,7 @@ public class DiscountApiController {
     )
     public ResponseEntity<Void> discountPost(@ApiParam(value = "Discount to create.") @Valid @RequestBody(required = false) DiscountDto discountDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        discountService.discountPost(discountDto, user);
+        discountService.createDiscount(discountDto, user);
         return RestUtils.ok();
     }
 

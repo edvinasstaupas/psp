@@ -13,8 +13,8 @@ public class AssignDiscountToCategoryDTO {
     @JsonProperty("discountId")
     private Integer discountId;
 
-    @JsonProperty("brandId")
-    private Integer brandId;
+    @JsonProperty("categoryId")
+    private Integer categoryId;
 
     public AssignDiscountToCategoryDTO discountId(Integer discountId) {
         this.discountId = discountId;
@@ -37,8 +37,8 @@ public class AssignDiscountToCategoryDTO {
         this.discountId = discountId;
     }
 
-    public AssignDiscountToCategoryDTO brandId(Integer brandId) {
-        this.brandId = brandId;
+    public AssignDiscountToCategoryDTO categoryId(Integer brandId) {
+        this.categoryId = brandId;
         return this;
     }
 
@@ -50,12 +50,12 @@ public class AssignDiscountToCategoryDTO {
     @ApiModelProperty(value = "")
 
 
-    public Integer getBrandId() {
-        return brandId;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setBrandId(Integer brandId) {
-        this.brandId = brandId;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
 
@@ -69,12 +69,12 @@ public class AssignDiscountToCategoryDTO {
         }
         AssignDiscountToCategoryDTO assignDiscountToCategoryDTO = (AssignDiscountToCategoryDTO) o;
         return Objects.equals(this.discountId, assignDiscountToCategoryDTO.discountId) &&
-                Objects.equals(this.brandId, assignDiscountToCategoryDTO.brandId);
+                Objects.equals(this.categoryId, assignDiscountToCategoryDTO.categoryId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(discountId, brandId);
+        return Objects.hash(discountId, categoryId);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class AssignDiscountToCategoryDTO {
         sb.append("class AssignDiscountToCategoryDTO {\n");
 
         sb.append("    discountId: ").append(toIndentedString(discountId)).append("\n");
-        sb.append("    brandId: ").append(toIndentedString(brandId)).append("\n");
+        sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
         sb.append("}");
         return sb.toString();
     }

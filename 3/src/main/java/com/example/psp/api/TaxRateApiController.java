@@ -53,7 +53,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<Void> taxRateApplyTaxRateToCategoryPost(@ApiParam(value = "") @Valid @RequestBody(required = false) ApplyTaxRateToCategoryDTO applyTaxRateToCategoryDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRateApplyTaxRateToCategoryPost(applyTaxRateToCategoryDTO, user);
+        taxRateService.applyTaxToCategory(applyTaxRateToCategoryDTO, user);
         return RestUtils.ok();
     }
 
@@ -80,7 +80,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<Void> taxRateAssignTaxRateToItemPost(@ApiParam(value = "") @Valid @RequestBody(required = false) AssignTaxRateToItemDTO assignTaxRateToItemDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRateAssignTaxRateToItemPost(assignTaxRateToItemDTO, user);
+        taxRateService.assignTaxRate(assignTaxRateToItemDTO, user);
         return RestUtils.ok();
     }
 
@@ -104,7 +104,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<Void> taxRateIdDelete(@ApiParam(value = "Id of the tax rate to delete.", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRateIdDelete(id, user);
+        taxRateService.deleteTaxRate(id, user);
         return RestUtils.ok();
     }
 
@@ -128,7 +128,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<TaxRate> taxRateIdGet(@ApiParam(value = "Id of the tax rate to get", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(taxRateService.taxRateIdGet(id, user));
+        return RestUtils.okOrNotFound(taxRateService.getTaxRate(id, user));
     }
 
 
@@ -155,7 +155,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<Void> taxRateIdPut(@ApiParam(value = "Id of the tax rate to update.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "Tax rate to update.") @Valid @RequestBody(required = false) TaxRateDto taxRateDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRateIdPut(id, taxRateDto, user);
+        taxRateService.putTaxRate(id, taxRateDto, user);
         return RestUtils.ok();
     }
 
@@ -180,7 +180,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<List<TaxRate>> taxRatePageSizePageNumberGet(@ApiParam(value = "The maximum amount of tax rates in response.", required = true) @PathVariable("pageSize") Integer pageSize, @ApiParam(value = "The page number of tax rates to return.", required = true) @PathVariable("pageNumber") Integer pageNumber, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return ResponseEntity.ok(taxRateService.taxRatePageSizePageNumberGet(pageSize, pageNumber, user));
+        return ResponseEntity.ok(taxRateService.getTaxRates(pageSize, pageNumber, user));
     }
 
 
@@ -204,7 +204,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<Void> taxRatePost(@ApiParam(value = "Tax rate to create.") @Valid @RequestBody(required = false) TaxRateDto taxRateDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRatePost(taxRateDto, user);
+        taxRateService.createTaxRate(taxRateDto, user);
         return RestUtils.ok();
     }
 }

@@ -9,4 +9,8 @@ public class JsonNullableMapper {
     public <T> JsonNullable<T> wrap(T source) {
         return JsonNullable.of(source);
     }
+
+    public <T> T unwrap(JsonNullable<T> source) {
+        return source.orElse(null);
+    }
 }

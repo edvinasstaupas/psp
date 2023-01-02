@@ -9,7 +9,6 @@ import com.example.psp.services.ServiceService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +47,7 @@ public class ServiceApiController {
     )
     public ResponseEntity<Void> serviceIdDelete(@ApiParam(value = "Id of the service to delete.", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        serviceService.serviceIdDelete(id, user);
+        serviceService.deleteServiceById(id, user);
         return RestUtils.ok();
     }
 
@@ -69,7 +68,7 @@ public class ServiceApiController {
     )
     public ResponseEntity<Service> serviceIdGet(@ApiParam(value = "Id of the service to get", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(serviceService.serviceIdGet(id, user));
+        return RestUtils.okOrNotFound(serviceService.getServiceById(id, user));
     }
 
 
@@ -96,7 +95,7 @@ public class ServiceApiController {
     )
     public ResponseEntity<Void> serviceIdPut(@ApiParam(value = "Id of the service to update.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "Service to update.") @Valid @RequestBody(required = false) ServiceDto serviceDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        serviceService.serviceIdPut(id, serviceDto, user);
+        serviceService.updateService(id, serviceDto, user);
         return RestUtils.ok();
     }
 
@@ -118,7 +117,7 @@ public class ServiceApiController {
     )
     public ResponseEntity<List<Service>> servicePageSizePageNumberGet(@ApiParam(value = "The maximum amount of services in response.", required = true) @PathVariable("pageSize") Integer pageSize, @ApiParam(value = "The page number of services to return.", required = true) @PathVariable("pageNumber") Integer pageNumber, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(serviceService.servicePageSizePageNumberGet(pageSize, pageNumber, user));
+        return RestUtils.okOrNotFound(serviceService.getServices(pageSize, pageNumber, user));
     }
 
     /**
@@ -141,7 +140,7 @@ public class ServiceApiController {
     )
     public ResponseEntity<Void> servicePost(@ApiParam(value = "Service to create.") @Valid @RequestBody(required = false) ServiceDto serviceDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        serviceService.servicePost(serviceDto, user);
+        serviceService.createService(serviceDto, user);
         return RestUtils.ok();
     }
 }

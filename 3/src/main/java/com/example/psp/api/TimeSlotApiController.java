@@ -43,12 +43,12 @@ public class TimeSlotApiController {
             @ApiResponse(code = 400, message = "If time slot ID is less or equal to 0", response = ProblemDetails.class),
             @ApiResponse(code = 404, message = "If no time slot ID matched the search", response = ProblemDetails.class)})
     @GetMapping(
-            value = "/time-slot/{employeeId}",
+            value = "/time-slot/employee/{employeeId}",
             produces = {"application/json"}
     )
     public ResponseEntity<List<TimeSlotDTO>> timeSlotEmployeeIdGet(@ApiParam(value = "", required = true) @PathVariable("employeeId") Integer employeeId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(timeSlotService.timeSlotEmployeeIdGet(employeeId, user));
+        return RestUtils.okOrNotFound(timeSlotService.getSlotsByEmployeeId(employeeId, user));
     }
 
 
@@ -72,7 +72,7 @@ public class TimeSlotApiController {
     )
     public ResponseEntity<List<TimeSlotDTO>> timeSlotGet(@ApiParam(value = "") @Valid @RequestParam(value = "FromDate", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime fromDate, @ApiParam(value = "") @Valid @RequestParam(value = "ToDate", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime toDate, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(timeSlotService.timeSlotGet(fromDate, toDate, user));
+        return RestUtils.okOrNotFound(timeSlotService.getSlotsByInterval(fromDate, toDate, user));
     }
 
 
@@ -90,12 +90,12 @@ public class TimeSlotApiController {
             @ApiResponse(code = 400, message = "If time slot location ID is less or equal to 0", response = ProblemDetails.class),
             @ApiResponse(code = 404, message = "If no time slot location ID matched the search", response = ProblemDetails.class)})
     @GetMapping(
-            value = "/time-slot/{locationId}",
+            value = "/time-slot/location/{locationId}",
             produces = {"application/json"}
     )
     public ResponseEntity<List<TimeSlotDTO>> timeSlotLocationIdGet(@ApiParam(value = "", required = true) @PathVariable("locationId") Integer locationId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(timeSlotService.timeSlotLocationIdGet(locationId, user));
+        return RestUtils.okOrNotFound(timeSlotService.getSlotsByLocationId(locationId, user));
     }
 
 
@@ -117,7 +117,7 @@ public class TimeSlotApiController {
     )
     public ResponseEntity<Void> timeSlotPost(@ApiParam(value = "") @Valid @RequestBody(required = false) TimeSlotDTO timeSlotDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        timeSlotService.timeSlotPost(timeSlotDTO, user);
+        timeSlotService.createTimeSlot(timeSlotDTO, user);
         return RestUtils.ok();
     }
 
@@ -136,12 +136,12 @@ public class TimeSlotApiController {
             @ApiResponse(code = 400, message = "If time slot service ID is less or equal to 0", response = ProblemDetails.class),
             @ApiResponse(code = 404, message = "If no time slot service ID matched the search", response = ProblemDetails.class)})
     @GetMapping(
-            value = "/time-slot/{serviceId}",
+            value = "/time-slot/service/{serviceId}",
             produces = {"application/json"}
     )
     public ResponseEntity<List<TimeSlotDTO>> timeSlotServiceIdGet(@ApiParam(value = "", required = true) @PathVariable("serviceId") Integer serviceId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(timeSlotService.timeSlotServiceIdGet(serviceId, user));
+        return RestUtils.okOrNotFound(timeSlotService.getSlotsByServiceId(serviceId, user));
     }
 
 
@@ -164,7 +164,7 @@ public class TimeSlotApiController {
     )
     public ResponseEntity<Void> timeSlotTimeSlotIdDelete(@ApiParam(value = "", required = true) @PathVariable("timeSlotId") Integer timeSlotId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        timeSlotService.timeSlotTimeSlotIdDelete(timeSlotId, user);
+        timeSlotService.deleteSlot(timeSlotId, user);
         return RestUtils.ok();
     }
 
@@ -188,7 +188,7 @@ public class TimeSlotApiController {
     )
     public ResponseEntity<TimeSlotDTO> timeSlotTimeSlotIdGet(@ApiParam(value = "", required = true) @PathVariable("timeSlotId") Integer timeSlotId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(timeSlotService.timeSlotTimeSlotIdGet(timeSlotId, user));
+        return RestUtils.okOrNotFound(timeSlotService.getSlotById(timeSlotId, user));
     }
 
 
@@ -213,7 +213,7 @@ public class TimeSlotApiController {
     )
     public ResponseEntity<Void> timeSlotTimeSlotIdPut(@ApiParam(value = "", required = true) @PathVariable("timeSlotId") Integer timeSlotId, @ApiParam(value = "") @Valid @RequestBody(required = false) TimeSlotDTO timeSlotDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        timeSlotService.timeSlotTimeSlotIdPut(timeSlotId, timeSlotDTO, user);
+        timeSlotService.updateSlot(timeSlotId, timeSlotDTO, user);
         return RestUtils.ok();
     }
 
