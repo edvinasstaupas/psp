@@ -16,6 +16,7 @@ import com.example.psp.repositories.DiscountProductRepository;
 import com.example.psp.repositories.DiscountRepository;
 import com.example.psp.repositories.ProductRepository;
 import com.example.psp.repositories.TenantRepository;
+import com.example.psp.security.SecurityUtils;
 import com.example.psp.security.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -60,12 +61,14 @@ public class DiscountService {
 
     public void updateDiscount(Integer id, DiscountDto discountDto, User user) {
         com.example.psp.model.Discount discount = discountRepository.findById(id).orElseThrow();
+        SecurityUtils.checkTenantId(discount.getTenant().getId(), user);
         discountMapper.update(discountDto, discount);
         discountRepository.save(discount);
     }
 
     public Discount getDiscount(Integer id, User user) {
         com.example.psp.model.Discount discount = discountRepository.findById(id).orElseThrow();
+        SecurityUtils.checkTenantId(discount.getTenant().getId(), user);
         return discountMapper.map(discount);
     }
 
@@ -74,6 +77,7 @@ public class DiscountService {
         Product product = productRepository.findById(productId).orElseThrow();
         Integer discountId = assignDiscountToItemDTO.getDiscountId();
         DiscountProduct discount = discountProductRepository.findById(discountId).orElseThrow();
+        SecurityUtils.checkTenantId(discount.getTenant().getId(), user);
 
         product.getDiscounts().add(discount);
 
@@ -81,9 +85,11 @@ public class DiscountService {
     }
 
     public void assignDiscountToCategory(AssignDiscountToCategoryDTO assignDiscountToCategoryDTO, User user) {
+        SecurityUtils.checkTenantId(assignDiscountToCategoryDTO.getDiscountId(), user);
         Integer brandId = assignDiscountToCategoryDTO.getCategoryId();
         Category category = categoryRepository.findById(brandId).orElseThrow();
         DiscountProduct discount = discountProductRepository.findById(assignDiscountToCategoryDTO.getDiscountId()).orElseThrow();
+        SecurityUtils.checkTenantId(discount.getTenant().getId(), user);
 
         category.getProducts().forEach(product -> product.getDiscounts().add(discount));
 
@@ -91,9 +97,11 @@ public class DiscountService {
     }
 
     public void assignDiscountToBrand(AssignDiscountToBrandDTO assignDiscountToBrandDTO, User user) {
+        SecurityUtils.checkTenantId(assignDiscountToBrandDTO.getDiscountId(), user);
         Integer brandId = assignDiscountToBrandDTO.getBrandId();
         Brand brand = brandRepository.findById(brandId).orElseThrow();
         DiscountProduct discount = discountProductRepository.findById(assignDiscountToBrandDTO.getDiscountId()).orElseThrow();
+        SecurityUtils.checkTenantId(discount.getTenant().getId(), user);
 
         brand.getProducts().forEach(product -> product.getDiscounts().add(discount));
 

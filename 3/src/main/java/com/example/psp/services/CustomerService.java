@@ -13,6 +13,7 @@ import com.example.psp.model.Reservation;
 import com.example.psp.repositories.CartRepository;
 import com.example.psp.repositories.CustomerRepository;
 import com.example.psp.repositories.ReservationRepository;
+import com.example.psp.security.SecurityUtils;
 import com.example.psp.security.User;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -42,12 +43,14 @@ public class CustomerService {
 
     public void updateAccountDetails(Integer userId, CreateAccountDTO createAccountDTO, User user) {
         Customer customer = customerRepository.findById(userId).orElseThrow();
+        SecurityUtils.checkTenantId(customer.getUser().getTenantId(), user);
         customerMapper.update(createAccountDTO, customer);
         customerRepository.save(customer);
     }
 
     public AccountDetailsDTO getAccountDetails(Integer userId, User user) {
         Customer customer = customerRepository.findById(userId).orElseThrow();
+        SecurityUtils.checkTenantId(customer.getUser().getTenantId(), user);
         return customerMapper.map(customer);
     }
 
@@ -68,6 +71,7 @@ public class CustomerService {
 
     public CartDTO getCustomerCart(Integer customerId, User user) {
         Cart cart = cartRepository.findCartByCustomerId(customerId);
+        SecurityUtils.checkTenantId(cart.getCustomer().getUser().getTenantId(), user);
         return cartMapper.map(cart);
     }
 }

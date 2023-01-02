@@ -2,11 +2,13 @@ package com.example.psp.services;
 
 import com.example.psp.dto.TimeSlotDTO;
 import com.example.psp.mapper.TimeSlotMapper;
+import com.example.psp.model.Employee;
 import com.example.psp.model.TimeSlot;
 import com.example.psp.repositories.EmployeeRepository;
 import com.example.psp.repositories.LocationRepository;
 import com.example.psp.repositories.ServiceRepository;
 import com.example.psp.repositories.TimeSlotRepository;
+import com.example.psp.security.SecurityUtils;
 import com.example.psp.security.User;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +33,10 @@ public class TimeSlotService {
     }
 
     public List<TimeSlotDTO> getSlotsByEmployeeId(Integer employeeId, User user) {
-        List<TimeSlot> slots = timeSlotRepository.findAllByEmployeeId(employeeId);
-        return timeSlotMapper.mapSlots(slots);
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow();
+        SecurityUtils.checkTenantId(employee.getUser().getTenantId(), user);
+        List<TimeSlot> timeslots = employee.getTimeslots();
+        return timeSlotMapper.mapSlots(timeslots);
     }
 
     public List<TimeSlotDTO> getSlotsByInterval(OffsetDateTime fromDate, OffsetDateTime toDate, User user) {
@@ -56,16 +60,20 @@ public class TimeSlotService {
     }
 
     public void deleteSlot(Integer timeSlotId, User user) {
-        timeSlotRepository.deleteById(timeSlotId);
+        TimeSlot timeSlot = timeSlotRepository.findById(timeSlotId).orElseThrow();
+        checkTenantId(user, timeSlot);
+        timeSlotRepository.delete(timeSlot);
     }
 
     public TimeSlotDTO getSlotById(Integer timeSlotId, User user) {
-        TimeSlot slot = timeSlotRepository.findById(timeSlotId).orElseThrow();
-        return timeSlotMapper.map(slot);
+        TimeSlot timeSlot = timeSlotRepository.findById(timeSlotId).orElseThrow();
+        checkTenantId(user, timeSlot);
+        return timeSlotMapper.map(timeSlot);
     }
 
     public void updateSlot(Integer timeSlotId, TimeSlotDTO timeSlotDTO, User user) {
         TimeSlot timeSlot = timeSlotRepository.findById(timeSlotId).orElseThrow();
+        checkTenantId(user, timeSlot);
         applyUpdate(timeSlotDTO, timeSlot);
     }
 
@@ -75,5 +83,10 @@ public class TimeSlotService {
         timeSlot.setLocation(locationRepository.findById(timeSlotDTO.getLocationId()).orElseThrow());
         timeSlot.setEmployee(employeeRepository.findById(timeSlotDTO.getEmployeeId()).orElseThrow());
         timeSlotRepository.save(timeSlot);
+    }
+
+    private static void checkTenantId(User user, TimeSlot timeSlot) {
+        Integer tenantId = timeSlot.getEmployee().getUser().getTenantId();
+        SecurityUtils.checkTenantId(tenantId, user);
     }
 }

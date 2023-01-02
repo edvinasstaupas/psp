@@ -6,6 +6,7 @@ import com.example.psp.model.TaxRate;
 import com.example.psp.repositories.ServiceRepository;
 import com.example.psp.repositories.TaxRateRepository;
 import com.example.psp.repositories.TenantRepository;
+import com.example.psp.security.SecurityUtils;
 import com.example.psp.security.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,16 +29,23 @@ public class ServiceService {
     }
 
     public void deleteServiceById(Integer id, User user) {
-        serviceRepository.deleteById(id);
+        com.example.psp.model.Service service = serviceRepository.findById(id).orElseThrow();
+        SecurityUtils.checkTenantId(service.getTenant().getId(), user);
+
+        serviceRepository.delete(service);
     }
 
     public com.example.psp.dto.Service getServiceById(Integer id, User user) {
         com.example.psp.model.Service service = serviceRepository.findById(id).orElseThrow();
+        SecurityUtils.checkTenantId(service.getTenant().getId(), user);
+
         return serviceMapper.map(service);
     }
 
     public void updateService(Integer id, ServiceDto serviceDto, User user) {
         com.example.psp.model.Service service = serviceRepository.findById(id).orElseThrow();
+        SecurityUtils.checkTenantId(service.getTenant().getId(), user);
+
         finishUpdate(serviceDto, service);
     }
 

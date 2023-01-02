@@ -1,10 +1,10 @@
 package com.example.psp.services;
 
-import com.example.psp.mapper.TaxRateMapper;
 import com.example.psp.dto.ApplyTaxRateToCategoryDTO;
 import com.example.psp.dto.AssignTaxRateToItemDTO;
 import com.example.psp.dto.TaxRate;
 import com.example.psp.dto.TaxRateDto;
+import com.example.psp.mapper.TaxRateMapper;
 import com.example.psp.model.Category;
 import com.example.psp.model.Product;
 import com.example.psp.model.Tenant;
@@ -12,6 +12,7 @@ import com.example.psp.repositories.CategoryRepository;
 import com.example.psp.repositories.ProductRepository;
 import com.example.psp.repositories.TaxRateRepository;
 import com.example.psp.repositories.TenantRepository;
+import com.example.psp.security.SecurityUtils;
 import com.example.psp.security.User;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
@@ -40,7 +41,12 @@ public class TaxRateService {
     @Transactional
     public void applyTaxToCategory(ApplyTaxRateToCategoryDTO applyTaxRateToCategoryDTO, User user) {
         Category category = categoryRepository.findById(applyTaxRateToCategoryDTO.getCategoryId()).orElseThrow();
+        SecurityUtils.checkTenantId(category.getTenant().getId(), user);
+
         com.example.psp.model.TaxRate rate = taxRateRepository.getReferenceById(applyTaxRateToCategoryDTO.getTaxRateId());
+        SecurityUtils.checkTenantId(rate.getTenant().getId(), user);
+
+
         List<Product> products = category.getProducts().stream()
                 .map(product -> {
                     product.setTaxRate(rate);
@@ -52,24 +58,34 @@ public class TaxRateService {
 
     public void assignTaxRate(AssignTaxRateToItemDTO assignTaxRateToItemDTO, User user) {
         com.example.psp.model.TaxRate rate = taxRateRepository.findById(assignTaxRateToItemDTO.getTaxRateId()).orElseThrow();
+        SecurityUtils.checkTenantId(rate.getTenant().getId(), user);
+
         Integer productId = assignTaxRateToItemDTO.getProductId().orElse(null);
         Product product = productRepository.findById(productId).orElseThrow();
-        product.setTaxRate(rate);
+        SecurityUtils.checkTenantId(product.getTenant().getId(), user);
 
+        product.setTaxRate(rate);
         productRepository.save(product);
     }
 
     public void deleteTaxRate(Integer id, User user) {
-        taxRateRepository.deleteById(id);
+        com.example.psp.model.TaxRate taxRate = taxRateRepository.findById(id).orElseThrow();
+        SecurityUtils.checkTenantId(taxRate.getTenant().getId(), user);
+
+        taxRateRepository.delete(taxRate);
     }
 
-    public TaxRate getTaxRate(Integer id, User user) {
-        com.example.psp.model.TaxRate rate = taxRateRepository.findById(id).orElseThrow();
+    public TaxRate getTaxRate(Integer taxRate, User user) {
+        com.example.psp.model.TaxRate rate = taxRateRepository.findById(taxRate).orElseThrow();
+
+        SecurityUtils.checkTenantId(rate.getTenant().getId(), user);
         return taxRateMapper.map(rate);
     }
 
     public void putTaxRate(Integer id, TaxRateDto taxRateDto, User user) {
         com.example.psp.model.TaxRate taxRate = taxRateRepository.findById(id).orElseThrow();
+        SecurityUtils.checkTenantId(taxRate.getTenant().getId(), user);
+
         taxRateMapper.update(taxRateDto, taxRate);
         taxRateRepository.save(taxRate);
     }
