@@ -56,7 +56,6 @@ values
 insert into product(tenant_id, name, is_disabled, brand_id, tax_rate_id)
 values
     (1, 'testProduct',false, 1, 1);
-insert into cart (customer_id, date_created, last_accessed, id) values (1, '2022-01-01 20:30:00.000000', '2022-01-01 20:30:00.000000', 1);
 insert into orders (tips_amount, total, customer_id, employee_id, tenant_id)
 values (5.00, 25.00, 1, 1, 1),
        (10.00, 50.00, 1, 2, 1),
@@ -74,6 +73,9 @@ values (0.00, 'Product 1', '', 1, 0.00, 10.00, 10.00, 1, 1, NULL),
        (0.00, 'Product 5', '', 8, 0.00, 80.00, 10.00, 3, 1, NULL),
        (0.00, 'Service 5', '', 9, 0.00, 900.00, 100.00, 1, NULL, 2),
        (0.00, 'Service 6', '', 10, 0.00, 1000.00, 100.00, 2, NULL, 4);
+
+insert into category (name, tenant_id)
+values ('Category 1', 1);
 
 insert into category_product (category_id, product_id)
 values(1, 1);

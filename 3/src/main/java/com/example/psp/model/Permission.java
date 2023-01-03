@@ -24,6 +24,4 @@ public class Permission {
 
     @NotNull
     private String name;
-
-    // TODO: not done
 }
