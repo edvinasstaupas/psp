@@ -93,7 +93,7 @@ insert into reservation (time_slot_id, customer_id, date_created)
 values (1, 1, '2022-01-01 00:00:00.000000');
 
 insert into discount_product (expires_at, name, rate, valid_from, product_id, tenant_id)
-values ('2023-01-01 21:30:00.000000', 'name', 4.0, '2022-01-01 21:30:00.000000', 1, 1)
+values ('2023-01-01 21:30:00.000000', 'name', 4.0, '2022-01-01 21:30:00.000000', 1, 1);
 
 
 insert into bundle (name, price, tenant_id)
@@ -108,4 +108,4 @@ insert into material (name, unit, available_quantity, tenant_id)
 values ('Material 1', 'kg', 100, 1);
 
 insert into product_material (product_id, material_id, quantity)
-values (0, 0, 1);
+values (1, 1, 1);

@@ -32,7 +32,7 @@ public class Category {
     private List<DiscountCategory> discounts;
 
     @ManyToMany(mappedBy = "categories")
-    private List<Product> products; //TODO: look if 'Product' works from Vasaris
+    private List<Product> products;
 
     @Override
     public boolean equals(Object o) {
