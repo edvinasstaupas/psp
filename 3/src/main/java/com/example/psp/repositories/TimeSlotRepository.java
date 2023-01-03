@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface TimeSlotRepository extends JpaRepository<TimeSlot, Integer> {
 
+    TimeSlot findTimeSlotById(Integer id);
+
     List<TimeSlot> findAllByStartTimeGreaterThanEqualAndEndTimeLessThanEqual(OffsetDateTime startTime, OffsetDateTime endTime);
 
     List<TimeSlot> findAllByLocationId(Integer locationId);

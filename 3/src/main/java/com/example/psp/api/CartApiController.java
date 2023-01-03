@@ -156,7 +156,7 @@ public class CartApiController {
             produces = {"application/json"},
             consumes = {"application/json"}
     )
-    public ResponseEntity<CartDTO> cartPost(@ApiParam(value = "Id of the customer.") @Valid @RequestBody(required = false) Integer body, Principal principal) {
+    public ResponseEntity<CartDTO> cartPost(@ApiParam(value = "Id of the customer.") @Valid @RequestBody(required = false) CartBodyDTO body, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         return RestUtils.okOrNotFound(cartService.cartPost(body, user));
     }

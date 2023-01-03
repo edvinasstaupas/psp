@@ -27,7 +27,6 @@ public class Employee {
     @NotNull
     private OffsetDateTime dateHired;
 
-    @NotNull
     private OffsetDateTime dateDeleted;
 
     @OneToMany(mappedBy = "employee")

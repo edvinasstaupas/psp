@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
+    Reservation getReservationById(Integer id);
+
     List<Reservation> findAllByCustomerIdAndTimeSlotStartTimeGreaterThanEqualAndTimeSlotEndTimeLessThanEqual(Integer customerId, OffsetDateTime startTime, OffsetDateTime endTime);
 }
