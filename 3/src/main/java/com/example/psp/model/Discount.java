@@ -22,7 +22,7 @@ public class Discount {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "tenant_id")
-    private Tenant tenantId;
+    private Tenant tenant;
 
     @NotNull
     private String name;

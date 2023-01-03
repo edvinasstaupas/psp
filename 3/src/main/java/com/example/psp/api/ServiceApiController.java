@@ -6,13 +6,24 @@ import com.example.psp.dto.Service;
 import com.example.psp.dto.ServiceDto;
 import com.example.psp.security.User;
 import com.example.psp.services.ServiceService;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -48,7 +59,7 @@ public class ServiceApiController {
     )
     public ResponseEntity<Void> serviceIdDelete(@ApiParam(value = "Id of the service to delete.", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        serviceService.serviceIdDelete(id, user);
+        serviceService.deleteServiceById(id, user);
         return RestUtils.ok();
     }
 
@@ -69,7 +80,7 @@ public class ServiceApiController {
     )
     public ResponseEntity<Service> serviceIdGet(@ApiParam(value = "Id of the service to get", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(serviceService.serviceIdGet(id, user));
+        return RestUtils.okOrNotFound(serviceService.getServiceById(id, user));
     }
 
 
@@ -96,7 +107,7 @@ public class ServiceApiController {
     )
     public ResponseEntity<Void> serviceIdPut(@ApiParam(value = "Id of the service to update.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "Service to update.") @Valid @RequestBody(required = false) ServiceDto serviceDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        serviceService.serviceIdPut(id, serviceDto, user);
+        serviceService.updateService(id, serviceDto, user);
         return RestUtils.ok();
     }
 
@@ -116,9 +127,10 @@ public class ServiceApiController {
             value = "/service/{pageSize}/{pageNumber}",
             produces = {"application/json"}
     )
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<Service>> servicePageSizePageNumberGet(@ApiParam(value = "The maximum amount of services in response.", required = true) @PathVariable("pageSize") Integer pageSize, @ApiParam(value = "The page number of services to return.", required = true) @PathVariable("pageNumber") Integer pageNumber, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(serviceService.servicePageSizePageNumberGet(pageSize, pageNumber, user));
+        return RestUtils.okOrNotFound(serviceService.getServices(pageSize, pageNumber, user));
     }
 
     /**
@@ -139,9 +151,10 @@ public class ServiceApiController {
             produces = {"application/json"},
             consumes = {"application/json"}
     )
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
     public ResponseEntity<Void> servicePost(@ApiParam(value = "Service to create.") @Valid @RequestBody(required = false) ServiceDto serviceDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        serviceService.servicePost(serviceDto, user);
+        serviceService.createService(serviceDto, user);
         return RestUtils.ok();
     }
 }

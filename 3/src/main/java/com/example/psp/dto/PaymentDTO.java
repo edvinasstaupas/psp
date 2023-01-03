@@ -22,7 +22,7 @@ public class PaymentDTO {
     private Double ammount;
 
     @JsonProperty("change")
-    private JsonNullable<Double> change = JsonNullable.undefined();
+    private Double change;
 
     public PaymentDTO orderId(Integer orderId) {
         this.orderId = orderId;
@@ -88,10 +88,6 @@ public class PaymentDTO {
         this.ammount = ammount;
     }
 
-    public PaymentDTO change(Double change) {
-        this.change = JsonNullable.of(change);
-        return this;
-    }
 
     /**
      * If paid by cash, ammount of change given
@@ -101,11 +97,11 @@ public class PaymentDTO {
     @ApiModelProperty(value = "If paid by cash, ammount of change given")
 
 
-    public JsonNullable<Double> getChange() {
+    public Double getChange() {
         return change;
     }
 
-    public void setChange(JsonNullable<Double> change) {
+    public void setChange(Double change) {
         this.change = change;
     }
 

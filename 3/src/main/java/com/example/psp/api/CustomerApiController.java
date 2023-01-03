@@ -1,7 +1,11 @@
 package com.example.psp.api;
 
 import com.example.psp.api.utils.RestUtils;
-import com.example.psp.dto.*;
+import com.example.psp.dto.AccountDetailsDTO;
+import com.example.psp.dto.BearerTokenDTO;
+import com.example.psp.dto.CartDTO;
+import com.example.psp.dto.CreateAccountDTO;
+import com.example.psp.dto.ReservationInformationDTO;
 import com.example.psp.security.User;
 import com.example.psp.services.CustomerService;
 import io.swagger.annotations.ApiOperation;
@@ -10,9 +14,17 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -48,7 +60,7 @@ public class CustomerApiController {
     )
     public ResponseEntity<CartDTO> customerCustomerIdReservationGet(@ApiParam(value = "Id of the customer.", required = true) @PathVariable("customerId") Integer customerId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(customerService.customerCustomerIdReservationGet(customerId, user));
+        return RestUtils.okOrNotFound(customerService.getCustomerCart(customerId, user));
     }
 
 
@@ -71,9 +83,10 @@ public class CustomerApiController {
             value = "/customer/{customerId}/reservation/list",
             produces = {"application/json"}
     )
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<ReservationInformationDTO>> customerCustomerIdReservationListGet(@ApiParam(value = "Id of the customer.", required = true) @PathVariable("customerId") Integer customerId, @ApiParam(value = "Get reservations starting after specified date.") @Valid @RequestParam(value = "from", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime from, @ApiParam(value = "Get reservations starting before specified date.") @Valid @RequestParam(value = "to", required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) OffsetDateTime to, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return ResponseEntity.ok(customerService.customerCustomerIdReservationListGet(customerId, from, to, user));
+        return ResponseEntity.ok(customerService.getReservations(customerId, from, to, user));
     }
 
 
@@ -95,9 +108,10 @@ public class CustomerApiController {
             value = "/customer",
             produces = {"application/json"}
     )
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<AccountDetailsDTO>> customerGet(@ApiParam(value = "Optional parameter to query by email.") @Valid @RequestParam(value = "email", required = false) String email, @ApiParam(value = "Optional parameter to query by name.") @Valid @RequestParam(value = "name", required = false) String name, @ApiParam(value = "Parameter to define how many records are in a page.") @Valid @RequestParam(value = "pageSize", required = false) Integer pageSize, @ApiParam(value = "Parameter to specify which page of records to return.") @Valid @RequestParam(value = "page", required = false) Integer page, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return ResponseEntity.ok(customerService.customerGet(email, name, pageSize, page, user));
+        return ResponseEntity.ok(customerService.getAccountDetails(email, name, pageSize, page, user));
     }
 
     /**
@@ -142,7 +156,7 @@ public class CustomerApiController {
     )
     public ResponseEntity<AccountDetailsDTO> customerUserIdGet(@ApiParam(value = "", required = true) @PathVariable("userId") Integer userId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(customerService.customerUserIdGet(userId, user));
+        return RestUtils.okOrNotFound(customerService.getAccountDetails(userId, user));
     }
 
 
@@ -166,7 +180,7 @@ public class CustomerApiController {
     )
     public ResponseEntity<Void> customerUserIdPut(@ApiParam(value = "", required = true) @PathVariable("userId") Integer userId, @ApiParam(value = "Customer account details.") @Valid @RequestBody(required = false) CreateAccountDTO createAccountDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        customerService.customerUserIdPut(userId, createAccountDTO, user);
+        customerService.updateAccountDetails(userId, createAccountDTO, user);
         return RestUtils.ok();
     }
 }

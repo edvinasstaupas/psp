@@ -124,7 +124,7 @@ public class LocationApiController {
             value = "/location/{pageSize}/{pageNumber}",
             produces = {"application/json"}
     )
-    public ResponseEntity<List<Location>> locationPageSizePageNumberGet(@ApiParam(value = "The maximum amount of business locations in response.", required = true) @PathVariable("pageSize") Integer pageSize, @ApiParam(value = "The page number of business locations to return.", required = true) @PathVariable("pageNumber") Integer pageNumber, Principal principal) {
+    public ResponseEntity<List<LocationDto>> locationPageSizePageNumberGet(@ApiParam(value = "The maximum amount of business locations in response.", required = true) @PathVariable("pageSize") Integer pageSize, @ApiParam(value = "The page number of business locations to return.", required = true) @PathVariable("pageNumber") Integer pageNumber, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         return ResponseEntity.ok(locationService.locationPageSizePageNumberGet(pageSize, pageNumber, user));
     }

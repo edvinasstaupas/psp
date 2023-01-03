@@ -29,7 +29,7 @@ public class ReservationInformationDTO {
     private JsonNullable<String> serviceWorkerName = JsonNullable.undefined();
 
     @JsonProperty("serviceName")
-    private JsonNullable<String> serviceName = JsonNullable.undefined();
+    private String serviceName = null;
 
     @JsonProperty("starts")
     @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
@@ -145,7 +145,7 @@ public class ReservationInformationDTO {
     }
 
     public ReservationInformationDTO serviceName(String serviceName) {
-        this.serviceName = JsonNullable.of(serviceName);
+        this.serviceName = serviceName;
         return this;
     }
 
@@ -157,11 +157,11 @@ public class ReservationInformationDTO {
     @ApiModelProperty(value = "Name of the booked service.")
 
 
-    public JsonNullable<String> getServiceName() {
+    public String getServiceName() {
         return serviceName;
     }
 
-    public void setServiceName(JsonNullable<String> serviceName) {
+    public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }
 

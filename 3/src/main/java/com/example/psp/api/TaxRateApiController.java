@@ -1,7 +1,11 @@
 package com.example.psp.api;
 
 import com.example.psp.api.utils.RestUtils;
-import com.example.psp.dto.*;
+import com.example.psp.dto.ApplyTaxRateToCategoryDTO;
+import com.example.psp.dto.AssignTaxRateToItemDTO;
+import com.example.psp.dto.ProblemDetails;
+import com.example.psp.dto.TaxRate;
+import com.example.psp.dto.TaxRateDto;
 import com.example.psp.security.User;
 import com.example.psp.services.TaxRateService;
 import io.swagger.annotations.ApiOperation;
@@ -10,9 +14,17 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -53,7 +65,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<Void> taxRateApplyTaxRateToCategoryPost(@ApiParam(value = "") @Valid @RequestBody(required = false) ApplyTaxRateToCategoryDTO applyTaxRateToCategoryDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRateApplyTaxRateToCategoryPost(applyTaxRateToCategoryDTO, user);
+        taxRateService.applyTaxToCategory(applyTaxRateToCategoryDTO, user);
         return RestUtils.ok();
     }
 
@@ -80,7 +92,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<Void> taxRateAssignTaxRateToItemPost(@ApiParam(value = "") @Valid @RequestBody(required = false) AssignTaxRateToItemDTO assignTaxRateToItemDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRateAssignTaxRateToItemPost(assignTaxRateToItemDTO, user);
+        taxRateService.assignTaxRate(assignTaxRateToItemDTO, user);
         return RestUtils.ok();
     }
 
@@ -104,7 +116,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<Void> taxRateIdDelete(@ApiParam(value = "Id of the tax rate to delete.", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRateIdDelete(id, user);
+        taxRateService.deleteTaxRate(id, user);
         return RestUtils.ok();
     }
 
@@ -128,7 +140,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<TaxRate> taxRateIdGet(@ApiParam(value = "Id of the tax rate to get", required = true) @PathVariable("id") Integer id, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return RestUtils.okOrNotFound(taxRateService.taxRateIdGet(id, user));
+        return RestUtils.okOrNotFound(taxRateService.getTaxRate(id, user));
     }
 
 
@@ -155,7 +167,7 @@ public class TaxRateApiController {
     )
     public ResponseEntity<Void> taxRateIdPut(@ApiParam(value = "Id of the tax rate to update.", required = true) @PathVariable("id") Integer id, @ApiParam(value = "Tax rate to update.") @Valid @RequestBody(required = false) TaxRateDto taxRateDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRateIdPut(id, taxRateDto, user);
+        taxRateService.putTaxRate(id, taxRateDto, user);
         return RestUtils.ok();
     }
 
@@ -178,9 +190,10 @@ public class TaxRateApiController {
             value = "/tax-rate/{pageSize}/{pageNumber}",
             produces = {"application/json"}
     )
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<TaxRate>> taxRatePageSizePageNumberGet(@ApiParam(value = "The maximum amount of tax rates in response.", required = true) @PathVariable("pageSize") Integer pageSize, @ApiParam(value = "The page number of tax rates to return.", required = true) @PathVariable("pageNumber") Integer pageNumber, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        return ResponseEntity.ok(taxRateService.taxRatePageSizePageNumberGet(pageSize, pageNumber, user));
+        return ResponseEntity.ok(taxRateService.getTaxRates(pageSize, pageNumber, user));
     }
 
 
@@ -202,9 +215,10 @@ public class TaxRateApiController {
             produces = {"application/json"},
             consumes = {"application/json"}
     )
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
     public ResponseEntity<Void> taxRatePost(@ApiParam(value = "Tax rate to create.") @Valid @RequestBody(required = false) TaxRateDto taxRateDto, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        taxRateService.taxRatePost(taxRateDto, user);
+        taxRateService.createTaxRate(taxRateDto, user);
         return RestUtils.ok();
     }
 }

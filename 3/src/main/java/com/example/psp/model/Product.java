@@ -1,11 +1,25 @@
 package com.example.psp.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -35,9 +49,8 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    @NotNull
     @ManyToOne
-    @JoinColumn(name = "tax_rate_Id")
+    @JoinColumn(name = "tax_rate_id")
     private TaxRate taxRate;
 
     private BigDecimal availableQuantity;
@@ -50,4 +63,11 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<DiscountProduct> discounts;
 
+    @ManyToMany
+    @JoinTable(
+            name = "category_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories = new LinkedHashSet<>();
 }

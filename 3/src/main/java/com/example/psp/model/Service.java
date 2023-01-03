@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -20,7 +22,7 @@ public class Service {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "tenant_id")
-    private Tenant tenantId;
+    private Tenant tenant;
 
     @NotNull
     private String name;
@@ -31,9 +33,19 @@ public class Service {
     @ColumnDefault("true")
     private Boolean isAvailable;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "tax_rate")
     private TaxRate taxRate;
 
+    @OneToMany(mappedBy = "service")
+    private List<TimeSlot> timeSlots;
+
+    @OneToMany(mappedBy = "service")
+    private List<OrderItem> orderItems;
+
+    @PreRemove
+    private void preRemove() {
+        timeSlots.forEach(slot -> slot.setService(null));
+        orderItems.forEach(item -> item.setService(null));
+    }
 }

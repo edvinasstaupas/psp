@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BundleRepository extends JpaRepository<Bundle, Integer> {
-
+    Bundle findBundleById(Integer id);
 }

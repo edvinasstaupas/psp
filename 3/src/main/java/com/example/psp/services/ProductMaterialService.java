@@ -1,6 +1,12 @@
 package com.example.psp.services;
 
-import com.example.psp.dto.ProductMaterial;
+import com.example.psp.dto.ProductMaterialDTO;
+import com.example.psp.mapper.ProductMapper;
+import com.example.psp.model.Product;
+import com.example.psp.model.ProductMaterial;
+import com.example.psp.repositories.ProductMaterialRepository;
+import com.example.psp.repositories.ProductRepository;
+import com.example.psp.repositories.TenantRepository;
 import com.example.psp.security.User;
 import org.springframework.stereotype.Service;
 
@@ -9,20 +15,64 @@ import java.util.List;
 @Service
 public class ProductMaterialService {
 
-    public void productMaterialPost(ProductMaterial productMaterial, User user) {
+    ProductMaterialRepository productMaterialRepository;
+    ProductRepository productRepository;
+    ProductMapper productMapper;
+
+    public ProductMaterialService(ProductRepository productRepository, ProductMaterialRepository productMaterialRepository, ProductMapper productMapper) {
+        this.productRepository = productRepository;
+        this.productMaterialRepository = productMaterialRepository;
+        this.productMapper = productMapper;
     }
 
-    public List<ProductMaterial> productMaterialProductIdGet(Integer productId, User user) {
-        return null;
+    public void productMaterialPost(ProductMaterialDTO productMaterialDTO, User user) {
+        Product product = productRepository.findById(productMaterialDTO.getProductId()).orElseThrow();
+        if (product.getTenant().getId() != user.getTenantId()) {
+            throw new RuntimeException("Product does not belong to this tenant");
+        }
+        productMaterialRepository.save(productMapper.mapProductMaterialDTO(productMaterialDTO));
+    }
+
+    public List<ProductMaterialDTO> productMaterialProductIdGet(Integer productId, User user) {
+        Product product = productRepository.findById(productId).orElseThrow();
+        if (product.getTenant().getId() != user.getTenantId()) {
+            throw new RuntimeException("Product does not belong to this tenant");
+        }
+        return productMapper.mapProductMaterials(productMaterialRepository.findAllByProductId(productId));
     }
 
     public void productMaterialProductIdMaterialIdDelete(Integer productId, Integer materialId, User user) {
+        Product product = productRepository.findById(productId).orElseThrow();
+        if (product.getTenant().getId() != user.getTenantId()) {
+            throw new RuntimeException("Product does not belong to this tenant");
+        }
+        productMaterialRepository.deleteById(product.getProductMaterials()
+                .stream()
+                .filter(productMaterial -> productMaterial.getMaterial().getId() == materialId)
+                .findFirst()
+                .orElseThrow()
+                .getId());
     }
 
-    public ProductMaterial productMaterialProductIdMaterialIdGet(Integer productId, Integer materialId, User user) {
-        return null;
+    public ProductMaterialDTO productMaterialProductIdMaterialIdGet(Integer productId, Integer materialId, User user) {
+        Product product = productRepository.findById(productId).orElseThrow();
+        if (product.getTenant().getId() != user.getTenantId()) {
+            throw new RuntimeException("Product does not belong to this tenant");
+        }
+        return productMapper.mapProductMaterial(product.getProductMaterials()
+                .stream()
+                .filter(productMaterial -> productMaterial.getMaterial().getId() == materialId)
+                .findFirst()
+                .orElseThrow());
     }
 
-    public void productMaterialProductIdMaterialIdPut(Integer productId, Integer materialId, ProductMaterial productMaterial, User user) {
+    public void productMaterialProductIdMaterialIdPut(Integer productId, Integer materialId, ProductMaterialDTO productMaterialDTO, User user) {
+        Product product = productRepository.findById(productId).orElseThrow();
+        if (product.getTenant().getId() != user.getTenantId()) {
+            throw new RuntimeException("Product does not belong to this tenant");
+        }
+        ProductMaterial newProductMaterial = productMapper.mapProductMaterialDTO(productMaterialDTO);
+        newProductMaterial.setId(materialId);
+        productMaterialRepository.save(newProductMaterial);
     }
 }

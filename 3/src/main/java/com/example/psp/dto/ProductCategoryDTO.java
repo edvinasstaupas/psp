@@ -2,24 +2,22 @@ package com.example.psp.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import java.util.Objects;
 
 /**
- * ProductMaterial
+ * ProductCategoryDTO
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:59:11.404204200+02:00[Europe/Vilnius]")
-public class ProductMaterial {
+public class ProductCategoryDTO {
     @JsonProperty("productId")
     private Integer productId;
 
-    @JsonProperty("materialId")
-    private Integer materialId;
+    @JsonProperty("categoryId")
+    private JsonNullable<String> categoryId = JsonNullable.undefined();
 
-    @JsonProperty("quantity")
-    private Integer quantity;
-
-    public ProductMaterial productId(Integer productId) {
+    public ProductCategoryDTO productId(Integer productId) {
         this.productId = productId;
         return this;
     }
@@ -40,46 +38,25 @@ public class ProductMaterial {
         this.productId = productId;
     }
 
-    public ProductMaterial materialId(Integer materialId) {
-        this.materialId = materialId;
+    public ProductCategoryDTO categoryId(String categoryId) {
+        this.categoryId = JsonNullable.of(categoryId);
         return this;
     }
 
     /**
-     * Get materialId
+     * Get categoryId
      *
-     * @return materialId
+     * @return categoryId
      */
     @ApiModelProperty(value = "")
 
 
-    public Integer getMaterialId() {
-        return materialId;
+    public JsonNullable<String> getCategoryId() {
+        return categoryId;
     }
 
-    public void setMaterialId(Integer materialId) {
-        this.materialId = materialId;
-    }
-
-    public ProductMaterial quantity(Integer quantity) {
-        this.quantity = quantity;
-        return this;
-    }
-
-    /**
-     * Get quantity
-     *
-     * @return quantity
-     */
-    @ApiModelProperty(value = "")
-
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = JsonNullable.of(categoryId);
     }
 
 
@@ -91,25 +68,23 @@ public class ProductMaterial {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ProductMaterial productMaterial = (ProductMaterial) o;
-        return Objects.equals(this.productId, productMaterial.productId) &&
-                Objects.equals(this.materialId, productMaterial.materialId) &&
-                Objects.equals(this.quantity, productMaterial.quantity);
+        ProductCategoryDTO productCategoryDTO = (ProductCategoryDTO) o;
+        return Objects.equals(this.productId, productCategoryDTO.productId) &&
+                Objects.equals(this.categoryId, productCategoryDTO.categoryId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, materialId, quantity);
+        return Objects.hash(productId, categoryId);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class ProductMaterial {\n");
+        sb.append("class ProductCategoryDTO {\n");
 
         sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
-        sb.append("    materialId: ").append(toIndentedString(materialId)).append("\n");
-        sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
+        sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
         sb.append("}");
         return sb.toString();
     }

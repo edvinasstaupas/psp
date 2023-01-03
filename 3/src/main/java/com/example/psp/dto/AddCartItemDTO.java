@@ -14,6 +14,7 @@ public class AddCartItemDTO {
     @JsonProperty("productId")
     private JsonNullable<Integer> productId = JsonNullable.undefined();
 
+
     @JsonProperty("bundleId")
     private JsonNullable<Integer> bundleId = JsonNullable.undefined();
 
