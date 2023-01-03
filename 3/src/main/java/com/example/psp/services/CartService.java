@@ -114,14 +114,22 @@ public class CartService {
             );
         }
         cartItem.setCart(cartItem.getCart());
-        cartItem.setProduct(productRepository.findProductById(cartItemDTO.getProductId().orElse(0)));
-        cartItem.setBundle(bundleRepository.findBundleById(cartItemDTO.getProductId().orElse(0)));
-        cartItem.setQuantity(cartItemDTO.getQuantity());
-        if(cartItem.getBundle() != null && cartItem.getProduct() != null) {
+
+        if(cartItemDTO.getBundleId().isPresent() && cartItemDTO.getProductId().isPresent()) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST
             );
         }
+        Bundle bundle = bundleRepository.findBundleById(cartItemDTO.getBundleId().orElse(-1));
+        Product product = productRepository.findProductById(cartItemDTO.getProductId().orElse(-1));
+        if((bundle == null && product == null)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        cartItem.setBundle(bundle);
+        cartItem.setProduct(product);
+        cartItem.setQuantity(cartItemDTO.getQuantity());
         cartItemRepository.save(cartItem);
     }
 
