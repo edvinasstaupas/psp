@@ -50,7 +50,7 @@ public class Product {
     private Brand brand;
 
     @ManyToOne
-    @JoinColumn(name = "tax_rate_Id")
+    @JoinColumn(name = "tax_rate_id")
     private TaxRate taxRate;
 
     private BigDecimal availableQuantity;
@@ -59,6 +59,9 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<ProductMaterial> productMaterials;
+
+    @OneToMany(mappedBy = "product")
+    private List<Category> categories;
 
     @OneToMany(mappedBy = "product")
     private List<DiscountProduct> discounts;

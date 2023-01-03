@@ -1,7 +1,7 @@
 package com.example.psp.api;
 
 import com.example.psp.api.utils.RestUtils;
-import com.example.psp.dto.BundleProduct;
+import com.example.psp.dto.BundleProductDTO;
 import com.example.psp.security.User;
 import com.example.psp.services.BundleProductService;
 import io.swagger.annotations.ApiOperation;
@@ -37,15 +37,15 @@ public class BundleProductApiController {
      * @return Success (status code 200)
      * or If bundle with such id does not exist. (status code 404)
      */
-    @ApiOperation(value = "Get list of bundle's all assigned products by bundle Id.", nickname = "bundleProductBundleIdGet", notes = "", response = BundleProduct.class, responseContainer = "List", tags = {"BundleProduct",})
+    @ApiOperation(value = "Get list of bundle's all assigned products by bundle Id.", nickname = "bundleProductBundleIdGet", notes = "", response = BundleProductDTO.class, responseContainer = "List", tags = {"BundleProduct",})
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success", response = BundleProduct.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = "Success", response = BundleProductDTO.class, responseContainer = "List"),
             @ApiResponse(code = 404, message = "If bundle with such id does not exist.")})
     @GetMapping(
             value = "/bundle-product/{bundleId}",
             produces = {"application/json", "text/json"}
     )
-    public ResponseEntity<List<BundleProduct>> bundleProductBundleIdGet(@ApiParam(value = "", required = true) @PathVariable("bundleId") Integer bundleId, Principal principal) {
+    public ResponseEntity<List<BundleProductDTO>> bundleProductBundleIdGet(@ApiParam(value = "", required = true) @PathVariable("bundleId") Integer bundleId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         return ResponseEntity.ok(bundleProductService.bundleProductBundleIdGet(bundleId, user));
     }
@@ -81,15 +81,15 @@ public class BundleProductApiController {
      * @return Success (status code 200)
      * or If product with such id is not assigned to bundle with such id. (status code 404)
      */
-    @ApiOperation(value = "Get bundle's assigned product by bundle Id and product Id.", nickname = "bundleProductBundleIdProductIdGet", notes = "", response = BundleProduct.class, tags = {"BundleProduct",})
+    @ApiOperation(value = "Get bundle's assigned product by bundle Id and product Id.", nickname = "bundleProductBundleIdProductIdGet", notes = "", response = BundleProductDTO.class, tags = {"BundleProduct",})
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success", response = BundleProduct.class),
+            @ApiResponse(code = 200, message = "Success", response = BundleProductDTO.class),
             @ApiResponse(code = 404, message = "If product with such id is not assigned to bundle with such id.")})
     @GetMapping(
             value = "/bundle-product/{bundleId}/{productId}",
             produces = {"application/json"}
     )
-    public ResponseEntity<BundleProduct> bundleProductBundleIdProductIdGet(@ApiParam(value = "", required = true) @PathVariable("bundleId") Integer bundleId, @ApiParam(value = "", required = true) @PathVariable("productId") Integer productId, Principal principal) {
+    public ResponseEntity<BundleProductDTO> bundleProductBundleIdProductIdGet(@ApiParam(value = "", required = true) @PathVariable("bundleId") Integer bundleId, @ApiParam(value = "", required = true) @PathVariable("productId") Integer productId, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
         return RestUtils.okOrNotFound(bundleProductService.bundleProductBundleIdProductIdGet(bundleId, productId, user));
     }
@@ -100,7 +100,7 @@ public class BundleProductApiController {
      *
      * @param bundleId      (required)
      * @param productId     (required)
-     * @param bundleProduct (optional)
+     * @param bundleProductDTO (optional)
      * @return Success (status code 200)
      * or If some class details are missing. (status code 400)
      * or If product with such id is not assigned to bundle with such id. (status code 404)
@@ -114,9 +114,9 @@ public class BundleProductApiController {
             value = "/bundle-product/{bundleId}/{productId}",
             consumes = {"application/json"}
     )
-    public ResponseEntity<Void> bundleProductBundleIdProductIdPut(@ApiParam(value = "", required = true) @PathVariable("bundleId") Integer bundleId, @ApiParam(value = "", required = true) @PathVariable("productId") Integer productId, @ApiParam(value = "") @Valid @RequestBody(required = false) BundleProduct bundleProduct, Principal principal) {
+    public ResponseEntity<Void> bundleProductBundleIdProductIdPut(@ApiParam(value = "", required = true) @PathVariable("bundleId") Integer bundleId, @ApiParam(value = "", required = true) @PathVariable("productId") Integer productId, @ApiParam(value = "") @Valid @RequestBody(required = false) BundleProductDTO bundleProductDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        bundleProductService.bundleProductBundleIdProductIdPut(bundleId, productId, bundleProduct, user);
+        bundleProductService.bundleProductBundleIdProductIdPut(bundleId, productId, bundleProductDTO, user);
         return RestUtils.ok();
     }
 
@@ -124,7 +124,7 @@ public class BundleProductApiController {
     /**
      * POST /bundle-product : Assign product to a bundle.
      *
-     * @param bundleProduct (optional)
+     * @param bundleProductDTO (optional)
      * @return Success (status code 200)
      * or If some class details are missing. (status code 400)
      */
@@ -136,9 +136,9 @@ public class BundleProductApiController {
             value = "/bundle-product",
             consumes = {"application/json"}
     )
-    public ResponseEntity<Void> bundleProductPost(@ApiParam(value = "") @Valid @RequestBody(required = false) BundleProduct bundleProduct, Principal principal) {
+    public ResponseEntity<Void> bundleProductPost(@ApiParam(value = "") @Valid @RequestBody(required = false) BundleProductDTO bundleProductDTO, Principal principal) {
         User user = (User) userDetailsService.loadUserByUsername(principal.getName());
-        bundleProductService.bundleProductPost(bundleProduct, user);
+        bundleProductService.bundleProductPost(bundleProductDTO, user);
         return RestUtils.ok();
     }
 

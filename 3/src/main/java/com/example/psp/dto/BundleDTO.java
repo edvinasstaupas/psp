@@ -25,7 +25,7 @@ public class BundleDTO {
 
     @JsonProperty("products")
     @Valid
-    private JsonNullable<List<BundleProduct>> products = JsonNullable.undefined();
+    private JsonNullable<List<BundleProductDTO>> products = JsonNullable.undefined();
 
     public BundleDTO id(Integer id) {
         this.id = id;
@@ -61,12 +61,12 @@ public class BundleDTO {
     @ApiModelProperty(value = "")
 
 
-    public JsonNullable<String> getName() {
-        return name;
+    public String getName() {
+        return name.orElse(null);
     }
 
-    public void setName(JsonNullable<String> name) {
-        this.name = name;
+    public void setName(String name) {
+        this.name = JsonNullable.of(name);
     }
 
     public BundleDTO price(Integer price) {
@@ -90,12 +90,12 @@ public class BundleDTO {
         this.price = price;
     }
 
-    public BundleDTO products(List<BundleProduct> products) {
+    public BundleDTO products(List<BundleProductDTO> products) {
         this.products = JsonNullable.of(products);
         return this;
     }
 
-    public BundleDTO addProductsItem(BundleProduct productsItem) {
+    public BundleDTO addProductsItem(BundleProductDTO productsItem) {
         if (this.products == null || !this.products.isPresent()) {
             this.products = JsonNullable.of(new ArrayList<>());
         }
@@ -112,12 +112,12 @@ public class BundleDTO {
 
     @Valid
 
-    public JsonNullable<List<BundleProduct>> getProducts() {
-        return products;
+    public List<BundleProductDTO> getProducts() {
+        return products.orElse(null);
     }
 
-    public void setProducts(JsonNullable<List<BundleProduct>> products) {
-        this.products = products;
+    public void setProducts(List<BundleProductDTO> products) {
+        this.products = JsonNullable.of(products);
     }
 
 

@@ -6,41 +6,20 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 
 /**
- * BundleProduct
+ * ProductMaterial
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-03T17:59:11.404204200+02:00[Europe/Vilnius]")
-public class BundleProduct {
-    @JsonProperty("bundleId")
-    private Integer bundleId;
-
+public class ProductMaterialDTO {
     @JsonProperty("productId")
     private Integer productId;
+
+    @JsonProperty("materialId")
+    private Integer materialId;
 
     @JsonProperty("quantity")
     private Integer quantity;
 
-    public BundleProduct bundleId(Integer bundleId) {
-        this.bundleId = bundleId;
-        return this;
-    }
-
-    /**
-     * Get bundleId
-     *
-     * @return bundleId
-     */
-    @ApiModelProperty(value = "")
-
-
-    public Integer getBundleId() {
-        return bundleId;
-    }
-
-    public void setBundleId(Integer bundleId) {
-        this.bundleId = bundleId;
-    }
-
-    public BundleProduct productId(Integer productId) {
+    public ProductMaterialDTO productId(Integer productId) {
         this.productId = productId;
         return this;
     }
@@ -61,7 +40,28 @@ public class BundleProduct {
         this.productId = productId;
     }
 
-    public BundleProduct quantity(Integer quantity) {
+    public ProductMaterialDTO materialId(Integer materialId) {
+        this.materialId = materialId;
+        return this;
+    }
+
+    /**
+     * Get materialId
+     *
+     * @return materialId
+     */
+    @ApiModelProperty(value = "")
+
+
+    public Integer getMaterialId() {
+        return materialId;
+    }
+
+    public void setMaterialId(Integer materialId) {
+        this.materialId = materialId;
+    }
+
+    public ProductMaterialDTO quantity(Integer quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -91,24 +91,24 @@ public class BundleProduct {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BundleProduct bundleProduct = (BundleProduct) o;
-        return Objects.equals(this.bundleId, bundleProduct.bundleId) &&
-                Objects.equals(this.productId, bundleProduct.productId) &&
-                Objects.equals(this.quantity, bundleProduct.quantity);
+        ProductMaterialDTO productMaterialDTO = (ProductMaterialDTO) o;
+        return Objects.equals(this.productId, productMaterialDTO.productId) &&
+                Objects.equals(this.materialId, productMaterialDTO.materialId) &&
+                Objects.equals(this.quantity, productMaterialDTO.quantity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bundleId, productId, quantity);
+        return Objects.hash(productId, materialId, quantity);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class BundleProduct {\n");
+        sb.append("class ProductMaterial {\n");
 
-        sb.append("    bundleId: ").append(toIndentedString(bundleId)).append("\n");
         sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
+        sb.append("    materialId: ").append(toIndentedString(materialId)).append("\n");
         sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("}");
         return sb.toString();

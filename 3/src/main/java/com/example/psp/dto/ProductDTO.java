@@ -34,11 +34,11 @@ public class ProductDTO {
 
     @JsonProperty("materials")
     @Valid
-    private JsonNullable<List<ProductMaterial>> materials = JsonNullable.undefined();
+    private JsonNullable<List<ProductMaterialDTO>> materials = JsonNullable.undefined();
 
     @JsonProperty("categories")
     @Valid
-    private JsonNullable<List<ProductCategory>> categories = JsonNullable.undefined();
+    private JsonNullable<List<ProductCategoryDTO>> categories = JsonNullable.undefined();
 
     public ProductDTO id(Integer id) {
         this.id = id;
@@ -74,12 +74,12 @@ public class ProductDTO {
     @ApiModelProperty(value = "")
 
 
-    public JsonNullable<String> getName() {
-        return name;
+    public String getName() {
+        return name.orElse(null);
     }
 
-    public void setName(JsonNullable<String> name) {
-        this.name = name;
+    public void setName(String name) {
+        this.name = JsonNullable.of(name);
     }
 
     public ProductDTO unit(String unit) {
@@ -95,12 +95,12 @@ public class ProductDTO {
     @ApiModelProperty(value = "")
 
 
-    public JsonNullable<String> getUnit() {
-        return unit;
+    public String getUnit() {
+        return unit.orElse(null);
     }
 
-    public void setUnit(JsonNullable<String> unit) {
-        this.unit = unit;
+    public void setUnit(String unit) {
+        this.unit = JsonNullable.of(unit);
     }
 
     public ProductDTO price(Integer price) {
@@ -166,12 +166,12 @@ public class ProductDTO {
         this.taxRateId = taxRateId;
     }
 
-    public ProductDTO materials(List<ProductMaterial> materials) {
+    public ProductDTO materials(List<ProductMaterialDTO> materials) {
         this.materials = JsonNullable.of(materials);
         return this;
     }
 
-    public ProductDTO addMaterialsItem(ProductMaterial materialsItem) {
+    public ProductDTO addMaterialsItem(ProductMaterialDTO materialsItem) {
         if (this.materials == null || !this.materials.isPresent()) {
             this.materials = JsonNullable.of(new ArrayList<>());
         }
@@ -188,20 +188,20 @@ public class ProductDTO {
 
     @Valid
 
-    public JsonNullable<List<ProductMaterial>> getMaterials() {
-        return materials;
+    public List<ProductMaterialDTO> getMaterials() {
+        return materials.orElse(null);
     }
 
-    public void setMaterials(JsonNullable<List<ProductMaterial>> materials) {
-        this.materials = materials;
+    public void setMaterials(List<ProductMaterialDTO> materials) {
+        this.materials = JsonNullable.of(materials);
     }
 
-    public ProductDTO categories(List<ProductCategory> categories) {
+    public ProductDTO categories(List<ProductCategoryDTO> categories) {
         this.categories = JsonNullable.of(categories);
         return this;
     }
 
-    public ProductDTO addCategoriesItem(ProductCategory categoriesItem) {
+    public ProductDTO addCategoriesItem(ProductCategoryDTO categoriesItem) {
         if (this.categories == null || !this.categories.isPresent()) {
             this.categories = JsonNullable.of(new ArrayList<>());
         }
@@ -218,12 +218,12 @@ public class ProductDTO {
 
     @Valid
 
-    public JsonNullable<List<ProductCategory>> getCategories() {
-        return categories;
+    public List<ProductCategoryDTO> getCategories() {
+        return categories.orElse(null);
     }
 
-    public void setCategories(JsonNullable<List<ProductCategory>> categories) {
-        this.categories = categories;
+    public void setCategories(List<ProductCategoryDTO> categories) {
+        this.categories = JsonNullable.of(categories);
     }
 
 
