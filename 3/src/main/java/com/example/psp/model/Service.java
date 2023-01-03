@@ -40,8 +40,12 @@ public class Service {
     @OneToMany(mappedBy = "service")
     private List<TimeSlot> timeSlots;
 
+    @OneToMany(mappedBy = "service")
+    private List<OrderItem> orderItems;
+
     @PreRemove
     private void preRemove() {
         timeSlots.forEach(slot -> slot.setService(null));
+        orderItems.forEach(item -> item.setService(null));
     }
 }
